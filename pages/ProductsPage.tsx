@@ -4,6 +4,17 @@ import { PRODUCTS } from '../constants';
 import ProductCard from '../components/ProductCard';
 
 const ProductsPage: React.FC = () => {
+  // Criar uma versão modificada dos produtos com GIFs para a página de produtos
+  const productsWithGifs = PRODUCTS.map((product) => {
+    if (product.slug === 'copymaster-pro') {
+      return { ...product, image: '/assets/gifs/coruja-pensando.gif' };
+    }
+    if (product.slug === 'slidegenius') {
+      return { ...product, image: '/assets/gifs/camaleao_zoom.gif' };
+    }
+    return product;
+  });
+
   return (
     <div className="bg-gray-900 py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +25,7 @@ const ProductsPage: React.FC = () => {
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
-          {PRODUCTS.map((product) => (
+          {productsWithGifs.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>

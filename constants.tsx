@@ -26,6 +26,7 @@ export const PRODUCTS: Product[] = [
       'Escrever e-mails de marketing que convertem.',
     ],
     icon: CopyMasterProIcon,
+    image: '/assets/images/corujasabia.jpeg',
   },
   {
     slug: 'slidegenius',
@@ -41,10 +42,11 @@ export const PRODUCTS: Product[] = [
       'Elaborar relatórios visuais de resultados.',
     ],
     icon: SlideGeniusIcon,
+    image: '/assets/images/camaleao_fundo.jpeg',
   },
   {
     slug: 'read-write',
-    name: 'Read&Write',
+    name: 'Listen&Write',
     tagline: 'Grave reuniões, transcreva e gere atas organizadas automaticamente.',
     description: 'Nunca mais perca uma informação importante. Grave suas reuniões, obtenha transcrições precisas e receba uma ata com os principais pontos e ações a serem tomadas.',
     problem: 'Dificuldade em tomar notas durante reuniões e organizar as decisões e tarefas discutidas.',
@@ -56,6 +58,7 @@ export const PRODUCTS: Product[] = [
       'Manter um registro pesquisável de todas as conversas.',
     ],
     icon: ReadWriteIcon,
+    image: '/assets/images/lobo_guara.png',
   },
   {
     slug: 'rememberme',
@@ -71,6 +74,7 @@ export const PRODUCTS: Product[] = [
       'Criar presentes emocionantes e personalizados.',
     ],
     icon: RememberMeIcon,
+    image: '/assets/images/jabuti.png',
   },
 ];
 
@@ -144,7 +148,7 @@ export const BLOG_POSTS: BlogPost[] = [
       <p class="mb-4">Precisa lembrar o que foi decidido sobre o "projeto X" há três meses? Com todas as reuniões transcritas, você pode simplesmente pesquisar por palavras-chave e encontrar a informação exata em segundos.</p>
       <div class="mt-6 p-4 bg-gray-800 rounded-lg border border-cyan-500">
         <h4 class="font-bold text-lg text-white">Como isso te ajuda?</h4>
-        <p class="text-gray-300">O <strong>Read&Write</strong> é a solução perfeita para reuniões mais inteligentes. Ele grava, transcreve e gera atas organizadas, garantindo que nenhuma informação valiosa seja perdida e que todas as equipes estejam alinhadas.</p>
+        <p class="text-gray-300">O <strong>Listen&Write</strong> é a solução perfeita para reuniões mais inteligentes. Ele grava, transcreve e gera atas organizadas, garantindo que nenhuma informação valiosa seja perdida e que todas as equipes estejam alinhadas.</p>
       </div>
     `,
     imageUrl: 'https://picsum.photos/seed/meeting/800/400',
@@ -179,22 +183,22 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     name: 'Ana Costa',
     role: 'Gerente de Marketing',
-    quote: 'O CopyMaster Pro transformou nossa produção de conteúdo. Criamos campanhas 3x mais rápido e o engajamento nunca foi tão alto. Essencial!',
-    imageUrl: 'https://picsum.photos/seed/ana/100',
+    quote: 'O CopyMaster Pro me auxilia a gerar novas propagandas para meu produto, além de deixar organizado meus arquivos',
+    imageUrl: '/assets/images/Ana.png',
     productUsed: 'CopyMaster Pro',
   },
   {
     name: 'Bruno Lima',
     role: 'Consultor de Negócios',
-    quote: 'Com o SlideGenius, minhas apresentações passaram para outro nível. Economizo horas e o resultado final é sempre impressionante e profissional.',
-    imageUrl: 'https://picsum.photos/seed/bruno/100',
+    quote: 'Sisteminha Massa!, Me ajuda bastante quando estou sem idéias para criar roteiros para as minhas apresentações. Parabéns!',
+    imageUrl: '/assets/images/Bruno.png',
     productUsed: 'SlideGenius',
   },
   {
     name: 'Carla Dias',
     role: 'Coordenadora de Projetos',
-    quote: 'O Read&Write é indispensável para nossa equipe remota. As atas automáticas garantem que todos estejam alinhados, sem perder nenhuma decisão.',
-    imageUrl: 'https://picsum.photos/seed/carla/100',
-    productUsed: 'Read&Write',
+    quote: 'Gostei da ferramenta e o modo como organiza minhas reuniões realizadas. Show!',
+    imageUrl: '/assets/images/Carla.png',
+    productUsed: 'Listen&Write',
   },
 ];

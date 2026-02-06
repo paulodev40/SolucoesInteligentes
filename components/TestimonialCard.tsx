@@ -19,7 +19,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
       </blockquote>
       <footer className="mt-auto">
         <p className="font-bold text-white text-lg">{testimonial.name}</p>
-        <p className="text-gray-400">{testimonial.role}</p>
         <p className="text-sm text-cyan-400 mt-1">Usuário de {testimonial.productUsed}</p>
       </footer>
     </div>

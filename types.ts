@@ -11,6 +11,7 @@ export interface Product {
   useCases: string[];
   // Fix: Use `ComponentType` instead of `React.ComponentType`.
   icon: ComponentType<{ className?: string }>;
+  image?: string;
 }
 
 export interface BlogPost {

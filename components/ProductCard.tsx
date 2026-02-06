@@ -11,9 +11,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const Icon = product.icon;
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+      {product.image && (
+        <div className="relative bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-4">
+          <img 
+            src={product.image} 
+            alt={product.name} 
+            className="w-full h-auto max-h-64 object-contain hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      )}
       <div className="p-6 flex-grow">
         <div className="flex items-center mb-4">
-          <Icon className="h-10 w-10 text-cyan-400 mr-4" />
+          {!product.image && <Icon className="h-10 w-10 text-cyan-400 mr-4" />}
           <h3 className="text-xl font-bold text-white">{product.name}</h3>
         </div>
         <p className="text-gray-400 leading-relaxed">{product.tagline}</p>
