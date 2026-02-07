@@ -31,6 +31,12 @@ const ProductDetailPage: React.FC = () => {
                    alt={product.name}
                    className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
                  />
+               ) : product.slug === 'slidegenius' ? (
+                 <img 
+                   src="/assets/images/mascote-camaleao.png" 
+                   alt={product.name}
+                   className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
+                 />
                ) : (
                  <Icon className="h-16 w-16 text-cyan-400 mr-5" />
                )}
@@ -49,6 +55,21 @@ const ProductDetailPage: React.FC = () => {
                     className="absolute top-0 left-0 w-full h-full"
                     src="https://www.youtube.com/embed/D_86O9BsSUw"
                     title="CopyMaster Pro Demo"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )}
+            
+            {product.slug === 'slidegenius' && (
+              <div className="mt-8">
+                <div className="relative w-full rounded-lg overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/CMEhFIfeC-s"
+                    title="SlideGenius Demo"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
