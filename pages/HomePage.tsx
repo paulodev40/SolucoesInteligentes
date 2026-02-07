@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Coming Soon Section */}
+      {/* Suggestions Section */}
       <section className="py-16 bg-gradient-to-r from-cyan-900/20 via-purple-900/20 to-cyan-900/20 border-y border-cyan-500/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 border border-cyan-400/30 backdrop-blur-sm p-8 sm:p-12">
@@ -54,27 +54,34 @@ const HomePage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 animate-pulse"></div>
             
             <div className="relative z-10 text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500 animate-bounce">
+              <div className="inline-flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
               
               <h3 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
-                Novas Soluções em Desenvolvimento
+                Tem uma Ideia? Compartilhe Conosco!
               </h3>
               
               <p className="text-lg sm:text-xl text-cyan-100 mb-6 max-w-2xl mx-auto">
-                Estamos preparando <span className="font-bold text-cyan-300">ferramentas revolucionárias</span> que vão transformar ainda mais o seu dia a dia. 
-                Em breve, você terá acesso a tecnologias que nem imagina!
+                Queremos ouvir <span className="font-bold text-cyan-300">você</span>! 
+                Qual problema você gostaria de resolver com Inteligência Artificial? 
+                Suas sugestões são fundamentais para criarmos as próximas soluções inteligentes.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-                <div className="flex items-center gap-2 text-yellow-300">
-                  <svg className="w-6 h-6 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="font-semibold text-lg">Novidades Exclusivas</span>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 mb-8 max-w-3xl mx-auto">
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-cyan-400/20">
+                  <div className="text-3xl mb-2">💡</div>
+                  <p className="text-sm text-gray-300">Sugira novas ferramentas</p>
+                </div>
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-cyan-400/20">
+                  <div className="text-3xl mb-2">🎯</div>
+                  <p className="text-sm text-gray-300">Proponha novos recursos</p>
+                </div>
+                <div className="bg-gray-800/50 rounded-lg p-4 border border-cyan-400/20">
+                  <div className="text-3xl mb-2">🚀</div>
+                  <p className="text-sm text-gray-300">Ajude a moldar o futuro</p>
                 </div>
               </div>
               
@@ -83,12 +90,12 @@ const HomePage: React.FC = () => {
                   to="/contato"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
                 >
-                  🚀 Não Fique de Fora! Entre em Contato
+                  💬 Envie Sua Sugestão Agora
                 </Link>
               </div>
               
               <p className="mt-6 text-sm text-gray-400 italic">
-                Seja um dos primeiros a experimentar o futuro da automação inteligente
+                Todas as ideias são bem-vindas! Juntos, construímos soluções que realmente importam.
               </p>
             </div>
           </div>

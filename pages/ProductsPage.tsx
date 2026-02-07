@@ -7,10 +7,16 @@ const ProductsPage: React.FC = () => {
   // Criar uma versão modificada dos produtos com GIFs para a página de produtos
   const productsWithGifs = PRODUCTS.map((product) => {
     if (product.slug === 'copymaster-pro') {
-      return { ...product, image: '/assets/gifs/coruja-pensando.gif' };
+      return { ...product, image: '/assets/gifs/coruja_pensando2.gif' };
     }
     if (product.slug === 'slidegenius') {
-      return { ...product, image: '/assets/gifs/camaleao_zoom.gif' };
+      return { ...product, image: '/assets/gifs/camaleao_ligando2.gif' };
+    }
+    if (product.slug === 'read-write') {
+      return { ...product, image: '/assets/gifs/lobo_gravando.gif' };
+    }
+    if (product.slug === 'rememberme') {
+      return { ...product, image: '/assets/gifs/tartaruga_colore.gif' };
     }
     return product;
   });

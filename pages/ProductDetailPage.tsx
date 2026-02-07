@@ -25,7 +25,15 @@ const ProductDetailPage: React.FC = () => {
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           <div className="lg:col-span-6">
             <div className="flex items-center mb-4">
-               <Icon className="h-16 w-16 text-cyan-400 mr-5" />
+               {product.slug === 'copymaster-pro' ? (
+                 <img 
+                   src="/assets/images/corujasabia.jpeg" 
+                   alt={product.name}
+                   className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
+                 />
+               ) : (
+                 <Icon className="h-16 w-16 text-cyan-400 mr-5" />
+               )}
                <div>
                   <h1 className="text-4xl font-extrabold text-white sm:text-5xl">{product.name}</h1>
                   <p className="mt-2 text-xl text-cyan-400">{product.tagline}</p>
@@ -33,6 +41,21 @@ const ProductDetailPage: React.FC = () => {
             </div>
             
             <p className="mt-6 text-lg text-gray-300">{product.description}</p>
+            
+            {product.slug === 'copymaster-pro' && (
+              <div className="mt-8">
+                <div className="relative w-full rounded-lg overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    className="absolute top-0 left-0 w-full h-full"
+                    src="https://www.youtube.com/embed/D_86O9BsSUw"
+                    title="CopyMaster Pro Demo"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              </div>
+            )}
             
             <div className="mt-8">
               <a

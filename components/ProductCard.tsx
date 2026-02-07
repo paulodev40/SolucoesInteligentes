@@ -12,11 +12,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
       {product.image && (
-        <div className="relative bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-4">
+        <div className="relative bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-2">
           <img 
             src={product.image} 
             alt={product.name} 
-            className="w-full h-auto max-h-64 object-contain hover:scale-105 transition-transform duration-300"
+            className="w-full h-auto max-h-72 object-contain hover:scale-105 transition-transform duration-300"
           />
         </div>
       )}
