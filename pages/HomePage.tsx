@@ -85,12 +85,14 @@ const HomePage: React.FC = () => {
               </div>
               
               <div className="mt-8">
-                <Link
-                  to="/contato"
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSefilKN4FAEBcBkJNLZOIzUJBqe0SHY7tW2t3ZqTN2dXXWW0g/viewform?usp=publish-editor"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
                 >
                   💬 Envie Sua Sugestão Agora
-                </Link>
+                </a>
               </div>
               
               <p className="mt-6 text-sm text-gray-400 italic">
