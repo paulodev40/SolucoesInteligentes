@@ -11,13 +11,12 @@ export interface NewsArticle {
 }
 
 interface NewsApiResponse {
-  status: string;
-  totalResults: number;
   articles: NewsArticle[];
 }
 
-const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
-const BASE_URL = 'https://newsapi.org/v2';
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const FUNCTION_PATH = '/functions/v1/news-proxy';
 
 // Cache para evitar múltiplas requisições
 let cachedNews: NewsArticle[] | null = null;
@@ -31,10 +30,17 @@ export const fetchAINews = async (limit: number = 6): Promise<NewsArticle[]> => 
   }
 
   try {
-    const query = 'artificial intelligence OR AI OR machine learning';
-    const url = `${BASE_URL}/everything?q=${encodeURIComponent(query)}&language=pt&sortBy=publishedAt&pageSize=${limit}&apiKey=${API_KEY}`;
-    
-    const response = await fetch(url);
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      throw new Error('Supabase env vars ausentes');
+    }
+
+    const url = `${SUPABASE_URL}${FUNCTION_PATH}?limit=${limit}`;
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        apikey: SUPABASE_ANON_KEY
+      }
+    });
     
     if (!response.ok) {
       throw new Error(`NewsAPI error: ${response.status}`);
