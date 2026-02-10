@@ -35,7 +35,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div className="space-y-4">
-              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/juliana2.jpeg" alt="Juliana M. T." />
+              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/juliana3.jpeg" alt="Juliana M. T." />
               <div className="space-y-2">
                 <h3 className="text-xl font-medium text-white">Juliana M. T.</h3>
                 <p className="text-cyan-400">Administração & Finanças</p>
