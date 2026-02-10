@@ -26,26 +26,19 @@ const AboutPage: React.FC = () => {
 
         <div className="mt-20 text-center">
           <h2 className="text-3xl font-extrabold text-white">Nossa Equipe</h2>
-          <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2">
             <div className="space-y-4">
-              <img className="mx-auto h-40 w-40 rounded-full" src="https://picsum.photos/seed/ceo/200" alt="CEO" />
+              <img className="mx-auto h-40 w-40 rounded-full" src="/assets/images/paulo.jpeg" alt="Paulo N. S." />
               <div className="space-y-2">
-                <h3 className="text-xl font-medium text-white">João Silva</h3>
-                <p className="text-cyan-400">CEO & Fundador</p>
+                <h3 className="text-xl font-medium text-white">Paulo N. S.</h3>
+                <p className="text-cyan-400">Criador & Desenvolvedor</p>
               </div>
             </div>
-             <div className="space-y-4">
-              <img className="mx-auto h-40 w-40 rounded-full" src="https://picsum.photos/seed/cto/200" alt="CTO" />
+            <div className="space-y-4">
+              <img className="mx-auto h-40 w-40 rounded-full" src="/assets/images/juliana.jpeg" alt="Juliana M. T." />
               <div className="space-y-2">
-                <h3 className="text-xl font-medium text-white">Maria Oliveira</h3>
-                <p className="text-cyan-400">CTO & Arquiteta de IA</p>
-              </div>
-            </div>
-             <div className="space-y-4">
-              <img className="mx-auto h-40 w-40 rounded-full" src="https://picsum.photos/seed/cmo/200" alt="CMO" />
-              <div className="space-y-2">
-                <h3 className="text-xl font-medium text-white">Carlos Pereira</h3>
-                <p className="text-cyan-400">CMO & Estrategista</p>
+                <h3 className="text-xl font-medium text-white">Juliana M. T.</h3>
+                <p className="text-cyan-400">Administração & Finanças</p>
               </div>
             </div>
           </div>

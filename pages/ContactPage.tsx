@@ -6,13 +6,21 @@ const ContactPage: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setStatus('Enviando...');
-        // Simulating a network request
-        setTimeout(() => {
-            setStatus('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            (e.target as HTMLFormElement).reset();
-             setTimeout(() => setStatus(''), 5000);
-        }, 1000);
+        setStatus('Abrindo seu email...');
+
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const fullName = String(formData.get('full-name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || '').trim();
+        const message = String(formData.get('message') || '').trim();
+
+        const body = `Nome: ${fullName}\nEmail: ${email}\n\nMensagem:\n${message}`;
+        const mailto = `mailto:solucoesinteligentes83@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailto;
+        form.reset();
+        setTimeout(() => setStatus(''), 3000);
     };
 
     return (

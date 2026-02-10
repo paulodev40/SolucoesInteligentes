@@ -89,7 +89,13 @@ const ProductDetailPage: React.FC = () => {
             
             <div className="mt-8">
               <a
-                href="#"
+                href={
+                  product.slug === 'copymaster-pro'
+                    ? 'https://vendas-copy-master.vercel.app/'
+                    : '#'
+                }
+                target={product.slug === 'copymaster-pro' ? '_blank' : undefined}
+                rel={product.slug === 'copymaster-pro' ? 'noopener noreferrer' : undefined}
                 className="inline-block px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105"
               >
                 Testar Agora / Comprar

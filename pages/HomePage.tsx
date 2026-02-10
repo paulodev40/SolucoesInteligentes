@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCTS, BLOG_POSTS, TESTIMONIALS } from '../constants';
+import { PRODUCTS, BLOG_POSTS } from '../constants';
 import ProductCard from '../components/ProductCard';
 import BlogPostCard from '../components/BlogPostCard';
-import TestimonialCard from '../components/TestimonialCard';
 
 const HomePage: React.FC = () => {
   return (
@@ -101,22 +100,6 @@ const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
-      
-      {/* Testimonials Section */}
-      <section id="testimonials" className="py-20 bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">O que nossos clientes dizem</h2>
-            <p className="mt-4 text-lg text-gray-400">Resultados reais de pessoas que confiam em nossas soluções.</p>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-1 lg:grid-cols-3">
-            {TESTIMONIALS.map((testimonial, index) => (
-              <TestimonialCard key={index} testimonial={testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Blog Section */}
       <section id="blog" className="py-20 bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
