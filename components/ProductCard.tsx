@@ -10,7 +10,14 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const Icon = product.icon;
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+    <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col relative">
+      {/* Badge "Em Construção" para RememberMe */}
+      {product.slug === 'rememberme' && (
+        <div className="absolute top-3 right-3 z-10 bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-xs font-bold shadow-lg flex items-center gap-1">
+          <span>🚧</span>
+          <span>Em Construção</span>
+        </div>
+      )}
       {product.image && (
         <div className="relative bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center p-2">
           <img 
