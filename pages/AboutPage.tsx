@@ -28,14 +28,14 @@ const AboutPage: React.FC = () => {
           <h2 className="text-3xl font-extrabold text-white">Nossa Equipe</h2>
           <div className="mt-8 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2">
             <div className="space-y-4">
-              <img className="mx-auto h-40 w-40 rounded-full" src="/assets/images/paulo.jpeg" alt="Paulo N. S." />
+              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/paulo.jpeg" alt="Paulo N. S." />
               <div className="space-y-2">
                 <h3 className="text-xl font-medium text-white">Paulo N. S.</h3>
                 <p className="text-cyan-400">Criador & Desenvolvedor</p>
               </div>
             </div>
             <div className="space-y-4">
-              <img className="mx-auto h-40 w-40 rounded-full" src="/assets/images/juliana.jpeg" alt="Juliana M. T." />
+              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/juliana.jpeg" alt="Juliana M. T." />
               <div className="space-y-2">
                 <h3 className="text-xl font-medium text-white">Juliana M. T.</h3>
                 <p className="text-cyan-400">Administração & Finanças</p>
