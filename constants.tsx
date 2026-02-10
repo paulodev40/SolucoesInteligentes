@@ -83,7 +83,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: '5-jeitos-de-usar-ia-para-vender-mais',
     title: '5 jeitos de usar IA para vender mais no Instagram',
     author: 'Equipe Soluções Inteligentes',
-    date: '10 de Julho de 2024',
+    date: '12 de Fevereiro de 2026',
     category: 'Marketing e Vendas com IA',
     excerpt: 'Descubra como a inteligência artificial pode turbinar suas estratégias de vendas no Instagram, desde a criação de conteúdo até a análise de resultados.',
     content: `
@@ -110,7 +110,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'como-montar-uma-apresentacao-em-10-minutos',
     title: 'Como montar uma apresentação em 10 minutos com IA',
     author: 'Equipe Soluções Inteligentes',
-    date: '08 de Julho de 2024',
+    date: '10 de Fevereiro de 2026',
     category: 'Apresentações e Reuniões Inteligentes',
     excerpt: 'Aprenda o passo a passo para criar apresentações profissionais e visualmente atraentes em tempo recorde, deixando a IA fazer o trabalho pesado.',
     content: `
@@ -135,7 +135,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'ia-em-reunioes',
     title: 'IA em reuniões: nunca mais perca decisões importantes',
     author: 'Equipe Soluções Inteligentes',
-    date: '05 de Julho de 2024',
+    date: '08 de Fevereiro de 2026',
     category: 'Apresentações e Reuniões Inteligentes',
     excerpt: 'Veja como a IA está revolucionando as reuniões, garantindo que todas as informações sejam capturadas, organizadas e transformadas em ações claras.',
     content: `
@@ -158,7 +158,7 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'como-a-ia-esta-resgatando-memorias',
     title: 'Como a IA está resgatando memórias em fotos antigas',
     author: 'Equipe Soluções Inteligentes',
-    date: '02 de Julho de 2024',
+    date: '05 de Fevereiro de 2026',
     category: 'Memória e Imagem',
     excerpt: 'A tecnologia de IA está trazendo o passado de volta à vida, restaurando fotos danificadas e colorindo imagens em preto e branco com um realismo impressionante.',
     content: `
