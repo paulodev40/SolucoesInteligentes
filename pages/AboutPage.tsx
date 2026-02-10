@@ -17,10 +17,10 @@ const AboutPage: React.FC = () => {
             Na Soluções Inteligentes, acreditamos que a tecnologia deve ser uma força para o bem, simplificando a complexidade e liberando o potencial humano. Nascemos da paixão por inovação e do desejo de tornar a Inteligência Artificial acessível e útil para todos, desde o empreendedor individual até grandes corporações.
           </p>
           <p>
-            Nossa missão é desenvolver ferramentas intuitivas e poderosas que resolvem problemas do dia a dia. Não criamos tecnologia pela tecnologia; criamos soluções que geram resultados tangíveis: mais vendas, maior produtividade, comunicação mais clara e preservação de memórias preciosas.
+            Nossa missão é desenvolver ferramentas intuitivas que resolvem problemas do dia a dia. Não criamos tecnologia pela tecnologia; criamos soluções que geram resultados tangíveis: mais vendas, maior produtividade, comunicação mais clara e preservação de memórias preciosas.
           </p>
           <p>
-            Cada um de nossos produtos é projetado com um foco claro: o que isso faz por você? Queremos que você passe menos tempo em tarefas repetitivas e mais tempo fazendo o que ama, seja criando, inovando ou simplesmente aproveitando a vida. Junte-se a nós para descomplicar o futuro, hoje.
+            Cada um de nossos produtos é projetado com um foco claro: o que isso faz por você? Queremos que você passe menos tempo em tarefas repetitivas e mais tempo fazendo o que ama, seja criando e inovando. Junte-se a nós para descomplicar o futuro, hoje!
           </p>
         </div>
 
@@ -35,7 +35,7 @@ const AboutPage: React.FC = () => {
               </div>
             </div>
             <div className="space-y-4">
-              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/juliana.jpeg" alt="Juliana M. T." />
+              <img className="mx-auto h-28 w-28 rounded-full object-cover" src="/assets/images/juliana2.jpeg" alt="Juliana M. T." />
               <div className="space-y-2">
                 <h3 className="text-xl font-medium text-white">Juliana M. T.</h3>
                 <p className="text-cyan-400">Administração & Finanças</p>
