@@ -18,6 +18,25 @@ const ProductDetailPage: React.FC = () => {
   }
   
   const Icon = product.icon;
+  const planButtons =
+    product.slug === 'copymaster-pro'
+      ? [
+          { label: 'Basic', href: 'https://pay.kiwify.com.br/BadUXsr' },
+          { label: 'Pro', href: 'https://pay.kiwify.com.br/p3buLC7' },
+        ]
+      : product.slug === 'slidegenius'
+        ? [
+            { label: 'Basic', href: 'https://pay.kiwify.com.br/uEquEjp' },
+            { label: 'Plus', href: 'https://pay.kiwify.com.br/pdMtBm4' },
+            { label: 'Pro', href: 'https://pay.kiwify.com.br/U5cVhL5' },
+          ]
+        : product.slug === 'read-write'
+          ? [
+              { label: 'Basic', href: 'https://pay.kiwify.com.br/rOo2dmI' },
+              { label: 'Pro', href: 'https://pay.kiwify.com.br/JKEpzY1' },
+              { label: 'Business', href: 'https://pay.kiwify.com.br/8SQLEgM' },
+            ]
+          : [];
 
   return (
     <div className="bg-gray-900 py-16 sm:py-24">
@@ -137,18 +156,15 @@ const ProductDetailPage: React.FC = () => {
               >
                 Testar Agora
               </a>
-              <a
-                href={
-                  product.slug === 'copymaster-pro'
-                    ? 'https://vendas-copy-master.vercel.app/'
-                    : '#'
-                }
-                target={product.slug === 'copymaster-pro' ? '_blank' : undefined}
-                rel={product.slug === 'copymaster-pro' ? 'noopener noreferrer' : undefined}
-                className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
-              >
-                Comprar
-              </a>
+              {planButtons.map((plan) => (
+                <a
+                  key={plan.label}
+                  href={plan.href}
+                  className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+                >
+                  {plan.label}
+                </a>
+              ))}
             </div>
           </div>
           
