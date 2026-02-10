@@ -1,27 +1,7 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 
 const ContactPage: React.FC = () => {
-    const [status, setStatus] = useState('');
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setStatus('Abrindo seu email...');
-
-        const form = e.currentTarget;
-        const formData = new FormData(form);
-        const fullName = String(formData.get('full-name') || '').trim();
-        const email = String(formData.get('email') || '').trim();
-        const subject = String(formData.get('subject') || '').trim();
-        const message = String(formData.get('message') || '').trim();
-
-        const body = `Nome: ${fullName}\nEmail: ${email}\n\nMensagem:\n${message}`;
-        const mailto = `mailto:solucoesinteligentes83@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-        window.location.href = mailto;
-        form.reset();
-        setTimeout(() => setStatus(''), 3000);
-    };
 
     return (
         <div className="bg-gray-900 py-16 sm:py-24">
@@ -34,30 +14,36 @@ const ContactPage: React.FC = () => {
                         </p>
                     </div>
                     <div className="mt-12 bg-gray-800 p-8 rounded-lg shadow-xl max-w-3xl mx-auto">
-                        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-y-6">
-                            <div>
-                                <label htmlFor="full-name" className="sr-only">Nome Completo</label>
-                                <input type="text" name="full-name" id="full-name" autoComplete="name" required className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 bg-gray-700 border-gray-600 rounded-md text-white focus:ring-cyan-500 focus:border-cyan-500" placeholder="Nome Completo" />
+                        <div className="text-center">
+                            <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-cyan-500/10 text-cyan-300 text-2xl">
+                                💬
                             </div>
-                            <div>
-                                <label htmlFor="email" className="sr-only">Email</label>
-                                <input id="email" name="email" type="email" autoComplete="email" required className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 bg-gray-700 border-gray-600 rounded-md text-white focus:ring-cyan-500 focus:border-cyan-500" placeholder="Email" />
+                            <h2 className="mt-4 text-2xl font-bold text-white">Suporte rapido e direto</h2>
+                            <p className="mt-2 text-base text-gray-400">
+                                Abra um chamado pelo nosso formulario e responda em poucos passos.
+                            </p>
+                        </div>
+                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-gray-300">
+                            <div className="rounded-lg border border-cyan-400/20 bg-gray-900/40 px-4 py-3">
+                                Resposta organizada e clara
                             </div>
-                             <div>
-                                <label htmlFor="subject" className="sr-only">Assunto</label>
-                                <input type="text" name="subject" id="subject" required className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 bg-gray-700 border-gray-600 rounded-md text-white focus:ring-cyan-500 focus:border-cyan-500" placeholder="Assunto" />
+                            <div className="rounded-lg border border-cyan-400/20 bg-gray-900/40 px-4 py-3">
+                                Envio de arquivos e detalhes
                             </div>
-                            <div>
-                                <label htmlFor="message" className="sr-only">Mensagem</label>
-                                <textarea id="message" name="message" rows={4} required className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 bg-gray-700 border-gray-600 rounded-md text-white focus:ring-cyan-500 focus:border-cyan-500" placeholder="Sua mensagem"></textarea>
+                            <div className="rounded-lg border border-cyan-400/20 bg-gray-900/40 px-4 py-3">
+                                Atendimento mais rapido
                             </div>
-                            <div>
-                                <button type="submit" className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
-                                    Enviar Mensagem
-                                </button>
-                            </div>
-                            {status && <p className="text-center text-cyan-400 mt-4">{status}</p>}
-                        </form>
+                        </div>
+                        <div className="mt-8">
+                            <a
+                                href="https://docs.google.com/forms/d/e/1FAIpQLSfcLsTyJ3CKwtEZU2TYuSoBrECGLgfLoPv1fTyPOVm9rMsgpA/viewform?usp=publish-editor"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500"
+                            >
+                                Acessar formulario de suporte
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
