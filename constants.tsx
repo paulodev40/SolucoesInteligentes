@@ -103,7 +103,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <p class="text-gray-300">Ferramentas como o <strong>CopyMaster Pro</strong> integram várias dessas funcionalidades, permitindo que você crie textos, imagens e vídeos de alta conversão de forma automatizada. Experimente e veja suas vendas no Instagram decolarem.</p>
       </div>
     `,
-    imageUrl: 'https://picsum.photos/seed/instagram/800/400',
+    imageUrl: '/assets/images/blog1.png',
     relatedProductSlug: 'copymaster-pro',
   },
   {
@@ -128,7 +128,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <p class="text-gray-300">O <strong>SlideGenius</strong> foi projetado exatamente para isso. Ele transforma suas ideias em apresentações prontas e com design profissional em poucos cliques. Diga adeus às horas gastas no PowerPoint e foque no que realmente importa: sua mensagem.</p>
       </div>
     `,
-    imageUrl: 'https://picsum.photos/seed/slides/800/400',
+    imageUrl: '/assets/images/blog2.png',
     relatedProductSlug: 'slidegenius',
   },
   {
@@ -151,7 +151,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <p class="text-gray-300">O <strong>Listen&Write</strong> é a solução perfeita para reuniões mais inteligentes. Ele grava, transcreve e gera atas organizadas, garantindo que nenhuma informação valiosa seja perdida e que todas as equipes estejam alinhadas.</p>
       </div>
     `,
-    imageUrl: 'https://picsum.photos/seed/meeting/800/400',
+    imageUrl: '/assets/images/blog3.png',
     relatedProductSlug: 'read-write',
   },
   {
@@ -174,7 +174,7 @@ export const BLOG_POSTS: BlogPost[] = [
         <p class="text-gray-300">Com o <strong>RememberMe</strong>, você pode fazer tudo isso de forma fácil e rápida. Basta enviar sua foto antiga e deixar nossa IA fazer a mágica. É a maneira perfeita de preservar e compartilhar suas memórias com as novas gerações.</p>
       </div>
     `,
-    imageUrl: 'https://picsum.photos/seed/memories/800/400',
+    imageUrl: '/assets/images/blog4.png',
     relatedProductSlug: 'rememberme',
   },
 ];
