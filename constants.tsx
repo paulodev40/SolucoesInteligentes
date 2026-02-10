@@ -58,7 +58,7 @@ export const PRODUCTS: Product[] = [
       'Manter um registro pesquisável de todas as conversas.',
     ],
     icon: ReadWriteIcon,
-    image: '/assets/images/lobo_guara.png',
+    image: '/assets/images/lobo_guara2.png',
   },
   {
     slug: 'rememberme',
