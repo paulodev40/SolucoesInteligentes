@@ -112,11 +112,27 @@ const ProductDetailPage: React.FC = () => {
               <a
                 href={
                   product.slug === 'copymaster-pro'
-                    ? 'https://vendas-copy-master.vercel.app/'
-                    : '#'
+                    ? 'https://copymasterpro.com/'
+                    : product.slug === 'slidegenius'
+                      ? 'https://slidesmartfast.com/'
+                      : product.slug === 'read-write'
+                        ? 'https://geraata.com/'
+                        : '#'
                 }
-                target={product.slug === 'copymaster-pro' ? '_blank' : undefined}
-                rel={product.slug === 'copymaster-pro' ? 'noopener noreferrer' : undefined}
+                target={
+                  product.slug === 'copymaster-pro' ||
+                  product.slug === 'slidegenius' ||
+                  product.slug === 'read-write'
+                    ? '_blank'
+                    : undefined
+                }
+                rel={
+                  product.slug === 'copymaster-pro' ||
+                  product.slug === 'slidegenius' ||
+                  product.slug === 'read-write'
+                    ? 'noopener noreferrer'
+                    : undefined
+                }
                 className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105"
               >
                 Testar Agora
