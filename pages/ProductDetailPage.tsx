@@ -87,7 +87,7 @@ const ProductDetailPage: React.FC = () => {
               </div>
             )}
             
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
                 href={
                   product.slug === 'copymaster-pro'
@@ -96,9 +96,21 @@ const ProductDetailPage: React.FC = () => {
                 }
                 target={product.slug === 'copymaster-pro' ? '_blank' : undefined}
                 rel={product.slug === 'copymaster-pro' ? 'noopener noreferrer' : undefined}
-                className="inline-block px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105"
               >
-                Testar Agora / Comprar
+                Testar Agora
+              </a>
+              <a
+                href={
+                  product.slug === 'copymaster-pro'
+                    ? 'https://vendas-copy-master.vercel.app/'
+                    : '#'
+                }
+                target={product.slug === 'copymaster-pro' ? '_blank' : undefined}
+                rel={product.slug === 'copymaster-pro' ? 'noopener noreferrer' : undefined}
+                className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+              >
+                Comprar
               </a>
             </div>
           </div>
