@@ -1,11 +1,26 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { BLOG_POSTS } from '../constants';
 import BlogPostCard from '../components/BlogPostCard';
+import NewsCard from '../components/NewsCard';
+import { fetchAINews, type NewsArticle } from '../services/newsApi';
 
 const BlogPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [aiNews, setAiNews] = useState<NewsArticle[]>([]);
+  const [newsLoading, setNewsLoading] = useState<boolean>(true);
+
+  // Buscar notícias de IA ao carregar a página
+  useEffect(() => {
+    const loadNews = async () => {
+      setNewsLoading(true);
+      const news = await fetchAINews(6);
+      setAiNews(news);
+      setNewsLoading(false);
+    };
+    loadNews();
+  }, []);
 
   const categories = useMemo(() => {
     return ['Todos', ...Array.from(new Set(BLOG_POSTS.map(p => p.category)))];
@@ -79,6 +94,53 @@ const BlogPage: React.FC = () => {
                 </button>
             ))}
             </div>
+        </div>
+
+        {/* Notícias Externas de IA */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-extrabold text-white flex items-center">
+                <span className="mr-3">🌐</span>
+                Últimas Notícias de IA
+              </h2>
+              <p className="mt-2 text-gray-400">Acompanhe as principais novidades do mundo da Inteligência Artificial</p>
+            </div>
+          </div>
+          
+          {newsLoading ? (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-pulse">
+                  <div className="w-full h-48 bg-gray-700"></div>
+                  <div className="p-6 space-y-3">
+                    <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+                    <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+                    <div className="h-20 bg-gray-700 rounded"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : aiNews.length > 0 ? (
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {aiNews.map((article, index) => (
+                <NewsCard key={`${article.url}-${index}`} article={article} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 bg-gray-800 rounded-lg">
+              <p className="text-gray-400">Não foi possível carregar as notícias no momento.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Divisor */}
+        <div className="border-t border-gray-700 mb-12"></div>
+
+        {/* Nossos Artigos */}
+        <div className="mb-8">
+          <h2 className="text-3xl font-extrabold text-white mb-2">Nossos Artigos</h2>
+          <p className="text-gray-400">Conteúdo exclusivo criado por nossa equipe</p>
         </div>
 
         {filteredPosts.length > 0 ? (
