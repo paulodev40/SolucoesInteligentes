@@ -160,6 +160,8 @@ const ProductDetailPage: React.FC = () => {
                 <a
                   key={plan.label}
                   href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
                 >
                   {plan.label}
