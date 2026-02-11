@@ -15,8 +15,15 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <NavLink to="/" className="flex-shrink-0 text-white font-bold text-xl">
-              <span className="text-cyan-400">Soluções</span> Inteligentes
+            <NavLink to="/" className="flex-shrink-0 flex items-center gap-3">
+              <img 
+                src="/assets/images/logotipo.png" 
+                alt="Soluções Inteligentes" 
+                className="h-10 w-auto"
+              />
+              <span className="text-white font-bold text-xl">
+                <span className="text-cyan-400">Soluções</span> Inteligentes
+              </span>
             </NavLink>
           </div>
           <div className="hidden md:block">
