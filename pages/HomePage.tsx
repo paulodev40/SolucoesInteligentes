@@ -12,6 +12,11 @@ const HomePage: React.FC = () => {
       <section className="relative text-center py-20 sm:py-32 px-4 bg-gradient-to-b from-gray-800 to-gray-900">
          <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-sm"></div>
          <div className="relative z-10 max-w-4xl mx-auto">
+            <img 
+              src="/assets/images/logotipo.png" 
+              alt="Soluções Inteligentes Logo" 
+              className="mx-auto mb-8 h-24 sm:h-32 md:h-40 w-auto"
+            />
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
                 <span className="block">Inteligência Artificial,</span>
                 <span className="block text-cyan-400">Soluções Reais.</span>
