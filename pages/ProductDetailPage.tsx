@@ -51,6 +51,14 @@ const ProductDetailPage: React.FC = () => {
             </div>
           </div>
         )}
+        {product.slug === 'read-write' && (
+          <div className="mb-6 flex justify-center">
+            <div className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+              <span className="text-xl">🚧</span>
+              <span>Em Construção</span>
+            </div>
+          </div>
+        )}
         <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
           <div className="lg:col-span-6">
             <div className="flex items-center mb-4">
