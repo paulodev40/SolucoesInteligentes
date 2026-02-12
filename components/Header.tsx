@@ -18,11 +18,11 @@ const Header: React.FC = () => {
             <NavLink to="/" className="flex-shrink-0 flex items-center gap-3">
               <img 
                 src="/assets/images/logotipo.png" 
-                alt="Soluções Inteligentes" 
+                alt="Soluções Inteligentes 83" 
                 className="h-10 w-auto"
               />
               <span className="text-white font-bold text-xl">
-                <span className="text-cyan-400">Soluções</span> Inteligentes
+                <span className="text-cyan-400">Soluções</span> Inteligentes 83
               </span>
             </NavLink>
           </div>

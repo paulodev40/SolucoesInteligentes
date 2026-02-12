@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
          <div className="relative z-10 max-w-4xl mx-auto">
             <img 
               src="/assets/images/logotipo.png" 
-              alt="Soluções Inteligentes Logo" 
+              alt="Soluções Inteligentes 83 Logo" 
               className="mx-auto mb-8 h-24 sm:h-32 md:h-40 w-auto"
             />
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
