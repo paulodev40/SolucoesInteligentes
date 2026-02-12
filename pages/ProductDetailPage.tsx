@@ -18,6 +18,7 @@ const ProductDetailPage: React.FC = () => {
   }
   
   const Icon = product.icon;
+  const disablePlanButtons = product.slug === 'read-write';
   const planButtons =
     product.slug === 'copymaster-pro'
       ? [
@@ -157,15 +158,25 @@ const ProductDetailPage: React.FC = () => {
                 Testar Agora
               </a>
               {planButtons.map((plan) => (
-                <a
-                  key={plan.label}
-                  href={plan.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
-                >
-                  {plan.label}
-                </a>
+                disablePlanButtons ? (
+                  <span
+                    key={plan.label}
+                    aria-disabled="true"
+                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/30 text-lg font-medium rounded-md text-cyan-200/60 opacity-60 cursor-not-allowed"
+                  >
+                    {plan.label}
+                  </span>
+                ) : (
+                  <a
+                    key={plan.label}
+                    href={plan.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+                  >
+                    {plan.label}
+                  </a>
+                )
               ))}
             </div>
           </div>
