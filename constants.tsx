@@ -6,7 +6,7 @@ import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon } fro
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Produtos', path: '/produtos' },
-  { name: 'Blog', path: '/blog' },
+  { name: 'Notícias/Blog', path: '/blog' },
   { name: 'Sobre', path: '/sobre' },
   { name: 'Contato', path: '/contato' },
 ];
