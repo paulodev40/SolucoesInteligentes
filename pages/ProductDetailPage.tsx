@@ -161,9 +161,9 @@ const ProductDetailPage: React.FC = () => {
                     ? 'noopener noreferrer'
                     : undefined
                 }
-                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-cyan-600 hover:bg-cyan-700 transition-transform transform hover:scale-105 animate-[pulse_2.2s_ease-in-out_infinite] shadow-lg shadow-cyan-500/30"
               >
-                Testar Agora
+                Teste Grátis
               </a>
               {planButtons.map((plan) => (
                 disablePlanButtons ? (
