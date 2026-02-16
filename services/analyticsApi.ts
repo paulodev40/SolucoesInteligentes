@@ -81,7 +81,6 @@ export const fetchVisitors = async (): Promise<number | null> => {
     const storedVisitors = readVisitorsFromStorage();
     if (storedVisitors !== null) {
       cachedVisitors = storedVisitors;
-      cacheTime = Date.now();
     }
   }
 
