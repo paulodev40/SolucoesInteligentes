@@ -12,9 +12,10 @@ set search_path = public
 as $$
 declare
   v_total bigint;
+  v_seed bigint := 304;
 begin
   insert into public.site_visitors (site, total)
-  values (p_site, 1)
+  values (p_site, v_seed + 1)
   on conflict (site)
   do update set
     total = public.site_visitors.total + 1,
@@ -33,6 +34,7 @@ set search_path = public
 as $$
 declare
   v_total bigint;
+  v_seed bigint := 304;
 begin
   select total into v_total
   from public.site_visitors
@@ -40,7 +42,7 @@ begin
 
   if v_total is null then
     insert into public.site_visitors (site, total)
-    values (p_site, 0)
+    values (p_site, v_seed)
     on conflict (site) do nothing;
 
     select total into v_total
