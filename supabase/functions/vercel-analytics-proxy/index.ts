@@ -1,8 +1,19 @@
 import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
-const VERCEL_API_TOKEN = Deno.env.get("VERCEL_API_TOKEN");
-const VERCEL_PROJECT_ID = Deno.env.get("VERCEL_PROJECT_ID");
-const VERCEL_TEAM_ID = Deno.env.get("VERCEL_TEAM_ID");
+const getEnv = (...keys: string[]): string | undefined => {
+  for (const key of keys) {
+    const value = Deno.env.get(key);
+    if (value && value.trim().length > 0) {
+      return value.trim();
+    }
+  }
+
+  return undefined;
+};
+
+const VERCEL_API_TOKEN = getEnv("VERCEL_API_TOKEN", "VERCEL_TOKEN");
+const VERCEL_PROJECT_ID = getEnv("VERCEL_PROJECT_ID", "VERCEL_ANALYTICS_PROJECT_ID", "VERCEL_PROJECT");
+const VERCEL_TEAM_ID = getEnv("VERCEL_TEAM_ID", "VERCEL_TEAM");
 
 const corsHeaders: Record<string, string> = {
   "Access-Control-Allow-Origin": "*",
@@ -91,7 +102,21 @@ serve(async (req) => {
   }
 
   if (!VERCEL_API_TOKEN || !VERCEL_PROJECT_ID) {
-    return new Response(JSON.stringify({ error: "Missing VERCEL_API_TOKEN or VERCEL_PROJECT_ID" }), {
+    const missing: string[] = [];
+
+    if (!VERCEL_API_TOKEN) {
+      missing.push("VERCEL_API_TOKEN (ou VERCEL_TOKEN)");
+    }
+
+    if (!VERCEL_PROJECT_ID) {
+      missing.push("VERCEL_PROJECT_ID (ou VERCEL_ANALYTICS_PROJECT_ID/VERCEL_PROJECT)");
+    }
+
+    return new Response(JSON.stringify({
+      error: "Missing required Vercel env vars",
+      missing,
+      hint: "Configure os secrets da função no Supabase e faça deploy novamente"
+    }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" }
     });

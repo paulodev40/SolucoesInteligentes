@@ -31,6 +31,12 @@ Configure estes secrets no Supabase (Edge Functions):
 - `VERCEL_PROJECT_ID` (ID do projeto na Vercel)
 - `VERCEL_TEAM_ID` (opcional, se projeto estiver em team)
 
+Também são aceitos aliases:
+
+- token: `VERCEL_TOKEN`
+- projeto: `VERCEL_ANALYTICS_PROJECT_ID` ou `VERCEL_PROJECT`
+- team: `VERCEL_TEAM`
+
 No frontend, mantenha configurados:
 
 - `VITE_SUPABASE_URL`
