@@ -48,6 +48,10 @@ Depois, faça o deploy da função:
 
 O contador da Home está configurado como total de visitantes desde `2026-02-09T00:00:00.000Z` ("Desde 9 FEV 26").
 
+Importante: no momento, a API pública da Vercel não expõe de forma documentada um endpoint REST de leitura do total de visitantes do Web Analytics. Se a função retornar diagnóstico com 404 em todos os endpoints tentados, isso indica limitação de endpoint público.
+
+Alternativa recomendada para contador em tempo real no site: manter um contador próprio (por exemplo, tabela no Supabase) e exibir esse valor na Home.
+
 Se aparecer "indisponível", normalmente é por:
 
 - função não publicada (`supabase functions deploy vercel-analytics-proxy`)

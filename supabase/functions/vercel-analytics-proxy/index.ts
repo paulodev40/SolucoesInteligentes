@@ -170,6 +170,20 @@ serve(async (req) => {
     }
   }
 
+  const allEndpointsNotFound = diagnostics.length > 0 && diagnostics.every((entry) => entry.status === 404);
+
+  if (allEndpointsNotFound) {
+    return new Response(JSON.stringify({
+      error: "Vercel Web Analytics read endpoint is not publicly available via REST API",
+      since: new Date(from).toISOString(),
+      hint: "Use um contador próprio (ex: Supabase table) para exibir visitantes no site",
+      diagnostics
+    }), {
+      status: 501,
+      headers: { ...corsHeaders, "Content-Type": "application/json" }
+    });
+  }
+
   return new Response(JSON.stringify({
     error: "Failed to fetch visitors from Vercel Analytics",
     since: new Date(from).toISOString(),
