@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon } from './components/IconComponents';
+import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon } from './components/IconComponents';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -75,6 +75,22 @@ export const PRODUCTS: Product[] = [
     ],
     icon: RememberMeIcon,
     image: '/assets/images/jabuti.png',
+  },
+  {
+    slug: 'scei',
+    name: 'SCEI',
+    tagline: 'Sistema de Controle de Estoque Inteligente para Pequenos Empreendedores.',
+    description: 'Controle seu estoque de forma simples e inteligente. O SCEI ajuda pequenos empreendedores a acompanhar entradas e saídas, evitar perdas, prever reposição e tomar decisões com base em dados.',
+    problem: 'Pequenos empreendedores perdem vendas e dinheiro por falta de controle de estoque, rupturas de produtos e compras sem planejamento.',
+    targetAudience: 'Pequenos empreendedores, lojas de bairro, vendedores autônomos e negócios locais que precisam organizar o estoque.',
+    useCases: [
+      'Registrar entradas e saídas de produtos em tempo real.',
+      'Receber alertas de estoque baixo antes da ruptura.',
+      'Acompanhar itens com maior giro para planejar compras.',
+      'Reduzir perdas por vencimento e excesso de mercadoria.',
+    ],
+    icon: SCEIIcon,
+    image: '/assets/images/SCEI.png',
   },
 ];
 

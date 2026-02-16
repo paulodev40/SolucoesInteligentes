@@ -41,8 +41,8 @@ const ProductDetailPage: React.FC = () => {
   return (
     <div className="bg-gray-900 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Badge "Em Construção" para RememberMe */}
-        {product.slug === 'rememberme' && (
+        {/* Badge "Em Construção" para produtos em andamento */}
+        {(product.slug === 'rememberme' || product.slug === 'scei') && (
           <div className="mb-6 flex justify-center">
             <div className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
               <span className="text-xl">🚧</span>

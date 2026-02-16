@@ -31,3 +31,10 @@ export const RememberMeIcon: React.FC<{ className?: string }> = ({ className }) 
     <path d="M12 12V8a1 1 0 1 0-2 0v5a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-3z" />
   </svg>
 );
+
+export const SCEIIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 6a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v2H3V6z" />
+    <path d="M3 10h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-8zm5 2a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H8zm0 3a1 1 0 0 0 0 2h5a1 1 0 1 0 0-2H8z" />
+  </svg>
+);

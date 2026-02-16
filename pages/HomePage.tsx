@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Nossas Ferramentas Inteligentes</h2>
             <p className="mt-4 text-lg text-gray-400">Soluções que pensam com você.</p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {PRODUCTS.map((product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
