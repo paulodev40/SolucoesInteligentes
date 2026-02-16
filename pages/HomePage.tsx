@@ -15,7 +15,7 @@ const HomePage: React.FC = () => {
 
     const loadVisitors = async () => {
       setIsLoadingVisitors(true);
-      const totalVisitors = await fetchVisitors('7d');
+      const totalVisitors = await fetchVisitors();
       if (isMounted) {
         setVisitors(totalVisitors);
         setIsLoadingVisitors(false);
@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
             <div className="mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
               <span className="inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
               <span>
-                Visitantes (últimos 7 dias):{' '}
+                Visitantes (total):{' '}
                 <strong className="text-white">
                   {isLoadingVisitors
                     ? 'carregando...'
@@ -66,6 +66,7 @@ const HomePage: React.FC = () => {
                       ? visitors.toLocaleString('pt-BR')
                       : 'indisponível'}
                 </strong>
+                {' '}<span className="text-cyan-300">• Desde 9 FEV 26</span>
               </span>
             </div>
          </div>

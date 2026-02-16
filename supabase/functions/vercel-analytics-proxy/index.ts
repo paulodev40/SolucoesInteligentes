@@ -10,13 +10,6 @@ const corsHeaders: Record<string, string> = {
   "Access-Control-Allow-Methods": "GET, OPTIONS"
 };
 
-const PERIOD_IN_DAYS: Record<string, number> = {
-  "24h": 1,
-  "7d": 7,
-  "30d": 30,
-  "90d": 90
-};
-
 const buildUrls = (from: number, to: number) => {
   const base = "https://api.vercel.com";
   const commonParams = new URLSearchParams({
@@ -105,11 +98,10 @@ serve(async (req) => {
   }
 
   const { searchParams } = new URL(req.url);
-  const period = searchParams.get("period") ?? "7d";
-  const days = PERIOD_IN_DAYS[period] ?? 7;
-
   const to = Date.now();
-  const from = to - days * 24 * 60 * 60 * 1000;
+  const sinceParam = searchParams.get("since");
+  const parsedSince = sinceParam ? Date.parse(sinceParam) : Number.NaN;
+  const from = Number.isFinite(parsedSince) ? parsedSince : Date.parse("2026-02-09T00:00:00.000Z");
 
   const urls = buildUrls(from, to);
   const headers = {
@@ -118,6 +110,7 @@ serve(async (req) => {
   };
 
   let lastErrorStatus = 500;
+  const diagnostics: Array<{ endpoint: string; status: number; body: string }> = [];
 
   for (const url of urls) {
     try {
@@ -125,6 +118,13 @@ serve(async (req) => {
 
       if (!response.ok) {
         lastErrorStatus = response.status;
+        let errorBody = "";
+        try {
+          errorBody = await response.text();
+        } catch {
+          errorBody = "";
+        }
+        diagnostics.push({ endpoint: url, status: response.status, body: errorBody.slice(0, 300) });
         continue;
       }
 
@@ -132,17 +132,24 @@ serve(async (req) => {
       const visitors = findVisitorsInResponse(payload);
 
       if (typeof visitors === "number") {
-        return new Response(JSON.stringify({ visitors, period }), {
+        return new Response(JSON.stringify({ visitors, since: new Date(from).toISOString(), source: url }), {
           status: 200,
           headers: { ...corsHeaders, "Content-Type": "application/json" }
         });
       }
+
+      diagnostics.push({ endpoint: url, status: 200, body: JSON.stringify(payload).slice(0, 300) });
     } catch {
       lastErrorStatus = 500;
+      diagnostics.push({ endpoint: url, status: 500, body: "request_failed" });
     }
   }
 
-  return new Response(JSON.stringify({ error: "Failed to fetch visitors from Vercel Analytics" }), {
+  return new Response(JSON.stringify({
+    error: "Failed to fetch visitors from Vercel Analytics",
+    since: new Date(from).toISOString(),
+    diagnostics
+  }), {
     status: lastErrorStatus,
     headers: { ...corsHeaders, "Content-Type": "application/json" }
   });

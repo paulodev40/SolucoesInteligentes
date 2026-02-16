@@ -1,17 +1,20 @@
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const FUNCTION_PATH = '/functions/v1/vercel-analytics-proxy';
+const INAUGURATION_DATE = '2026-02-09T00:00:00.000Z';
 
 interface VisitorsApiResponse {
   visitors: number;
-  period: string;
+  since: string;
+  source?: string;
+  error?: string;
 }
 
 let cachedVisitors: number | null = null;
 let cacheTime: number | null = null;
 const CACHE_DURATION = 5 * 60 * 1000;
 
-export const fetchVisitors = async (period: string = '7d'): Promise<number | null> => {
+export const fetchVisitors = async (): Promise<number | null> => {
   if (cachedVisitors !== null && cacheTime && Date.now() - cacheTime < CACHE_DURATION) {
     return cachedVisitors;
   }
@@ -21,7 +24,7 @@ export const fetchVisitors = async (period: string = '7d'): Promise<number | nul
       throw new Error('Supabase env vars ausentes');
     }
 
-    const url = `${SUPABASE_URL}${FUNCTION_PATH}?period=${encodeURIComponent(period)}`;
+    const url = `${SUPABASE_URL}${FUNCTION_PATH}?since=${encodeURIComponent(INAUGURATION_DATE)}`;
     const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
@@ -30,7 +33,8 @@ export const fetchVisitors = async (period: string = '7d'): Promise<number | nul
     });
 
     if (!response.ok) {
-      throw new Error(`Visitors API error: ${response.status}`);
+      const errorPayload = await response.text();
+      throw new Error(`Visitors API error: ${response.status} ${errorPayload}`);
     }
 
     const data: VisitorsApiResponse = await response.json();

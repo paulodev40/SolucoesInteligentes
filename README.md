@@ -39,3 +39,11 @@ No frontend, mantenha configurados:
 Depois, faça o deploy da função:
 
 `supabase functions deploy vercel-analytics-proxy`
+
+O contador da Home está configurado como total de visitantes desde `2026-02-09T00:00:00.000Z` ("Desde 9 FEV 26").
+
+Se aparecer "indisponível", normalmente é por:
+
+- função não publicada (`supabase functions deploy vercel-analytics-proxy`)
+- `VERCEL_API_TOKEN`/`VERCEL_PROJECT_ID` ausentes ou inválidos
+- endpoint de analytics sem resposta para o projeto/token
