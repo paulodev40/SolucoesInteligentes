@@ -18,3 +18,24 @@ View your app in AI Studio: https://ai.studio/apps/drive/1_dDk-0ovGYsSUw48wPPSsE
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Visitors na Home (Vercel Web Analytics)
+
+Para exibir o total de visitantes na página inicial, foi adicionada a função Supabase:
+
+- `supabase/functions/vercel-analytics-proxy/index.ts`
+
+Configure estes secrets no Supabase (Edge Functions):
+
+- `VERCEL_API_TOKEN` (token da API da Vercel)
+- `VERCEL_PROJECT_ID` (ID do projeto na Vercel)
+- `VERCEL_TEAM_ID` (opcional, se projeto estiver em team)
+
+No frontend, mantenha configurados:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+Depois, faça o deploy da função:
+
+`supabase functions deploy vercel-analytics-proxy`

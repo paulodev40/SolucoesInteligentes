@@ -1,11 +1,34 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PRODUCTS, BLOG_POSTS } from '../constants';
 import ProductCard from '../components/ProductCard';
 import BlogPostCard from '../components/BlogPostCard';
+import { fetchVisitors } from '../services/analyticsApi';
 
 const HomePage: React.FC = () => {
+  const [visitors, setVisitors] = useState<number | null>(null);
+  const [isLoadingVisitors, setIsLoadingVisitors] = useState<boolean>(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadVisitors = async () => {
+      setIsLoadingVisitors(true);
+      const totalVisitors = await fetchVisitors('7d');
+      if (isMounted) {
+        setVisitors(totalVisitors);
+        setIsLoadingVisitors(false);
+      }
+    };
+
+    loadVisitors();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <div className="bg-gray-900">
       {/* Hero Section */}
@@ -31,6 +54,19 @@ const HomePage: React.FC = () => {
                 >
                     Conheça Nossos Produtos
                 </Link>
+            </div>
+            <div className="mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
+              <span className="inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+              <span>
+                Visitantes (últimos 7 dias):{' '}
+                <strong className="text-white">
+                  {isLoadingVisitors
+                    ? 'carregando...'
+                    : visitors !== null
+                      ? visitors.toLocaleString('pt-BR')
+                      : 'indisponível'}
+                </strong>
+              </span>
             </div>
          </div>
       </section>
