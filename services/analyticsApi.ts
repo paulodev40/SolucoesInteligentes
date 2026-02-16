@@ -2,6 +2,7 @@ const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const FUNCTION_PATH = '/functions/v1/vercel-analytics-proxy';
 const INAUGURATION_DATE = '2026-02-09T00:00:00.000Z';
+const VISITORS_STORAGE_KEY = 'si_total_visitors';
 
 interface VisitorsApiResponse {
   visitors: number;
@@ -14,7 +15,48 @@ let cachedVisitors: number | null = null;
 let cacheTime: number | null = null;
 const CACHE_DURATION = 5 * 60 * 1000;
 
+const readVisitorsFromStorage = (): number | null => {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  try {
+    const rawValue = window.localStorage.getItem(VISITORS_STORAGE_KEY);
+    if (!rawValue) {
+      return null;
+    }
+
+    const parsedValue = Number(rawValue);
+    if (!Number.isFinite(parsedValue) || parsedValue < 0) {
+      return null;
+    }
+
+    return parsedValue;
+  } catch {
+    return null;
+  }
+};
+
+const saveVisitorsToStorage = (value: number): void => {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(VISITORS_STORAGE_KEY, String(value));
+  } catch {
+  }
+};
+
 export const fetchVisitors = async (): Promise<number | null> => {
+  if (cachedVisitors === null) {
+    const storedVisitors = readVisitorsFromStorage();
+    if (storedVisitors !== null) {
+      cachedVisitors = storedVisitors;
+      cacheTime = Date.now();
+    }
+  }
+
   if (cachedVisitors !== null && cacheTime && Date.now() - cacheTime < CACHE_DURATION) {
     return cachedVisitors;
   }
@@ -45,10 +87,21 @@ export const fetchVisitors = async (): Promise<number | null> => {
 
     cachedVisitors = data.visitors;
     cacheTime = Date.now();
+    saveVisitorsToStorage(data.visitors);
 
     return data.visitors;
   } catch (error) {
     console.error('Erro ao buscar visitantes:', error);
-    return cachedVisitors;
+    if (cachedVisitors !== null) {
+      return cachedVisitors;
+    }
+
+    const storedVisitors = readVisitorsFromStorage();
+    if (storedVisitors !== null) {
+      cachedVisitors = storedVisitors;
+      cacheTime = Date.now();
+    }
+
+    return storedVisitors;
   }
 };
