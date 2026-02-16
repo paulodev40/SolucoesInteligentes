@@ -18,7 +18,6 @@ const ProductDetailPage: React.FC = () => {
   }
   
   const Icon = product.icon;
-  const disablePlanButtons = product.slug === 'read-write';
   const planButtons =
     product.slug === 'copymaster-pro'
       ? [
@@ -44,14 +43,6 @@ const ProductDetailPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Badge "Em Construção" para RememberMe */}
         {product.slug === 'rememberme' && (
-          <div className="mb-6 flex justify-center">
-            <div className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-              <span className="text-xl">🚧</span>
-              <span>Em Construção</span>
-            </div>
-          </div>
-        )}
-        {product.slug === 'read-write' && (
           <div className="mb-6 flex justify-center">
             <div className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
               <span className="text-xl">🚧</span>
@@ -166,25 +157,15 @@ const ProductDetailPage: React.FC = () => {
                 Faça teste gratuito
               </a>
               {planButtons.map((plan) => (
-                disablePlanButtons ? (
-                  <span
-                    key={plan.label}
-                    aria-disabled="true"
-                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/30 text-lg font-medium rounded-md text-cyan-200/60 opacity-60 cursor-not-allowed"
-                  >
-                    {plan.label}
-                  </span>
-                ) : (
-                  <a
-                    key={plan.label}
-                    href={plan.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
-                  >
-                    {plan.label}
-                  </a>
-                )
+                <a
+                  key={plan.label}
+                  href={plan.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+                >
+                  {plan.label}
+                </a>
               ))}
             </div>
           </div>
