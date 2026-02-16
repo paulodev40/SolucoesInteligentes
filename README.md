@@ -23,7 +23,19 @@ View your app in AI Studio: https://ai.studio/apps/drive/1_dDk-0ovGYsSUw48wPPSsE
 
 Para exibir o total de visitantes na página inicial, foi adicionada a função Supabase:
 
-- `supabase/functions/vercel-analytics-proxy/index.ts`
+- `supabase/functions/site-visitors/index.ts`
+
+### Setup do contador próprio (recomendado)
+
+1. Rode o SQL em `supabase/visitor_counter.sql` no SQL Editor do Supabase.
+2. Faça deploy da função:
+
+`supabase functions deploy site-visitors`
+
+3. Garanta os secrets da função:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 
 Configure estes secrets no Supabase (Edge Functions):
 
@@ -41,11 +53,6 @@ No frontend, mantenha configurados:
 
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
-
-Depois, faça o deploy da função:
-
-`supabase functions deploy vercel-analytics-proxy`
-
 O contador da Home está configurado como total de visitantes desde `2026-02-09T00:00:00.000Z` ("Desde 9 FEV 26").
 
 Importante: no momento, a API pública da Vercel não expõe de forma documentada um endpoint REST de leitura do total de visitantes do Web Analytics. Se a função retornar diagnóstico com 404 em todos os endpoints tentados, isso indica limitação de endpoint público.
