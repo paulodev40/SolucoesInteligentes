@@ -87,6 +87,64 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* AI Consulting Section */}
+      <section className="py-16 bg-gradient-to-b from-gray-900 to-gray-800 border-y border-cyan-500/20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-cyan-400/25 bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-8 sm:p-10 lg:p-12 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+              <div className="lg:col-span-7">
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+                  Consultoria em I.A. para soluções sob medida
+                </h3>
+                <p className="mt-4 text-lg text-gray-300 leading-relaxed">
+                  Precisa de um software específico para sua demanda? Nós analisamos o seu cenário,
+                  propomos uma solução ideal e orientamos todo o processo para transformar a ideia em um resultado real.
+                </p>
+                <img
+                  src="/assets/images/consultoria.png"
+                  alt="Consultoria em Inteligência Artificial"
+                  className="mt-6 w-full max-w-lg rounded-xl border border-cyan-400/20"
+                />
+              </div>
+
+              <div className="lg:col-span-5 rounded-xl border border-cyan-400/30 bg-gray-900/70 p-7 sm:p-8 lg:p-9 min-h-[430px] flex flex-col justify-between shadow-lg">
+                <div>
+                  <h4 className="text-3xl font-extrabold text-white">Como funciona</h4>
+                  <ul className="mt-6 space-y-5 text-xl text-gray-200 leading-relaxed">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+                    <span>Você descreve sua necessidade e o objetivo do projeto.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+                    <span>Planejamos uma solução personalizada com IA para seu negócio.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-1 inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
+                    <span>Entramos em contato para avançar com próximos passos.</span>
+                  </li>
+                </ul>
+                <div className="mt-8 flex justify-center" aria-hidden="true">
+                  <img
+                    src="/assets/images/logotipo2.png"
+                    alt=""
+                    className="h-28 w-28 rounded-full border border-cyan-400/30 p-1 shadow-md shadow-cyan-900/30"
+                  />
+                </div>
+                </div>
+
+                <Link
+                  to="/consultoria"
+                  className="mt-8 inline-flex w-full items-center justify-center px-7 py-3.5 rounded-lg bg-cyan-600 text-white text-lg font-semibold hover:bg-cyan-700 transition-colors"
+                >
+                  Conhecer Consultoria em I.A.
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Suggestions Section */}
       <section className="py-16 bg-gradient-to-r from-cyan-900/20 via-purple-900/20 to-cyan-900/20 border-y border-cyan-500/30">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

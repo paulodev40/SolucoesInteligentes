@@ -6,6 +6,7 @@ import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEI
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Produtos', path: '/produtos' },
+  { name: 'Consultoria em I.A.', path: '/consultoria' },
   { name: 'Notícias/Blog', path: '/blog' },
   { name: 'Sobre', path: '/sobre' },
   { name: 'Contato', path: '/contato' },
@@ -206,7 +207,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     name: 'Bruno Lima',
     role: 'Consultor de Negócios',
-    quote: 'Sisteminha Massa!, Me ajuda bastante quando estou sem idéias para criar roteiros para as minhas apresentações. Parabéns!',
+    quote: 'Sisteminha Massa!, Me ajuda bastante quando estou sem ideias para criar roteiros para as minhas apresentações. Parabéns!',
     imageUrl: '/assets/images/Bruno.png',
     productUsed: 'SlideGenius',
   },
