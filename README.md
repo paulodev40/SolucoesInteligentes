@@ -64,3 +64,19 @@ Se aparecer "indisponível", normalmente é por:
 - função não publicada (`supabase functions deploy vercel-analytics-proxy`)
 - `VERCEL_API_TOKEN`/`VERCEL_PROJECT_ID` ausentes ou inválidos
 - endpoint de analytics sem resposta para o projeto/token
+
+## Notícias (MediaStack)
+
+A função `supabase/functions/news-proxy/index.ts` usa MediaStack para buscar notícias.
+
+### Secrets necessários (Supabase Edge Functions)
+
+- `MEDIASTACK_API_KEY`
+
+### Deploy da função
+
+`supabase --project-ref dvovhuwntmigpgdiuvxw functions deploy news-proxy`
+
+### Exemplo para definir secret via CLI
+
+`supabase --project-ref dvovhuwntmigpgdiuvxw secrets set MEDIASTACK_API_KEY=SEU_TOKEN_MEDIASTACK`

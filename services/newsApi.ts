@@ -48,9 +48,10 @@ export const fetchAINews = async (limit: number = 6): Promise<NewsArticle[]> => 
     
     const data: NewsApiResponse = await response.json();
     
-    // Filtra artigos sem imagem ou informações incompletas
+    // Filtra apenas artigos sem campos essenciais.
+    // Alguns provedores (ex.: MediaStack) retornam várias notícias sem imagem.
     const filteredArticles = data.articles.filter(
-      article => article.urlToImage && article.title && article.description
+      article => article.url && article.title && article.description
     );
     
     // Atualiza o cache

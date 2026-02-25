@@ -7,6 +7,9 @@ interface NewsCardProps {
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
+  const fallbackImage = '/assets/images/noticias.png';
+  const imageSrc = article.urlToImage?.trim() ? article.urlToImage : fallbackImage;
+
   return (
     <a
       href={article.url}
@@ -16,11 +19,12 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
     >
       <div className="relative overflow-hidden bg-gray-700">
         <img
-          src={article.urlToImage}
+          src={imageSrc}
           alt={article.title}
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
           onError={(e) => {
-            e.currentTarget.src = 'https://via.placeholder.com/400x300/1f2937/60a5fa?text=Sem+Imagem';
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = fallbackImage;
           }}
         />
         <div className="absolute top-3 right-3 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
