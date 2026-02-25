@@ -30,32 +30,143 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-gray-900">
+    <div className="home-modern bg-gray-900">
+      <style>{`
+        @keyframes homeFadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes homeFloat {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+
+        @keyframes homeLogoPulse {
+          0%,
+          100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 0 rgba(34, 211, 238, 0));
+          }
+          50% {
+            transform: scale(1.035);
+            filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.26));
+          }
+        }
+
+        @keyframes homeShimmer {
+          from {
+            transform: translateX(-120%);
+          }
+          to {
+            transform: translateX(120%);
+          }
+        }
+
+        .home-modern .home-fade-in {
+          opacity: 0;
+          animation: homeFadeInUp 0.75s cubic-bezier(0.22, 0.8, 0.26, 1) forwards;
+        }
+
+        .home-modern .home-delay-1 { animation-delay: 0.1s; }
+        .home-modern .home-delay-2 { animation-delay: 0.2s; }
+        .home-modern .home-delay-3 { animation-delay: 0.3s; }
+        .home-modern .home-delay-4 { animation-delay: 0.4s; }
+
+        .home-modern .home-float {
+          animation: homeFloat 5.5s ease-in-out infinite;
+        }
+
+        .home-modern .home-logo-animated {
+          animation: homeFadeInUp 0.75s cubic-bezier(0.22, 0.8, 0.26, 1) forwards,
+            homeFloat 5.5s ease-in-out 0.75s infinite,
+            homeLogoPulse 3.2s ease-in-out 0.75s infinite;
+        }
+
+        .home-modern .home-hover-lift {
+          transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+        }
+
+        .home-modern .home-hover-lift:hover {
+          transform: translateY(-4px);
+        }
+
+        .home-modern .home-shimmer-btn {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .home-modern .home-shimmer-btn::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 40%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+          transform: translateX(-120%);
+          transition: none;
+          pointer-events: none;
+        }
+
+        .home-modern .home-shimmer-btn:hover::after {
+          animation: homeShimmer 0.9s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .home-modern .home-fade-in,
+          .home-modern .home-float,
+          .home-modern .home-logo-animated,
+          .home-modern .home-hover-lift,
+          .home-modern .home-shimmer-btn::after {
+            animation: none !important;
+            transition: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
+
       {/* Hero Section */}
       <section className="relative text-center py-20 sm:py-32 px-4 bg-gradient-to-b from-gray-800 to-gray-900">
          <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-sm"></div>
+         <div className="pointer-events-none absolute -top-16 left-1/3 h-60 w-60 rounded-full bg-cyan-500/10 blur-3xl"></div>
+         <div className="pointer-events-none absolute -bottom-10 right-1/4 h-72 w-72 rounded-full bg-purple-500/10 blur-3xl"></div>
          <div className="relative z-10 max-w-4xl mx-auto">
-            <img 
-              src="/assets/images/logotipo.png" 
-              alt="Soluções Inteligentes 83 Logo" 
-              className="mx-auto mb-8 h-24 sm:h-32 md:h-40 w-auto"
-            />
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+            <div className="mb-8 flex justify-center">
+              <img 
+                src="/assets/images/logotipo.png" 
+                alt="Soluções Inteligentes 83 Logo" 
+                className="mx-auto h-28 sm:h-36 md:h-44 w-auto home-logo-animated"
+              />
+            </div>
+            <h1 className="home-fade-in home-delay-1 text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
                 <span className="block">Inteligência Artificial,</span>
                 <span className="block text-cyan-400">Soluções Reais.</span>
             </h1>
-            <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-300">
+            <p className="home-fade-in home-delay-2 mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-300">
                 Descomplicando o futuro com IA. Nossas ferramentas automatizam tarefas, impulsionam suas vendas e otimizam seu tempo para que você possa focar no que realmente importa.
             </p>
-            <div className="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
+            <div className="home-fade-in home-delay-3 mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                 <Link
                     to="/produtos"
-                    className="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105"
+                    className="home-shimmer-btn home-hover-lift px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105"
                 >
                     Conheça Nossos Produtos
                 </Link>
             </div>
-            <div className="mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
+            <div className="home-fade-in home-delay-4 mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
               <span className="inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
               <span>
                 Visitantes (total):{' '}
@@ -90,9 +201,9 @@ const HomePage: React.FC = () => {
       {/* AI Consulting Section */}
       <section className="py-16 bg-gradient-to-b from-gray-900 to-gray-800 border-y border-cyan-500/20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-cyan-400/25 bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-8 sm:p-10 lg:p-12 shadow-xl">
+          <div className="home-fade-in rounded-2xl border border-cyan-400/25 bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-8 sm:p-10 lg:p-12 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-7 home-fade-in home-delay-1">
                 <h3 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
                   Consultoria em I.A. para soluções sob medida
                 </h3>
@@ -103,11 +214,11 @@ const HomePage: React.FC = () => {
                 <img
                   src="/assets/images/consultoria.png"
                   alt="Consultoria em Inteligência Artificial"
-                  className="mt-6 w-full max-w-lg rounded-xl border border-cyan-400/20"
+                  className="mt-6 w-full max-w-lg rounded-xl border border-cyan-400/20 home-hover-lift"
                 />
               </div>
 
-              <div className="lg:col-span-5 rounded-xl border border-cyan-400/30 bg-gray-900/70 p-7 sm:p-8 lg:p-9 min-h-[430px] flex flex-col justify-between shadow-lg">
+              <div className="lg:col-span-5 rounded-xl border border-cyan-400/30 bg-gray-900/70 p-7 sm:p-8 lg:p-9 min-h-[430px] flex flex-col justify-between shadow-lg home-fade-in home-delay-2 home-hover-lift">
                 <div>
                   <h4 className="text-3xl font-extrabold text-white">Como funciona</h4>
                   <ul className="mt-6 space-y-5 text-xl text-gray-200 leading-relaxed">
@@ -128,14 +239,14 @@ const HomePage: React.FC = () => {
                   <img
                     src="/assets/images/logotipo2.png"
                     alt=""
-                    className="h-28 w-28 rounded-full border border-cyan-400/30 p-1 shadow-md shadow-cyan-900/30"
+                    className="h-28 w-28 rounded-full border border-cyan-400/30 p-1 shadow-md shadow-cyan-900/30 home-float"
                   />
                 </div>
                 </div>
 
                 <Link
                   to="/consultoria"
-                  className="mt-8 inline-flex w-full items-center justify-center px-7 py-3.5 rounded-lg bg-cyan-600 text-white text-lg font-semibold hover:bg-cyan-700 transition-colors"
+                  className="home-shimmer-btn mt-8 inline-flex w-full items-center justify-center px-7 py-3.5 rounded-lg bg-cyan-600 text-white text-lg font-semibold hover:bg-cyan-700 transition-colors home-hover-lift"
                 >
                   Conhecer Consultoria em I.A.
                 </Link>
@@ -189,7 +300,7 @@ const HomePage: React.FC = () => {
                   href="https://docs.google.com/forms/d/e/1FAIpQLSefilKN4FAEBcBkJNLZOIzUJBqe0SHY7tW2t3ZqTN2dXXWW0g/viewform?usp=publish-editor"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
+                  className="home-shimmer-btn inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold text-lg rounded-full shadow-lg hover:shadow-cyan-500/50 transform hover:scale-105 transition-all duration-300"
                 >
                   💬 Envie Sua Sugestão Agora
                 </a>

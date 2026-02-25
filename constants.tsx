@@ -7,6 +7,7 @@ export const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Produtos', path: '/produtos' },
   { name: 'Consultoria em I.A.', path: '/consultoria' },
+  { name: 'Conteúdo Digital', path: '/conteudo-digital' },
   { name: 'Notícias/Blog', path: '/blog' },
   { name: 'Sobre', path: '/sobre' },
   { name: 'Contato', path: '/contato' },
