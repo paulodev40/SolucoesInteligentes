@@ -2,19 +2,34 @@ import React from 'react';
 
 const DIGITAL_VIDEOS = [
   {
-    id: 'D_86O9BsSUw',
-    title: 'CopyMaster Pro • Demonstração',
-    description: 'Veja como gerar conteúdos com IA para acelerar marketing e vendas.',
+    id: 'O5nABJGU6QA',
+    title: 'Origem da I.A. • Episódio 1',
+    description: 'Primeiro vídeo da série sobre a origem da Inteligência Artificial.',
   },
   {
-    id: 'CMEhFIfeC-s',
-    title: 'SlideGenius • Demonstração',
-    description: 'Crie apresentações profissionais em poucos minutos com apoio da IA.',
+    id: 'vObV9LVrZjs',
+    title: 'Origem da I.A. • Episódio 2',
+    description: 'Continuação da série com os marcos iniciais da evolução da I.A.',
   },
   {
-    id: 'vnTgHZIZO1g',
-    title: 'Listen&Write • Demonstração',
-    description: 'Gravação, transcrição e organização inteligente de reuniões.',
+    id: 'TIjYjBg3EO4',
+    title: 'Origem da I.A. • Episódio 3',
+    description: 'Abordagem histórica sobre conceitos e avanços fundamentais da I.A.',
+  },
+  {
+    id: 'K6lqOom_JUw',
+    title: 'Origem da I.A. • Episódio 4',
+    description: 'Mais contexto sobre as bases que moldaram a Inteligência Artificial.',
+  },
+  {
+    id: 'OlrkEd_hKsI',
+    title: 'Origem da I.A. • Episódio 5',
+    description: 'Episódio com acontecimentos importantes no desenvolvimento da I.A.',
+  },
+  {
+    id: 'hjy48cHf4YI',
+    title: 'Origem da I.A. • Episódio 6',
+    description: 'Fechamento da série com a trajetória da I.A. até os dias atuais.',
   },
 ];
 
