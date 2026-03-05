@@ -5,7 +5,9 @@ import ProductCard from '../components/ProductCard';
 
 const ProductsPage: React.FC = () => {
   // Criar uma versão modificada dos produtos com GIFs para a página de produtos
-  const productsWithGifs = PRODUCTS.map((product) => {
+  const productsWithGifs = PRODUCTS
+    .filter((product) => product.slug !== 'rememberme' && product.slug !== 'scei')
+    .map((product) => {
     if (product.slug === 'copymaster-pro') {
       return { ...product, image: '/assets/gifs/coruja_pensando2.gif' };
     }
@@ -14,9 +16,6 @@ const ProductsPage: React.FC = () => {
     }
     if (product.slug === 'read-write') {
       return { ...product, image: '/assets/gifs/lobo_gravando.gif' };
-    }
-    if (product.slug === 'rememberme') {
-      return { ...product, image: '/assets/gifs/tartaruga_colore.gif' };
     }
     return product;
   });

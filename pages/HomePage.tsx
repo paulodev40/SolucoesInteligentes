@@ -7,6 +7,10 @@ import BlogPostCard from '../components/BlogPostCard';
 import { fetchVisitors } from '../services/analyticsApi';
 
 const HomePage: React.FC = () => {
+  const visibleProducts = PRODUCTS.filter(
+    (product) => product.slug !== 'rememberme' && product.slug !== 'scei'
+  );
+
   const [visitors, setVisitors] = useState<number | null>(null);
   const [isLoadingVisitors, setIsLoadingVisitors] = useState<boolean>(true);
 
@@ -184,15 +188,15 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Products Section */}
-      <section id="produtos" className="py-20 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="produtos" className="py-14 bg-gray-900">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Nossas Ferramentas Inteligentes</h2>
             <p className="mt-4 text-lg text-gray-400">Soluções que pensam com você.</p>
           </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {PRODUCTS.map((product) => (
-              <ProductCard key={product.slug} product={product} />
+          <div className="mt-8 grid gap-4">
+            {visibleProducts.map((product) => (
+              <ProductCard key={product.slug} product={product} compact />
             ))}
           </div>
         </div>

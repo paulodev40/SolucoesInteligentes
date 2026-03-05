@@ -6,11 +6,11 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import OnlineCoursesPage from './pages/OnlineCoursesPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
-import ContactPage from './pages/ContactPage';
 import ConsultingPage from './pages/ConsultingPage';
 import DigitalContentPage from './pages/DigitalContentPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
@@ -37,13 +37,13 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/produtos" element={<ProductsPage />} />
+            <Route path="/cursos-online" element={<OnlineCoursesPage />} />
             <Route path="/consultoria" element={<ConsultingPage />} />
             <Route path="/conteudo-digital" element={<DigitalContentPage />} />
             <Route path="/produtos/:slug" element={<ProductDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
             <Route path="/sobre" element={<AboutPage />} />
-            <Route path="/contato" element={<ContactPage />} />
             <Route path="/privacidade" element={<PrivacyPolicyPage />} />
             <Route path="/termos" element={<TermsPage />} />
             <Route path="*" element={<NotFoundPage />} />
