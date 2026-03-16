@@ -7,29 +7,24 @@ const DIGITAL_VIDEOS = [
     description: 'Primeiro vídeo da série sobre a origem da Inteligência Artificial.',
   },
   {
-    id: 'vObV9LVrZjs',
-    title: 'Origem da I.A. • Episódio 2',
-    description: 'Continuação da série com os marcos iniciais da evolução da I.A.',
+    id: 'lnFb7tTus0E',
+    title: 'Supabase',
+    description: 'Vídeo sobre Supabase e aplicações práticas no desenvolvimento.',
   },
   {
-    id: 'TIjYjBg3EO4',
-    title: 'Origem da I.A. • Episódio 3',
-    description: 'Abordagem histórica sobre conceitos e avanços fundamentais da I.A.',
+    id: '_R_YBMvNQV0',
+    title: 'Programando com IA',
+    description: 'Conteúdo sobre programação com apoio de Inteligência Artificial.',
   },
   {
-    id: 'K6lqOom_JUw',
-    title: 'Origem da I.A. • Episódio 4',
-    description: 'Mais contexto sobre as bases que moldaram a Inteligência Artificial.',
+    id: 'hZ_ZZH_EwPo',
+    title: 'GitHub tutorial',
+    description: 'Tutorial prático de GitHub para organizar e versionar projetos.',
   },
   {
-    id: 'OlrkEd_hKsI',
-    title: 'Origem da I.A. • Episódio 5',
-    description: 'Episódio com acontecimentos importantes no desenvolvimento da I.A.',
-  },
-  {
-    id: 'hjy48cHf4YI',
-    title: 'Origem da I.A. • Episódio 6',
-    description: 'Fechamento da série com a trajetória da I.A. até os dias atuais.',
+    id: 'ePwFe4cfIWo',
+    title: 'Seu Capi, o técnico de TI',
+    description: 'Apresentação do Seu Capi e sua atuação como técnico de TI.',
   },
 ];
 

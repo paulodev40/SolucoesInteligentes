@@ -8,7 +8,10 @@ import { fetchVisitors } from '../services/analyticsApi';
 
 const HomePage: React.FC = () => {
   const visibleProducts = PRODUCTS.filter(
-    (product) => product.slug !== 'rememberme' && product.slug !== 'scei'
+    (product) =>
+      product.slug !== 'rememberme' &&
+      product.slug !== 'scei' &&
+      product.slug !== 'read-write'
   );
 
   const [visitors, setVisitors] = useState<number | null>(null);

@@ -6,7 +6,12 @@ import ProductCard from '../components/ProductCard';
 const ProductsPage: React.FC = () => {
   // Criar uma versão modificada dos produtos com GIFs para a página de produtos
   const productsWithGifs = PRODUCTS
-    .filter((product) => product.slug !== 'rememberme' && product.slug !== 'scei')
+    .filter(
+      (product) =>
+        product.slug !== 'rememberme' &&
+        product.slug !== 'scei' &&
+        product.slug !== 'read-write'
+    )
     .map((product) => {
     if (product.slug === 'copymaster-pro') {
       return { ...product, image: '/assets/gifs/coruja_pensando2.gif' };
