@@ -1,19 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCTS, BLOG_POSTS } from '../constants';
-import ProductCard from '../components/ProductCard';
+import { BLOG_POSTS } from '../constants';
 import BlogPostCard from '../components/BlogPostCard';
 import { fetchVisitors } from '../services/analyticsApi';
 
 const HomePage: React.FC = () => {
-  const visibleProducts = PRODUCTS.filter(
-    (product) =>
-      product.slug !== 'rememberme' &&
-      product.slug !== 'scei' &&
-      product.slug !== 'read-write'
-  );
-
   const [visitors, setVisitors] = useState<number | null>(null);
   const [isLoadingVisitors, setIsLoadingVisitors] = useState<boolean>(true);
 
@@ -167,10 +159,10 @@ const HomePage: React.FC = () => {
             </p>
             <div className="home-fade-in home-delay-3 mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
                 <Link
-                    to="/produtos"
+                to="/cursos-online"
                     className="home-shimmer-btn home-hover-lift px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105"
                 >
-                    Conheça Nossos Produtos
+                Conheca o Curso Programando com I.A.
                 </Link>
             </div>
             <div className="home-fade-in home-delay-4 mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
@@ -190,17 +182,40 @@ const HomePage: React.FC = () => {
          </div>
       </section>
 
-      {/* Products Section */}
-      <section id="produtos" className="py-14 bg-gray-900">
+      {/* Online Course Highlight Section */}
+      <section className="py-14 bg-gray-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">Nossas Ferramentas Inteligentes</h2>
-            <p className="mt-4 text-lg text-gray-400">Soluções que pensam com você.</p>
-          </div>
-          <div className="mt-8 grid gap-4">
-            {visibleProducts.map((product) => (
-              <ProductCard key={product.slug} product={product} compact />
-            ))}
+          <div className="rounded-2xl border border-cyan-400/25 bg-gradient-to-br from-gray-800/85 to-gray-900/85 p-7 sm:p-10 shadow-xl home-hover-lift">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+              <div className="lg:col-span-8">
+                <p className="text-sm font-semibold uppercase tracking-wide text-cyan-300">Cursos Online</p>
+                <h2 className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">Programando com I.A. para Iniciantes</h2>
+                <p className="mt-4 text-lg text-gray-300 leading-relaxed">
+                  Troque a travação por prática guiada: aprenda do zero com apoio da Inteligência Artificial,
+                  construa seu primeiro projeto real e acelere sua evolução com um método direto ao ponto.
+                </p>
+                <div className="mt-6">
+                  <Link
+                    to="/cursos-online"
+                    className="home-shimmer-btn inline-flex items-center justify-center px-7 py-3.5 rounded-lg bg-cyan-600 text-white text-lg font-semibold hover:bg-cyan-700 transition-colors"
+                  >
+                    Ver detalhes do curso
+                  </Link>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4">
+                <div className="rounded-xl border border-cyan-400/25 bg-gray-950/70 p-3">
+                  <div className="aspect-video w-full overflow-hidden rounded-lg">
+                    <img
+                      src="/assets/images/coruja.png"
+                      alt="Curso Programando com I.A. para Iniciantes"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

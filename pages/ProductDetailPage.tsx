@@ -16,6 +16,8 @@ const ProductDetailPage: React.FC = () => {
   if (!product) {
     return <NotFoundPage />;
   }
+
+  const isSlideGeniusUnavailable = product.slug === 'slidegenius';
   
   const Icon = product.icon;
   const planButtons =
@@ -128,45 +130,60 @@ const ProductDetailPage: React.FC = () => {
             )}
             
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <a
-                href={
-                  product.slug === 'copymaster-pro'
-                    ? 'https://copymasterpro.com/'
-                    : product.slug === 'slidegenius'
-                      ? 'https://slidesmartfast.com/'
+              {isSlideGeniusUnavailable ? (
+                <button
+                  type="button"
+                  disabled
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-300/40 text-lg font-semibold rounded-xl text-cyan-100/70 bg-cyan-700/40 cursor-not-allowed opacity-80"
+                >
+                  Faça teste gratuito
+                </button>
+              ) : (
+                <a
+                  href={
+                    product.slug === 'copymaster-pro'
+                      ? 'https://copymasterpro.com/'
                       : product.slug === 'read-write'
                         ? 'https://geraata.com/'
                         : '#'
-                }
-                target={
-                  product.slug === 'copymaster-pro' ||
-                  product.slug === 'slidegenius' ||
-                  product.slug === 'read-write'
-                    ? '_blank'
-                    : undefined
-                }
-                rel={
-                  product.slug === 'copymaster-pro' ||
-                  product.slug === 'slidegenius' ||
-                  product.slug === 'read-write'
-                    ? 'noopener noreferrer'
-                    : undefined
-                }
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-300/70 text-lg font-semibold rounded-xl text-white bg-cyan-600 hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110 animate-[pulse_1.2s_ease-in-out_infinite] shadow-xl shadow-cyan-400/60 ring-2 ring-cyan-300/40"
-              >
-                Faça teste gratuito
-              </a>
-              {planButtons.map((plan) => (
-                <a
-                  key={plan.label}
-                  href={plan.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+                  }
+                  target={
+                    product.slug === 'copymaster-pro' || product.slug === 'read-write'
+                      ? '_blank'
+                      : undefined
+                  }
+                  rel={
+                    product.slug === 'copymaster-pro' || product.slug === 'read-write'
+                      ? 'noopener noreferrer'
+                      : undefined
+                  }
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-300/70 text-lg font-semibold rounded-xl text-white bg-cyan-600 hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110 animate-[pulse_1.2s_ease-in-out_infinite] shadow-xl shadow-cyan-400/60 ring-2 ring-cyan-300/40"
                 >
-                  {plan.label}
+                  Faça teste gratuito
                 </a>
-              ))}
+              )}
+              {planButtons.map((plan) =>
+                isSlideGeniusUnavailable ? (
+                  <button
+                    key={plan.label}
+                    type="button"
+                    disabled
+                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/30 text-lg font-medium rounded-md text-cyan-200/70 bg-cyan-900/20 cursor-not-allowed opacity-70"
+                  >
+                    {plan.label}
+                  </button>
+                ) : (
+                  <a
+                    key={plan.label}
+                    href={plan.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
+                  >
+                    {plan.label}
+                  </a>
+                )
+              )}
             </div>
           </div>
           
