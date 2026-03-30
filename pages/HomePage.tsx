@@ -207,10 +207,14 @@ const HomePage: React.FC = () => {
               <div className="lg:col-span-4">
                 <div className="rounded-xl border border-cyan-400/25 bg-gray-950/70 p-3">
                   <div className="aspect-video w-full overflow-hidden rounded-lg">
-                    <img
-                      src="/assets/images/coruja.png"
-                      alt="Curso Programando com I.A. para Iniciantes"
-                      className="h-full w-full object-cover"
+                    <iframe
+                      className="h-full w-full"
+                      src="https://www.youtube.com/embed/J5SSLrWO05g"
+                      title="Programando com I.A. para Iniciantes"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
                     />
                   </div>
                 </div>
