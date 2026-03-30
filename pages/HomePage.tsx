@@ -157,14 +157,6 @@ const HomePage: React.FC = () => {
             <p className="home-fade-in home-delay-2 mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-300">
                 Descomplicando o futuro com IA. Nossas ferramentas automatizam tarefas, impulsionam suas vendas e otimizam seu tempo para que você possa focar no que realmente importa.
             </p>
-            <div className="home-fade-in home-delay-3 mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center">
-                <Link
-                to="/cursos-online"
-                    className="home-shimmer-btn home-hover-lift px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105"
-                >
-                Conheca o Curso Programando com I.A.
-                </Link>
-            </div>
             <div className="home-fade-in home-delay-4 mt-8 inline-flex items-center gap-3 px-4 py-2 rounded-full border border-cyan-500/40 bg-gray-800/70 text-sm sm:text-base text-cyan-200">
               <span className="inline-block h-2.5 w-2.5 rounded-full bg-cyan-400"></span>
               <span>
