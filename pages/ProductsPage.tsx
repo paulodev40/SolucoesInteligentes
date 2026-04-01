@@ -8,6 +8,7 @@ const ProductsPage: React.FC = () => {
   const productsWithGifs = PRODUCTS
     .filter(
       (product) =>
+        product.slug !== 'slidegenius' &&
         product.slug !== 'rememberme' &&
         product.slug !== 'scei' &&
         product.slug !== 'read-write'
@@ -15,9 +16,6 @@ const ProductsPage: React.FC = () => {
     .map((product) => {
     if (product.slug === 'copymaster-pro') {
       return { ...product, image: '/assets/gifs/coruja_pensando2.gif' };
-    }
-    if (product.slug === 'slidegenius') {
-      return { ...product, image: '/assets/gifs/camaleao_ligando2.gif' };
     }
     if (product.slug === 'read-write') {
       return { ...product, image: '/assets/gifs/lobo_gravando.gif' };
