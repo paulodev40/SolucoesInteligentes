@@ -12,6 +12,7 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
 import ConsultingPage from './pages/ConsultingPage';
+import AIToolsPage from './pages/AIToolsPage';
 import DigitalContentPage from './pages/DigitalContentPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             <Route path="/produtos" element={<ProductsPage />} />
             <Route path="/cursos-online" element={<OnlineCoursesPage />} />
             <Route path="/consultoria" element={<ConsultingPage />} />
+            <Route path="/ferramentas-ia" element={<AIToolsPage />} />
             <Route path="/conteudo-digital" element={<DigitalContentPage />} />
             <Route path="/produtos/:slug" element={<ProductDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />
