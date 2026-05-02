@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { PRODUCTS } from '../constants';
@@ -13,13 +12,11 @@ const ProductDetailPage: React.FC = () => {
 
   const product = PRODUCTS.find((p) => p.slug === slug);
 
-  if (!product) {
-    return <NotFoundPage />;
-  }
+  if (!product) return <NotFoundPage />;
 
   const isSlideGeniusUnavailable = product.slug === 'slidegenius';
-  
   const Icon = product.icon;
+
   const planButtons =
     product.slug === 'copymaster-pro'
       ? [
@@ -40,181 +37,146 @@ const ProductDetailPage: React.FC = () => {
             ]
           : [];
 
+  const videoEmbedId =
+    product.slug === 'copymaster-pro'
+      ? 'D_86O9BsSUw'
+      : product.slug === 'slidegenius'
+        ? 'CMEhFIfeC-s'
+        : product.slug === 'read-write'
+          ? 'vnTgHZIZO1g'
+          : null;
+
+  const trialHref =
+    product.slug === 'copymaster-pro'
+      ? 'https://copymasterpro.com/'
+      : product.slug === 'read-write'
+        ? 'https://geraata.com/'
+        : '#';
+
   return (
-    <div className="bg-gray-900 py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Badge "Em Construção" para produtos em andamento */}
+    <section className="relative py-20 sm:py-24 px-5">
+      <div className="max-w-7xl mx-auto">
         {(product.slug === 'rememberme' || product.slug === 'scei') && (
-          <div className="mb-6 flex justify-center">
-            <div className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-              <span className="text-xl">🚧</span>
-              <span>Em Construção</span>
-            </div>
+          <div className="mb-8 flex justify-center reveal">
+            <span className="badge badge--yellow">🚧 Em Construção</span>
           </div>
         )}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-8 items-center">
-          <div className="lg:col-span-6">
-            <div className="flex items-center mb-4">
-               {product.slug === 'copymaster-pro' ? (
-                 <img 
-                   src="/assets/images/corujasabia.jpeg" 
-                   alt={product.name}
-                   className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
-                 />
-               ) : product.slug === 'slidegenius' ? (
-                 <img 
-                   src="/assets/images/mascote-camaleao.png" 
-                   alt={product.name}
-                   className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
-                 />
-               ) : product.slug === 'read-write' ? (
-                 <img 
-                   src="/assets/images/lobo_guara2.png" 
-                   alt={product.name}
-                   className="h-24 w-24 object-cover rounded-full mr-5 border-4 border-cyan-400"
-                 />
-               ) : (
-                 <Icon className="h-16 w-16 text-cyan-400 mr-5" />
-               )}
-               <div>
-                  <h1 className="text-4xl font-extrabold text-white sm:text-5xl">{product.name}</h1>
-                  <p className="mt-2 text-xl text-cyan-400">{product.tagline}</p>
-               </div>
-            </div>
-            
-            <p className="mt-6 text-lg text-gray-300">{product.description}</p>
-            
-            {product.slug === 'copymaster-pro' && (
-              <div className="mt-8">
-                <div className="relative w-full rounded-lg overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/D_86O9BsSUw"
-                    title="CopyMaster Pro Demo"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
+
+        <div className="lg:grid lg:grid-cols-12 lg:gap-10 items-start">
+          <div className="lg:col-span-7 reveal">
+            <div className="flex items-center gap-5 mb-6">
+              {product.slug === 'copymaster-pro' ? (
+                <img src="/assets/images/corujasabia.jpeg" alt={product.name}
+                  className="h-24 w-24 object-cover rounded-full border-2 border-si-cyan flex-shrink-0"
+                  style={{ boxShadow: '0 0 24px var(--cyan-glow)' }} />
+              ) : product.slug === 'slidegenius' ? (
+                <img src="/assets/images/mascote-camaleao.png" alt={product.name}
+                  className="h-24 w-24 object-cover rounded-full border-2 border-si-cyan flex-shrink-0"
+                  style={{ boxShadow: '0 0 24px var(--cyan-glow)' }} />
+              ) : product.slug === 'read-write' ? (
+                <img src="/assets/images/lobo_guara2.png" alt={product.name}
+                  className="h-24 w-24 object-cover rounded-full border-2 border-si-cyan flex-shrink-0"
+                  style={{ boxShadow: '0 0 24px var(--cyan-glow)' }} />
+              ) : (
+                <Icon className="h-16 w-16 text-si-cyan flex-shrink-0" />
+              )}
+              <div>
+                <div className="section-label">Produto</div>
+                <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-si-text leading-tight">
+                  {product.name}
+                </h1>
+                <p className="mt-2 text-lg text-si-cyan font-mono">{product.tagline}</p>
               </div>
-            )}
-            
-            {product.slug === 'slidegenius' && (
-              <div className="mt-8">
-                <div className="relative w-full rounded-lg overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
+            </div>
+
+            <p className="text-lg text-si-muted leading-relaxed">{product.description}</p>
+
+            {videoEmbedId && (
+              <div className="mt-8 rounded-xl overflow-hidden border border-[var(--border-strong)] bg-[var(--bg)]"
+                style={{ boxShadow: '0 0 32px var(--cyan-dim)' }}>
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/CMEhFIfeC-s"
-                    title="SlideGenius Demo"
-                    frameBorder="0"
+                    src={`https://www.youtube.com/embed/${videoEmbedId}`}
+                    title={`${product.name} Demo`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                  ></iframe>
+                  />
                 </div>
               </div>
             )}
 
-            {product.slug === 'read-write' && (
-              <div className="mt-8">
-                <div className="relative w-full rounded-lg overflow-hidden shadow-2xl" style={{ paddingBottom: '56.25%' }}>
-                  <iframe
-                    className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/vnTgHZIZO1g"
-                    title="Listen&Write Demo"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                </div>
-              </div>
-            )}
-            
-            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+            <div className="mt-8 flex flex-wrap gap-3">
               {isSlideGeniusUnavailable ? (
-                <button
-                  type="button"
-                  disabled
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-300/40 text-lg font-semibold rounded-xl text-cyan-100/70 bg-cyan-700/40 cursor-not-allowed opacity-80"
-                >
+                <button type="button" disabled
+                  className="btn-primary opacity-60 cursor-not-allowed">
                   Faça teste gratuito
                 </button>
               ) : (
-                <a
-                  href={
-                    product.slug === 'copymaster-pro'
-                      ? 'https://copymasterpro.com/'
-                      : product.slug === 'read-write'
-                        ? 'https://geraata.com/'
-                        : '#'
-                  }
-                  target={
-                    product.slug === 'copymaster-pro' || product.slug === 'read-write'
-                      ? '_blank'
-                      : undefined
-                  }
-                  rel={
-                    product.slug === 'copymaster-pro' || product.slug === 'read-write'
-                      ? 'noopener noreferrer'
-                      : undefined
-                  }
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-cyan-300/70 text-lg font-semibold rounded-xl text-white bg-cyan-600 hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110 animate-[pulse_1.2s_ease-in-out_infinite] shadow-xl shadow-cyan-400/60 ring-2 ring-cyan-300/40"
-                >
-                  Faça teste gratuito
+                <a href={trialHref}
+                  target={product.slug === 'copymaster-pro' || product.slug === 'read-write' ? '_blank' : undefined}
+                  rel={product.slug === 'copymaster-pro' || product.slug === 'read-write' ? 'noopener noreferrer' : undefined}
+                  className="btn-primary">
+                  Faça teste gratuito →
                 </a>
               )}
               {planButtons.map((plan) =>
                 isSlideGeniusUnavailable ? (
-                  <button
-                    key={plan.label}
-                    type="button"
-                    disabled
-                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/30 text-lg font-medium rounded-md text-cyan-200/70 bg-cyan-900/20 cursor-not-allowed opacity-70"
-                  >
+                  <button key={plan.label} type="button" disabled
+                    className="btn-ghost opacity-50 cursor-not-allowed">
                     {plan.label}
                   </button>
                 ) : (
-                  <a
-                    key={plan.label}
-                    href={plan.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-4 border border-cyan-500/60 text-lg font-medium rounded-md text-cyan-200 hover:text-white hover:border-cyan-400 hover:bg-cyan-700/40 transition-transform transform hover:scale-105"
-                  >
+                  <a key={plan.label} href={plan.href} target="_blank" rel="noopener noreferrer"
+                    className="btn-ghost">
                     {plan.label}
                   </a>
                 )
               )}
             </div>
           </div>
-          
-          <div className="mt-12 lg:mt-0 lg:col-span-6">
-            <div className="bg-gray-800 p-8 rounded-lg shadow-xl space-y-8">
+
+          <div className="mt-12 lg:mt-0 lg:col-span-5 reveal" style={{ transitionDelay: '0.1s' }}>
+            <div className="surface p-7 sm:p-8 space-y-6">
               <div>
-                <h3 className="text-xl font-bold text-white flex items-center"><i className="fas fa-bullseye text-cyan-400 mr-3"></i> Problema que resolve</h3>
-                <p className="mt-2 text-gray-400">{product.problem}</p>
+                <h3 className="font-display font-bold text-xl text-si-text flex items-center gap-3">
+                  <i className="fas fa-bullseye text-si-cyan" /> Problema que resolve
+                </h3>
+                <p className="mt-2 text-si-muted">{product.problem}</p>
               </div>
+              <div className="border-t border-[var(--border)]" />
               <div>
-                <h3 className="text-xl font-bold text-white flex items-center"><i className="fas fa-users text-cyan-400 mr-3"></i> Para quem é</h3>
-                <p className="mt-2 text-gray-400">{product.targetAudience}</p>
+                <h3 className="font-display font-bold text-xl text-si-text flex items-center gap-3">
+                  <i className="fas fa-users text-si-cyan" /> Para quem é
+                </h3>
+                <p className="mt-2 text-si-muted">{product.targetAudience}</p>
               </div>
+              <div className="border-t border-[var(--border)]" />
               <div>
-                <h3 className="text-xl font-bold text-white flex items-center"><i className="fas fa-check-circle text-cyan-400 mr-3"></i> Exemplos de uso</h3>
-                <ul className="mt-3 list-disc list-inside text-gray-400 space-y-2">
+                <h3 className="font-display font-bold text-xl text-si-text flex items-center gap-3">
+                  <i className="fas fa-check-circle text-si-cyan" /> Exemplos de uso
+                </h3>
+                <ul className="mt-3 space-y-2">
                   {product.useCases.map((useCase, index) => (
-                    <li key={index}>{useCase}</li>
+                    <li key={index} className="flex items-start gap-3 text-si-muted">
+                      <span className="mt-1.5 inline-block h-1.5 w-1.5 rounded-full bg-si-cyan flex-shrink-0"
+                        style={{ boxShadow: '0 0 6px var(--cyan)' }} />
+                      <span>{useCase}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
             </div>
           </div>
         </div>
+
         <div className="mt-16 text-center">
-          <Link to="/produtos" className="text-cyan-400 font-semibold hover:text-cyan-300">
-            <i className="fas fa-arrow-left mr-2"></i> Voltar para todos os produtos
+          <Link to="/produtos" className="btn-ghost">
+            <i className="fas fa-arrow-left mr-2" /> Voltar para todos os produtos
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

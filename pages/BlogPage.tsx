@@ -1,162 +1,87 @@
-
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { BLOG_POSTS } from '../constants';
 import BlogPostCard from '../components/BlogPostCard';
-import NewsCard from '../components/NewsCard';
-import { fetchAINews, type NewsArticle } from '../services/newsApi';
 
 const BlogPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [aiNews, setAiNews] = useState<NewsArticle[]>([]);
-  const [newsLoading, setNewsLoading] = useState<boolean>(true);
 
-  // Buscar notícias de IA ao carregar a página
-  useEffect(() => {
-    const loadNews = async () => {
-      setNewsLoading(true);
-      const news = await fetchAINews(6);
-      setAiNews(news);
-      setNewsLoading(false);
-    };
-    loadNews();
-  }, []);
-
-  const categories = useMemo(() => {
-    return ['Todos', ...Array.from(new Set(BLOG_POSTS.map(p => p.category)))];
-  }, []);
+  const categories = useMemo(
+    () => ['Todos', ...Array.from(new Set(BLOG_POSTS.map((p) => p.category)))],
+    []
+  );
 
   const filteredPosts = useMemo(() => {
     let posts = BLOG_POSTS;
-
-    // Filter by category
-    if (selectedCategory !== 'Todos') {
-      posts = posts.filter(post => post.category === selectedCategory);
-    }
-
-    // Filter by search query
+    if (selectedCategory !== 'Todos') posts = posts.filter((p) => p.category === selectedCategory);
     if (searchQuery.trim() !== '') {
-      const lowercasedQuery = searchQuery.toLowerCase();
-      posts = posts.filter(post =>
-        post.title.toLowerCase().includes(lowercasedQuery) ||
-        post.excerpt.toLowerCase().includes(lowercasedQuery) ||
-        post.content.toLowerCase().includes(lowercasedQuery)
+      const q = searchQuery.toLowerCase();
+      posts = posts.filter(
+        (post) =>
+          post.title.toLowerCase().includes(q) ||
+          post.excerpt.toLowerCase().includes(q) ||
+          post.content.toLowerCase().includes(q)
       );
     }
-
     return posts;
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="bg-gray-900 py-12 sm:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-white sm:text-5xl">Nosso Blog</h1>
-          <p className="mt-4 text-lg text-gray-400">
-            Fique por dentro das últimas notícias, tendências e tutoriais do mundo da Inteligência Artificial.
+    <section className="relative py-20 sm:py-24 px-5">
+      <div className="max-w-7xl mx-auto">
+        <div className="reveal text-center mx-auto" style={{ maxWidth: 760 }}>
+          <div className="section-label" style={{ justifyContent: 'center' }}>Blog</div>
+          <h2 className="section-title">Nosso Blog</h2>
+          <p className="section-desc mx-auto">
+            Conteúdo exclusivo criado por nossa equipe sobre Inteligência Artificial,
+            tendências, tutoriais e estudos de caso.
           </p>
         </div>
 
-        {/* Search and Filter Section */}
-        <div className="mb-12 space-y-6 max-w-2xl mx-auto">
-            {/* Search Input */}
-            <div>
-                <label htmlFor="search-blog" className="sr-only">Pesquisar artigos</label>
-                <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <i className="fas fa-search text-gray-400"></i>
-                    </div>
-                    <input
-                        type="text"
-                        id="search-blog"
-                        className="block w-full bg-gray-700 border border-gray-600 rounded-md py-3 pl-10 pr-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm"
-                        placeholder="Pesquisar por título, conteúdo..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        aria-label="Pesquisar artigos"
-                    />
-                </div>
+        {/* Search + filters */}
+        <div className="mt-12 mb-12 space-y-6 max-w-2xl mx-auto reveal">
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <i className="fas fa-search text-si-dim" />
             </div>
+            <input
+              type="text"
+              id="search-blog"
+              className="field pl-11"
+              placeholder="Pesquisar por título, conteúdo..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Pesquisar artigos"
+            />
+          </div>
 
-            {/* Category Filters */}
-            <div className="flex justify-center flex-wrap gap-2">
-            {categories.map(category => (
-                <button
+          <div className="flex justify-center flex-wrap gap-2">
+            {categories.map((category) => (
+              <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 text-sm font-medium rounded-full transition-colors duration-200 ${
-                    selectedCategory === category
-                    ? 'bg-cyan-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                }`}
-                >
+                className={selectedCategory === category ? 'chip chip--cyan' : 'chip'}
+              >
                 {category}
-                </button>
+              </button>
             ))}
-            </div>
-        </div>
-
-        {/* Notícias Externas de IA */}
-        <div className="mb-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-3xl font-extrabold text-white flex items-center">
-                <span className="mr-3">🌐</span>
-                Últimas Notícias de IA
-              </h2>
-              <p className="mt-2 text-gray-400">Acompanhe as principais novidades do mundo da Inteligência Artificial</p>
-            </div>
           </div>
-          
-          {newsLoading ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-pulse">
-                  <div className="w-full h-48 bg-gray-700"></div>
-                  <div className="p-6 space-y-3">
-                    <div className="h-4 bg-gray-700 rounded w-3/4"></div>
-                    <div className="h-4 bg-gray-700 rounded w-1/2"></div>
-                    <div className="h-20 bg-gray-700 rounded"></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : aiNews.length > 0 ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {aiNews.map((article, index) => (
-                <NewsCard key={`${article.url}-${index}`} article={article} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8 bg-gray-800 rounded-lg">
-              <p className="text-gray-400">Não foi possível carregar as notícias no momento.</p>
-            </div>
-          )}
-        </div>
-
-        {/* Divisor */}
-        <div className="border-t border-gray-700 mb-12"></div>
-
-        {/* Nossos Artigos */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-extrabold text-white mb-2">Nossos Artigos</h2>
-          <p className="text-gray-400">Conteúdo exclusivo criado por nossa equipe</p>
         </div>
 
         {filteredPosts.length > 0 ? (
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {filteredPosts.map((post) => (
-                    <BlogPostCard key={post.slug} post={post} />
-                ))}
-            </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 reveal">
+            {filteredPosts.map((post) => (
+              <BlogPostCard key={post.slug} post={post} />
+            ))}
+          </div>
         ) : (
-            <div className="text-center py-16">
-                <h3 className="text-2xl font-bold text-white">Nenhum resultado encontrado</h3>
-                <p className="mt-2 text-gray-400">Tente ajustar sua busca ou filtros.</p>
-            </div>
+          <div className="surface text-center py-16">
+            <h3 className="font-display font-bold text-2xl text-si-text">Nenhum resultado encontrado</h3>
+            <p className="mt-2 text-si-muted">Tente ajustar sua busca ou filtros.</p>
+          </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

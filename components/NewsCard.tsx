@@ -15,39 +15,41 @@ const NewsCard: React.FC<NewsCardProps> = ({ article }) => {
       href={article.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 flex flex-col group"
+      className="surface surface-hover overflow-hidden flex flex-col group relative"
     >
-      <div className="relative overflow-hidden bg-gray-700">
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+        style={{ background: 'linear-gradient(90deg, transparent, var(--cyan), transparent)' }}
+      />
+      <div className="relative overflow-hidden bg-[var(--surface2)] border-b border-[var(--border)]">
         <img
           src={imageSrc}
           alt={article.title}
-          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
           onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = fallbackImage;
           }}
         />
-        <div className="absolute top-3 right-3 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold">
-          <span>🌐</span>
-          <span className="ml-1">Externa</span>
-        </div>
+        <span className="badge badge--violet absolute top-3 right-3">
+          🌐 Externa
+        </span>
       </div>
       <div className="p-6 flex-grow flex flex-col">
-        <div className="flex items-center text-xs text-gray-400 mb-3">
-          <span className="font-semibold text-purple-400">{article.source.name}</span>
-          <span className="mx-2">&bull;</span>
-          <span>{formatNewsDate(article.publishedAt)}</span>
+        <div className="section-label" style={{ marginBottom: 10 }}>
+          {article.source.name}
         </div>
-        <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-cyan-400 transition-colors">
+        <h3 className="font-display font-bold text-base text-si-text leading-snug mb-3 line-clamp-2 group-hover:text-si-cyan transition-colors">
           {article.title}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed line-clamp-3 flex-grow">
+        <p className="text-si-muted text-sm leading-relaxed line-clamp-3 flex-grow">
           {article.description}
         </p>
-        <div className="mt-4 pt-4 border-t border-gray-700">
-          <span className="text-purple-400 font-semibold text-sm group-hover:text-purple-300 transition-colors flex items-center">
-            Ler notícia completa 
-            <i className="fas fa-external-link-alt ml-2 text-xs"></i>
+        <div className="mt-5 pt-4 border-t border-[var(--border)] flex items-center justify-between">
+          <span className="text-si-dim text-xs font-mono">{formatNewsDate(article.publishedAt)}</span>
+          <span className="text-si-cyan font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+            Ler completa <i className="fas fa-external-link-alt text-[10px]" />
           </span>
         </div>
       </div>

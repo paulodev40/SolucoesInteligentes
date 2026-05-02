@@ -18,74 +18,76 @@ const audiencePoints = [
 
 const copyVariants = {
   A: {
-    title: 'Aprenda programacao com I.A. e tire seu primeiro projeto do papel',
+    title: 'Aprenda programação com I.A. e tire seu primeiro projeto do papel',
     subtitle:
-      'Um curso objetivo para iniciantes que querem sair da teoria e construir solucoes reais com apoio da inteligencia artificial, de forma pratica e guiada.',
+      'Um curso objetivo para iniciantes que querem sair da teoria e construir soluções reais com apoio da inteligência artificial, de forma prática e guiada.',
     primaryCta: 'Comprar curso agora',
     secondaryCta: 'Garantir minha vaga',
-    mobileCta: 'Quero comecar agora',
+    mobileCta: 'Quero começar agora',
   },
   B: {
     title: 'Do zero ao seu primeiro software com I.A., passo a passo',
     subtitle:
-      'Aprenda com um metodo direto ao ponto para iniciar em programacao, acelerar com IA e publicar seu primeiro projeto com mais confianca.',
-    primaryCta: 'Comecar agora',
+      'Aprenda com um método direto ao ponto para iniciar em programação, acelerar com IA e publicar seu primeiro projeto com mais confiança.',
+    primaryCta: 'Começar agora',
     secondaryCta: 'Quero entrar na turma',
     mobileCta: 'Entrar agora',
   },
 };
 
+const KIWIFY_URL = 'https://pay.kiwify.com.br/JPfyumd';
+
 const OnlineCoursesPage: React.FC = () => {
   const [variant, setVariant] = React.useState<'A' | 'B'>('A');
 
   React.useEffect(() => {
-    const savedVariant = window.localStorage.getItem('onlineCourseCopyVariant');
-    if (savedVariant === 'A' || savedVariant === 'B') {
-      setVariant(savedVariant);
+    const saved = window.localStorage.getItem('onlineCourseCopyVariant');
+    if (saved === 'A' || saved === 'B') {
+      setVariant(saved);
       return;
     }
-
-    const selectedVariant: 'A' | 'B' = Math.random() < 0.5 ? 'A' : 'B';
-    window.localStorage.setItem('onlineCourseCopyVariant', selectedVariant);
-    setVariant(selectedVariant);
+    const selected: 'A' | 'B' = Math.random() < 0.5 ? 'A' : 'B';
+    window.localStorage.setItem('onlineCourseCopyVariant', selected);
+    setVariant(selected);
   }, []);
 
-  const selectedCopy = copyVariants[variant];
+  const copy = copyVariants[variant];
 
   return (
-    <div className="bg-gray-900 py-14 pb-28 sm:py-20 sm:pb-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <section className="relative overflow-hidden rounded-2xl border border-cyan-400/30 bg-gradient-to-br from-gray-800/90 via-gray-900 to-gray-800/80 p-8 sm:p-12 shadow-xl">
-          <div className="pointer-events-none absolute -top-20 -left-12 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -right-12 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl" />
+    <section className="relative py-20 pb-32 sm:py-24 sm:pb-24 px-5">
+      <div className="max-w-6xl mx-auto space-y-12">
+        {/* Hero */}
+        <div className="surface p-8 sm:p-12 relative overflow-hidden reveal">
+          <div aria-hidden className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl"
+            style={{ background: 'radial-gradient(circle, var(--cyan-glow), transparent 70%)' }} />
+          <div aria-hidden className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl"
+            style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%)' }} />
 
           <div className="relative z-10">
-            <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-500/10 px-4 py-1.5 text-sm font-semibold text-yellow-300">
-              <span>✅</span>
-              <span>Curso disponível agora</span>
-            </div>
+            <span className="badge badge--green">
+              <span className="dot-pulse dot-pulse--green" /> Curso disponível agora
+            </span>
 
-            <h1 className="mt-6 text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
-              {selectedCopy.title}
+            <h1 className="mt-6 font-display font-extrabold text-3xl sm:text-5xl text-si-text leading-tight">
+              {copy.title}
             </h1>
-            <p className="mt-4 max-w-3xl text-lg text-gray-300 leading-relaxed">
-              {selectedCopy.subtitle}
-            </p>
+            <p className="mt-4 max-w-3xl text-lg text-si-muted leading-relaxed">{copy.subtitle}</p>
 
             <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              <div className="lg:col-span-8 rounded-xl border border-cyan-400/25 bg-gray-800/70 p-6 sm:p-8">
-                <p className="text-sm font-semibold uppercase tracking-wide text-cyan-300">Formação</p>
-                <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">
+              <div className="lg:col-span-8 surface p-6 sm:p-8" style={{ background: 'var(--surface2)' }}>
+                <div className="section-label">Formação</div>
+                <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text">
                   Programação Turbo com I.A.
                 </h2>
-                <p className="mt-4 text-gray-300 leading-relaxed">
-                  Aprender a programar não precisa ser um processo lento e solitário. No curso Programando
-                  com I.A. para Iniciantes, você aprenderá a utilizar as ferramentas de Inteligência
-                  Artificial mais avançadas do mercado como seu mentor pessoal. Do zero ao seu primeiro
-                  projeto real, com linguagem simples e prática imediata.
+                <p className="mt-4 text-si-muted leading-relaxed">
+                  Aprender a programar não precisa ser um processo lento e solitário. No curso{' '}
+                  <strong className="text-si-text">Programando com I.A. para Iniciantes</strong>, você aprenderá
+                  a utilizar as ferramentas de Inteligência Artificial mais avançadas do mercado como seu
+                  mentor pessoal. Do zero ao seu primeiro projeto real, com linguagem simples e prática imediata.
                 </p>
 
-                <div className="mt-6 overflow-hidden rounded-xl border border-cyan-400/25 bg-gray-950">
+                <div className="mt-6 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg)]"
+                  style={{ boxShadow: '0 0 32px var(--cyan-dim)' }}>
                   <div className="aspect-video w-full">
                     <iframe
                       className="h-full w-full"
@@ -99,107 +101,103 @@ const OnlineCoursesPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-3 text-sm">
-                  <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-cyan-200">Nível: Iniciante</span>
-                  <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-cyan-200">Formato: Online</span>
-                  <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-cyan-200">Plataforma: Kiwify</span>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  <span className="chip chip--cyan">Nível: Iniciante</span>
+                  <span className="chip chip--cyan">Formato: Online</span>
+                  <span className="chip chip--cyan">Plataforma: Kiwify</span>
                 </div>
               </div>
 
-              <div className="lg:col-span-4 lg:min-h-[340px] xl:min-h-[380px] rounded-xl border border-cyan-400/25 bg-gray-900/75 p-6 sm:p-7 flex flex-col justify-center gap-8">
+              <div className="lg:col-span-4 surface p-6 sm:p-7 flex flex-col justify-center gap-6"
+                style={{ background: 'var(--surface2)' }}>
                 <div>
-                  <h3 className="text-xl font-bold text-white">Inscrições abertas</h3>
-                  <p className="mt-3 text-gray-300">
-                    O curso Programando com I.A. para Iniciantes já está pronto. Garanta seu acesso agora
-                    e comece a aprender com aulas práticas para acelerar sua evolução desde o zero.
+                  <h3 className="font-display font-bold text-xl text-si-text">Inscrições abertas</h3>
+                  <p className="mt-3 text-si-muted">
+                    O curso já está pronto. Garanta seu acesso agora e comece a aprender com aulas práticas.
                   </p>
                 </div>
 
-                <div className="rounded-lg border border-cyan-400/25 bg-cyan-500/10 p-4 text-sm text-cyan-100">
-                  <p>Acesso online imediato</p>
-                  <p className="mt-2">Pagamento seguro via Kiwify</p>
-                  <p className="mt-2">Conteúdo pensado para iniciantes</p>
+                <div className="rounded-lg border border-[var(--border-strong)] p-4 text-sm space-y-2"
+                  style={{ background: 'var(--cyan-dim)' }}>
+                  <p className="text-si-text">✓ Acesso online imediato</p>
+                  <p className="text-si-text">✓ Pagamento seguro via Kiwify</p>
+                  <p className="text-si-text">✓ Conteúdo pensado para iniciantes</p>
                 </div>
 
-                <div>
-                  <a
-                    href="https://pay.kiwify.com.br/JPfyumd"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center rounded-lg bg-cyan-500 px-5 py-3 font-semibold text-gray-900 transition-colors hover:bg-cyan-400"
-                  >
-                    {selectedCopy.primaryCta}
-                  </a>
-                </div>
+                <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary w-full">
+                  {copy.primaryCta} →
+                </a>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <article className="rounded-2xl border border-cyan-400/25 bg-gray-800/70 p-6 sm:p-8">
-            <h2 className="text-2xl font-bold text-white">O que voce vai aprender</h2>
-            <p className="mt-3 text-gray-300">
-              Conteudo focado em aplicacao pratica para voce ganhar confianca e comecar a programar.
+        {/* Two columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 reveal">
+          <article className="surface surface-hover p-7 sm:p-8">
+            <div className="section-label">Conteúdo</div>
+            <h2 className="font-display font-bold text-2xl text-si-text">O que você vai aprender</h2>
+            <p className="mt-3 text-si-muted">
+              Conteúdo focado em aplicação prática para você ganhar confiança e começar a programar.
             </p>
             <ul className="mt-6 space-y-3">
               {learningPoints.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-gray-200">
-                  <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400" />
+                <li key={item} className="flex items-start gap-3 text-si-muted">
+                  <span className="mt-1.5 h-2 w-2 rounded-full bg-si-cyan flex-shrink-0"
+                    style={{ boxShadow: '0 0 8px var(--cyan)' }} />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </article>
 
-          <article className="rounded-2xl border border-cyan-400/25 bg-gray-800/70 p-6 sm:p-8">
-            <h2 className="text-2xl font-bold text-white">Para quem este curso e ideal</h2>
-            <p className="mt-3 text-gray-300">
-              Se voce quer aprender com clareza e evitar frustracao, este formato foi desenhado para voce.
+          <article className="surface surface-hover p-7 sm:p-8">
+            <div className="section-label">Público</div>
+            <h2 className="font-display font-bold text-2xl text-si-text">Para quem este curso é ideal</h2>
+            <p className="mt-3 text-si-muted">
+              Se você quer aprender com clareza e evitar frustração, este formato foi desenhado para você.
             </p>
             <ul className="mt-6 space-y-3">
               {audiencePoints.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-gray-200">
-                  <span className="mt-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400" />
+                <li key={item} className="flex items-start gap-3 text-si-muted">
+                  <span className="mt-1.5 h-2 w-2 rounded-full bg-si-cyan flex-shrink-0"
+                    style={{ boxShadow: '0 0 8px var(--cyan)' }} />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           </article>
-        </section>
+        </div>
 
-        <section className="rounded-2xl border border-cyan-400/25 bg-gradient-to-r from-cyan-500/15 to-blue-500/10 p-6 sm:p-8">
+        {/* Final CTA */}
+        <div className="surface p-7 sm:p-8 reveal" style={{
+          background: 'linear-gradient(135deg, var(--cyan-dim), rgba(124,58,237,0.08))',
+        }}>
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-cyan-200 text-sm font-semibold uppercase tracking-wide">Comece hoje</p>
-              <h2 className="mt-2 text-2xl sm:text-3xl font-bold text-white">Pronto para acelerar sua jornada na programacao?</h2>
-              <p className="mt-3 text-gray-200 max-w-2xl">
-                Entre agora para o curso Programando com I.A. para Iniciantes e aprenda com um plano claro, do primeiro passo ao seu primeiro projeto pratico.
+              <div className="section-label">Comece hoje</div>
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text">
+                Pronto para acelerar sua jornada na programação?
+              </h2>
+              <p className="mt-3 text-si-muted max-w-2xl">
+                Entre agora para o curso e aprenda com um plano claro, do primeiro passo ao seu primeiro projeto prático.
               </p>
             </div>
-            <a
-              href="https://pay.kiwify.com.br/JPfyumd"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg bg-cyan-500 px-6 py-3 font-semibold text-gray-900 transition-colors hover:bg-cyan-400"
-            >
-              {selectedCopy.secondaryCta}
+            <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary flex-shrink-0">
+              {copy.secondaryCta} →
             </a>
           </div>
-        </section>
+        </div>
       </div>
 
+      {/* Mobile sticky CTA */}
       <div className="fixed inset-x-0 bottom-4 z-40 px-4 sm:hidden">
-        <a
-          href="https://pay.kiwify.com.br/JPfyumd"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mx-auto flex max-w-md items-center justify-center rounded-xl bg-cyan-500 px-5 py-3 text-base font-bold text-gray-900 shadow-lg shadow-cyan-500/25 transition-colors hover:bg-cyan-400"
-        >
-          {selectedCopy.mobileCta}
+        <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer"
+          className="btn-primary w-full max-w-md mx-auto block text-center">
+          {copy.mobileCta} →
         </a>
       </div>
-    </div>
+    </section>
   );
 };
 

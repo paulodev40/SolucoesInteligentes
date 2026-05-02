@@ -1,83 +1,73 @@
 import React from 'react';
 
+const sections: Array<{ title: string; body: React.ReactNode }> = [
+  {
+    title: '1. Controlador e Encarregado',
+    body: (
+      <>
+        A Soluções Inteligentes é a controladora dos dados pessoais tratados neste site. Para assuntos
+        relacionados a privacidade e LGPD, entre em contato pelo email{' '}
+        <span className="text-si-cyan">solucoesinteligentes83@gmail.com</span>.
+      </>
+    ),
+  },
+  {
+    title: '2. Dados pessoais coletados',
+    body: 'Podemos coletar informações fornecidas por você (nome, email e mensagem) quando utiliza nossos formulários, bem como dados técnicos básicos (ex: navegador, dispositivo e logs) para segurança e melhoria do site.',
+  },
+  {
+    title: '3. Finalidades e bases legais',
+    body: 'Tratamos dados para: responder contatos, prestar suporte, melhorar nossos serviços e manter a segurança do site. As bases legais incluem o consentimento do titular, a execução de procedimentos preliminares a contratos e o legítimo interesse, conforme aplicável.',
+  },
+  {
+    title: '4. Compartilhamento de dados',
+    body: 'Não vendemos seus dados. Podemos compartilhar informações apenas com fornecedores essenciais (ex: hospedagem e analytics) ou para cumprir obrigações legais.',
+  },
+  {
+    title: '5. Cookies e tecnologias similares',
+    body: 'Utilizamos cookies e tecnologias similares para melhorar a navegação, analisar tráfego e personalizar conteúdos quando aplicável. Você pode gerenciar cookies nas configurações do seu navegador.',
+  },
+  {
+    title: '6. Retenção e segurança',
+    body: 'Mantemos os dados apenas pelo tempo necessário para as finalidades descritas ou obrigações legais. Adotamos medidas técnicas e organizacionais para proteger os dados, embora nenhuma transmissão seja 100% segura.',
+  },
+  {
+    title: '7. Direitos do titular',
+    body: 'Você pode solicitar confirmação de tratamento, acesso, correção, exclusão, portabilidade, revogação do consentimento e informações sobre compartilhamento. Para exercer seus direitos, entre em contato conosco.',
+  },
+  {
+    title: '8. Contato',
+    body: (
+      <>
+        Em caso de dúvidas sobre esta política, fale conosco pelo email{' '}
+        <span className="text-si-cyan">solucoesinteligentes83@gmail.com</span>.
+      </>
+    ),
+  },
+];
+
 const PrivacyPolicyPage: React.FC = () => {
   return (
-    <div className="bg-gray-900 py-16 sm:py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <header className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-white sm:text-5xl">Política de Privacidade</h1>
-          <p className="mt-4 text-lg text-gray-400">Última atualização: 12 de fevereiro de 2026</p>
+    <section className="relative py-20 sm:py-24 px-5">
+      <div className="max-w-4xl mx-auto">
+        <header className="text-center mb-12 reveal">
+          <div className="section-label" style={{ justifyContent: 'center' }}>Legal</div>
+          <h1 className="section-title">Política de Privacidade</h1>
+          <p className="font-mono text-sm text-si-muted">Última atualização: 12 de fevereiro de 2026</p>
         </header>
 
-        <div className="space-y-8 text-gray-300 leading-relaxed">
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">1. Controlador e Encarregado</h2>
-            <p>
-              A Solucoes Inteligentes e a controladora dos dados pessoais tratados neste site. Para assuntos relacionados a
-              privacidade e LGPD, entre em contato pelo email
-              <span className="text-cyan-400"> solucoesinteligentes83@gmail.com</span>.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">2. Dados pessoais coletados</h2>
-            <p>
-              Podemos coletar informacoes fornecidas por voce (nome, email e mensagem) quando utiliza nossos formularios,
-              bem como dados tecnicos basicos (ex: navegador, dispositivo e logs) para seguranca e melhoria do site.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">3. Finalidades e bases legais</h2>
-            <p>
-              Tratamos dados para: responder contatos, prestar suporte, melhorar nossos servicos e manter a seguranca do
-              site. As bases legais incluem o consentimento do titular, a execucao de procedimentos preliminares a
-              contratos e o legitimo interesse, conforme aplicavel.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">4. Compartilhamento de dados</h2>
-            <p>
-              Nao vendemos seus dados. Podemos compartilhar informacoes apenas com fornecedores essenciais (ex: hospedagem
-              e analytics) ou para cumprir obrigacoes legais.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">5. Cookies e tecnologias similares</h2>
-            <p>
-              Utilizamos cookies e tecnologias similares para melhorar a navegacao, analisar trafego e personalizar
-              conteudos quando aplicavel. Voce pode gerenciar cookies nas configuracoes do seu navegador.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">6. Retencao e seguranca</h2>
-            <p>
-              Mantemos os dados apenas pelo tempo necessario para as finalidades descritas ou obrigacoes legais. Adotamos
-              medidas tecnicas e organizacionais para proteger os dados, embora nenhuma transmissao seja 100% segura.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">7. Direitos do titular</h2>
-            <p>
-              Voce pode solicitar confirmacao de tratamento, acesso, correcao, exclusao, portabilidade, revogacao do
-              consentimento e informacoes sobre compartilhamento. Para exercer seus direitos, entre em contato conosco.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-2xl font-bold text-white mb-2">8. Contato</h2>
-            <p>
-              Em caso de duvidas sobre esta politica, fale conosco pelo email
-              <span className="text-cyan-400"> solucoesinteligentes83@gmail.com</span>.
-            </p>
-          </section>
+        <div className="surface p-7 sm:p-10 reveal">
+          <div className="space-y-8 text-si-muted leading-relaxed">
+            {sections.map((s) => (
+              <section key={s.title}>
+                <h2 className="font-display font-bold text-2xl text-si-text mb-2">{s.title}</h2>
+                <p>{s.body}</p>
+              </section>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

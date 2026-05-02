@@ -15,6 +15,70 @@
       gtag('config', 'AW-17945581089');
       gtag('config', 'AW-17964509171');
     </script>
+
+    <!-- Theme tokens (must come before Tailwind so :root vars are available everywhere) -->
+    <style>
+      :root {
+        --bg: #050810;
+        --bg2: #080d1a;
+        --surface: #0d1428;
+        --surface2: #111a35;
+        --cyan: #00d4ff;
+        --cyan-dim: rgba(0,212,255,0.12);
+        --cyan-glow: rgba(0,212,255,0.35);
+        --violet: #7c3aed;
+        --violet-dim: rgba(124,58,237,0.15);
+        --green: #00ff88;
+        --green-dim: rgba(0,255,136,0.12);
+        --pink: #ff6b9d;
+        --text: #e8eeff;
+        --text-muted: #6b7fa3;
+        --text-dim: #3a4a6b;
+        --border: rgba(0,212,255,0.12);
+        --border-strong: rgba(0,212,255,0.3);
+        --font-display: 'Syne', sans-serif;
+        --font-body: 'Space Grotesk', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+      html { background: var(--bg); }
+      body { background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+    </style>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind extension (must run before CDN initializes) -->
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              si: {
+                bg: '#050810',
+                bg2: '#080d1a',
+                surface: '#0d1428',
+                surface2: '#111a35',
+                cyan: '#00d4ff',
+                violet: '#7c3aed',
+                green: '#00ff88',
+                pink: '#ff6b9d',
+                text: '#e8eeff',
+                muted: '#6b7fa3',
+                dim: '#3a4a6b',
+              },
+            },
+            fontFamily: {
+              display: ['Syne', 'sans-serif'],
+              body: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+          },
+        },
+      };
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type="importmap">
@@ -28,7 +92,7 @@
 }
 </script>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-si-bg text-si-text">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
 </body>

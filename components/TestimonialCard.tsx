@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Testimonial } from '../types';
 
@@ -8,20 +7,29 @@ interface TestimonialCardProps {
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial }) => {
   return (
-    <div className="bg-gray-800 p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+    <figure className="surface surface-hover p-8 flex flex-col items-center text-center relative">
+      <span
+        aria-hidden
+        className="absolute top-4 left-6 font-display text-7xl leading-none text-si-cyan/20 select-none"
+      >
+        “
+      </span>
       <img
-        className="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-cyan-500"
         src={testimonial.imageUrl}
         alt={testimonial.name}
+        className="w-24 h-24 rounded-full mb-6 border-2 border-si-cyan"
+        style={{ boxShadow: '0 0 24px var(--cyan-glow)' }}
       />
-      <blockquote className="text-gray-300 italic mb-6 flex-grow">
-        <p>&ldquo;{testimonial.quote}&rdquo;</p>
+      <blockquote className="text-si-text/90 italic text-base leading-relaxed mb-6 flex-grow font-body">
+        “{testimonial.quote}”
       </blockquote>
-      <footer className="mt-auto">
-        <p className="font-bold text-white text-lg">{testimonial.name}</p>
-        <p className="text-sm text-cyan-400 mt-1">Usuário de {testimonial.productUsed}</p>
-      </footer>
-    </div>
+      <figcaption className="mt-auto">
+        <p className="font-display font-bold text-si-text text-lg">{testimonial.name}</p>
+        <p className="font-mono text-xs uppercase tracking-wider text-si-cyan mt-1">
+          Usuário de {testimonial.productUsed}
+        </p>
+      </figcaption>
+    </figure>
   );
 };
 

@@ -4,6 +4,14 @@ import { Analytics } from '@vercel/analytics/react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import {
+  CustomCursor,
+  ParticleField,
+  Scanlines,
+  ScrollProgress,
+  Spotlight,
+  useReveal,
+} from './components/effects';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import OnlineCoursesPage from './pages/OnlineCoursesPage';
@@ -28,13 +36,24 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+const RouteEffects: React.FC = () => {
+  useReveal();
+  return null;
+};
+
 const App: React.FC = () => {
   return (
     <HashRouter>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-gray-900 text-gray-200 font-sans">
+      <RouteEffects />
+      <ScrollProgress />
+      <CustomCursor />
+      <Spotlight />
+      <ParticleField />
+      <Scanlines />
+      <div className="flex flex-col min-h-screen bg-si-bg text-si-text font-body">
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow relative z-10">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/produtos" element={<ProductsPage />} />
