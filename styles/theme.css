@@ -525,6 +525,11 @@ textarea.field { min-height: 120px; resize: vertical; }
   color: #fde047;
   border: 1px solid rgba(253,224,71,0.3);
 }
+.badge--cyan {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--border-strong);
+}
 
 /* ── Keyframes ── */
 @keyframes pulse-glow {

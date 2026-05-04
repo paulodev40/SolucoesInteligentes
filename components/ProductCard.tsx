@@ -8,10 +8,12 @@ interface ProductCardProps {
 }
 
 const isWip = (slug: string) => slug === 'rememberme' || slug === 'scei';
+const isIos = (slug: string) => slug === 'briefy';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) => {
   const Icon = product.icon;
   const wip = isWip(product.slug);
+  const ios = isIos(product.slug);
 
   if (compact) {
     return (
@@ -21,6 +23,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) =
       >
         {wip && (
           <span className="badge badge--yellow absolute top-2 right-2">🚧 Em Construção</span>
+        )}
+        {ios && (
+          <span className="badge badge--cyan absolute top-2 right-2">📱 iOS</span>
         )}
         {product.image ? (
           <div className="h-24 w-24 sm:h-28 sm:w-28 flex-shrink-0 rounded-md overflow-hidden bg-[var(--surface2)] border border-[var(--border)]">
@@ -46,6 +51,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) =
     <div className="surface surface-hover relative overflow-hidden flex flex-col group">
       {wip && (
         <span className="badge badge--yellow absolute top-4 right-4 z-20">🚧 Em Construção</span>
+      )}
+      {ios && (
+        <span className="badge badge--cyan absolute top-4 right-4 z-20">📱 iOS</span>
       )}
       {/* card glow */}
       <div

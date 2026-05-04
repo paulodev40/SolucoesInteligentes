@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon } from './components/IconComponents';
+import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon } from './components/IconComponents';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -93,6 +93,23 @@ export const PRODUCTS: Product[] = [
     ],
     icon: SCEIIcon,
     image: '/assets/images/SCEI.png',
+  },
+  {
+    slug: 'briefy',
+    name: 'Briefy',
+    tagline: 'Suas reuniões, resumidas com IA. Direto do seu iPhone.',
+    description: 'Aplicativo para iPhone que grava, transcreve em tempo real e gera relatórios profissionais das suas reuniões com inteligência artificial. Atas, resumos executivos, pontos de ação e muito mais — em segundos, com privacidade total (seus dados ficam no dispositivo).',
+    problem: 'Reuniões importantes se perdem em anotações desorganizadas, decisões esquecidas e horas gastas montando atas manualmente.',
+    targetAudience: 'Profissionais, gestores, consultores, advogados, jornalistas e estudantes que participam de muitas reuniões e precisam de registros confiáveis.',
+    useCases: [
+      'Gravar reuniões com áudio em alta qualidade direto do iPhone, AirPods ou Bluetooth.',
+      'Transcrever falas em tempo real durante a própria reunião, sem depender de internet.',
+      'Gerar atas formais, resumos executivos e listas de pontos de ação automaticamente.',
+      'Exportar relatórios em PDF, Markdown ou enviar por email com um toque.',
+      'Organizar e buscar reuniões por título, transcrição ou participantes.',
+    ],
+    icon: BriefyIcon,
+    image: 'https://briefy-site.vercel.app/uploads/logo-1777841575531.png',
   },
 ];
 

@@ -51,7 +51,9 @@ const ProductDetailPage: React.FC = () => {
       ? 'https://copymasterpro.com/'
       : product.slug === 'read-write'
         ? 'https://geraata.com/'
-        : '#';
+        : product.slug === 'briefy'
+          ? 'https://briefy-site.vercel.app/'
+          : '#';
 
   return (
     <section className="relative py-20 sm:py-24 px-5">
@@ -114,10 +116,10 @@ const ProductDetailPage: React.FC = () => {
                 </button>
               ) : (
                 <a href={trialHref}
-                  target={product.slug === 'copymaster-pro' || product.slug === 'read-write' ? '_blank' : undefined}
-                  rel={product.slug === 'copymaster-pro' || product.slug === 'read-write' ? 'noopener noreferrer' : undefined}
+                  target={product.slug === 'copymaster-pro' || product.slug === 'read-write' || product.slug === 'briefy' ? '_blank' : undefined}
+                  rel={product.slug === 'copymaster-pro' || product.slug === 'read-write' || product.slug === 'briefy' ? 'noopener noreferrer' : undefined}
                   className="btn-primary">
-                  Faça teste gratuito →
+                  {product.slug === 'briefy' ? 'Baixar na App Store →' : 'Faça teste gratuito →'}
                 </a>
               )}
               {planButtons.map((plan) =>
