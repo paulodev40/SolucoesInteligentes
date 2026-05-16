@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 const isWip = (slug: string) => slug === 'rememberme' || slug === 'scei';
-const isIos = (slug: string) => slug === 'briefy';
+const isIos = (slug: string) => slug === 'briefy' || slug === 'macaquito-runner';
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) => {
   const Icon = product.icon;

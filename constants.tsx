@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { CopyMasterProIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon } from './components/IconComponents';
+import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon } from './components/IconComponents';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -15,20 +15,21 @@ export const NAV_LINKS = [
 
 export const PRODUCTS: Product[] = [
   {
-    slug: 'copymaster-pro',
-    name: 'CopyMaster Pro',
-    tagline: 'Crie textos, imagens e vídeos que vendem no automático com IA.',
-    description: 'A ferramenta definitiva para marketing digital. Gere conteúdo persuasivo em segundos, desde copys para anúncios até roteiros de vídeo, tudo otimizado para conversão.',
-    problem: 'Dificuldade em criar conteúdo de marketing eficaz e em escala, resultando em baixas vendas e engajamento.',
-    targetAudience: 'Empreendedores digitais, agências de marketing, freelancers e gestores de e-commerce.',
+    slug: 'macaquito-runner',
+    name: 'Macaquito Runner',
+    tagline: 'O endless runner mais eletrizante do Brasil! Disponível na App Store.',
+    description: 'Ajude o Macaquito neon a escapar de obstáculos selvagens em fases incríveis! Pule, agache e colete bananas enquanto corre pela selva, cidade, espaço e vulcão. Com visual neon deslumbrante, trilha sonora única por fase e mecânicas viciantes de duplo pulo e combo multiplier.',
+    problem: 'Falta de jogos casuais brasileiros com identidade visual forte, mecânicas desafiadoras e progressão viciante para jogar em qualquer momento.',
+    targetAudience: 'Gamers casuais, fãs de endless runners, brasileiros que querem um jogo nacional de qualidade no iPhone.',
     useCases: [
-      'Gerar copys para anúncios no Facebook e Instagram.',
-      'Criar imagens de produtos com apelo visual.',
-      'Desenvolver roteiros para vídeos de vendas.',
-      'Escrever e-mails de marketing que convertem.',
+      'Correr pela Selva Neon desviando de palmeiras e cactos.',
+      'Enfrentar a Cidade Cyberpunk com cones e carros.',
+      'Explorar o Espaço Sideral fugindo de meteoros e lasers.',
+      'Sobreviver ao Vulcão em Chamas com rochas e geiseres de lava.',
+      'Desafiar o Modo Infinito e bater recordes com combo até x5.',
     ],
-    icon: CopyMasterProIcon,
-    image: '/assets/images/corujasabia.jpeg',
+    icon: MacaquitoRunnerIcon,
+    image: '/assets/images/icone_macaquito.png',
   },
   {
     slug: 'slidegenius',

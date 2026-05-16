@@ -1,6 +1,16 @@
 
 import React from 'react';
 
+export const MacaquitoRunnerIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2C8.5 2 6 4.5 6 7c0 1.2.4 2.3 1.1 3.1C5.8 11 5 12.4 5 14v1h2v-1c0-1.1.6-2 1.5-2.5.8.3 1.6.5 2.5.5s1.7-.2 2.5-.5c.9.5 1.5 1.4 1.5 2.5v1h2v-1c0-1.6-.8-3-2.1-3.9C15.6 9.3 16 8.2 16 7c0-2.5-1.8-5-4-5zm0 2c1.4 0 2.5 1.3 2.5 3S13.4 10 12 10s-2.5-1.3-2.5-3S10.6 4 12 4z" />
+    <circle cx="10" cy="7" r=".8" />
+    <circle cx="14" cy="7" r=".8" />
+    <path d="M9 17h6v5H9zM8 21h8v1H8z" />
+    <path d="M7 13.5C5.5 14 4 15.5 4 17.5V22h2v-4.5c0-.8.5-1.5 1-1.8v-2.2zM17 13.5v2.2c.5.3 1 1 1 1.8V22h2v-4.5c0-2-1.5-3.5-3-4z" />
+  </svg>
+);
+
 export const CopyMasterProIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
     <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
