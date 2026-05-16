@@ -12,7 +12,7 @@ const getEnv = (...keys: string[]): string | undefined => {
 };
 
 const SUPABASE_URL = getEnv("SUPABASE_URL");
-const SUPABASE_SERVICE_ROLE_KEY = getEnv("SUPABASE_SERVICE_ROLE_KEY");
+const SUPABASE_SERVICE_ROLE_KEY = getEnv("SERVICE_ROLE_KEY");
 const DEFAULT_SINCE = "2026-02-09T00:00:00.000Z";
 
 const corsHeaders: Record<string, string> = {

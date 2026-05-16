@@ -89,10 +89,6 @@ export const fetchVisitors = async (): Promise<number | null> => {
   }
 
   try {
-    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-      throw new Error('Supabase env vars ausentes');
-    }
-
     const today = getTodayKey();
     const trackedDay = readTrackedDay();
     const shouldTrack = trackedDay !== today && trackingInFlightDay !== today;
@@ -100,6 +96,10 @@ export const fetchVisitors = async (): Promise<number | null> => {
 
     if (shouldTrack) {
       trackingInFlightDay = today;
+    }
+
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      throw new Error('Supabase env vars ausentes');
     }
 
     const url = `${SUPABASE_URL}${FUNCTION_PATH}?since=${encodeURIComponent(INAUGURATION_DATE)}&site=main&mode=${mode}`;
