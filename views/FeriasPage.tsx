@@ -99,7 +99,7 @@ const FeriasPage: React.FC = () => {
           <h1 className="section-title">Calculadora de Férias e 13º</h1>
           <p className="section-desc">
             Estime o valor das férias com terço constitucional e do 13º salário proporcional,
-            com desconto de INSS e IRRF conforme tabelas 2025.
+            com desconto de INSS e IRRF conforme tabelas 2026.
           </p>
         </div>
 
@@ -189,7 +189,7 @@ const FeriasPage: React.FC = () => {
             </div>
 
             <p className="text-xs text-si-dim text-center leading-relaxed">
-              * Cálculo estimado com base nas tabelas de INSS e IRRF 2025 (sem dependentes).
+              * Cálculo estimado com base nas tabelas de INSS e IRRF 2026 (sem dependentes).
               O 1/3 constitucional é isento de IRRF conforme STF RE 895.759.
               Consulte um contador para valores exatos.
             </p>
