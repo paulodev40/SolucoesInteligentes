@@ -20,7 +20,10 @@ import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import AboutPage from './pages/AboutPage';
 import ConsultingPage from './pages/ConsultingPage';
-import AIToolsPage from './pages/AIToolsPage';
+import ToolsPage from './pages/ToolsPage';
+import FeriasPage from './pages/FeriasPage';
+import CNPJPage from './pages/CNPJPage';
+import PromptPage from './pages/PromptPage';
 import DigitalContentPage from './pages/DigitalContentPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
@@ -59,7 +62,10 @@ const App: React.FC = () => {
             <Route path="/produtos" element={<ProductsPage />} />
             <Route path="/cursos-online" element={<OnlineCoursesPage />} />
             <Route path="/consultoria" element={<ConsultingPage />} />
-            <Route path="/ferramentas-ia" element={<AIToolsPage />} />
+            <Route path="/ferramentas" element={<ToolsPage />} />
+            <Route path="/ferramentas/ferias-13" element={<FeriasPage />} />
+            <Route path="/ferramentas/cnpj" element={<CNPJPage />} />
+            <Route path="/ferramentas/prompt-ia" element={<PromptPage />} />
             <Route path="/conteudo-digital" element={<DigitalContentPage />} />
             <Route path="/produtos/:slug" element={<ProductDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />

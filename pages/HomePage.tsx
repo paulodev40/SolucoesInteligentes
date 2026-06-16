@@ -117,29 +117,6 @@ const HomePage: React.FC = () => {
             <span className="text-si-cyan">· Desde Fev 26</span>
           </div>
 
-          {/* Stats */}
-          <div
-            className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 max-w-3xl"
-            style={{ animation: 'fade-up 0.8s 0.6s ease both' }}
-          >
-            <div className="text-center">
-              <AnimCounter target={PRODUCTS.length} suffix="+" className="block font-display font-extrabold text-3xl sm:text-4xl text-si-cyan leading-none mb-1" />
-              <span className="text-xs text-si-dim uppercase tracking-widest">Produtos</span>
-            </div>
-            <div className="text-center">
-              <AnimCounter target={100} suffix="%" className="block font-display font-extrabold text-3xl sm:text-4xl text-si-cyan leading-none mb-1" />
-              <span className="text-xs text-si-dim uppercase tracking-widest">IA Powered</span>
-            </div>
-            <div className="text-center">
-              <AnimCounter target={visitors ?? 4893} className="block font-display font-extrabold text-3xl sm:text-4xl text-si-cyan leading-none mb-1" />
-              <span className="text-xs text-si-dim uppercase tracking-widest">Visitas</span>
-            </div>
-            <div className="text-center">
-              <AnimCounter target={83} className="block font-display font-extrabold text-3xl sm:text-4xl text-si-cyan leading-none mb-1" />
-              <span className="text-xs text-si-dim uppercase tracking-widest">Em Dev</span>
-            </div>
-          </div>
-
           <div className="hidden sm:flex scroll-hint mt-16">
             <span>scroll</span>
             <div className="scroll-line" />
