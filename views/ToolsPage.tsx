@@ -72,6 +72,20 @@ const BUILT_IN_TOOLS = [
     desc: 'Remova o fundo de fotos com IA 100% no navegador. Resultado em PNG transparente. Sem upload, sem cadastro.',
     emoji: '✂️',
   },
+  {
+    slug: 'juntar-pdf',
+    name: 'Juntar PDF',
+    category: 'PDF',
+    desc: 'Una vários PDFs em um só documento, na ordem que quiser. Reordene por arrastar. Grátis, sem upload.',
+    emoji: '📎',
+  },
+  {
+    slug: 'dividir-pdf',
+    name: 'Dividir PDF',
+    category: 'PDF',
+    desc: 'Extraia páginas, separe em individuais ou divida em blocos. Resultado em .zip. 100% no navegador.',
+    emoji: '✂️',
+  },
 ];
 
 const AI_TOOLS = [
