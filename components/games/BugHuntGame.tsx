@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 type Bug = { id: number; x: number; y: number; born: number; squashed?: boolean };

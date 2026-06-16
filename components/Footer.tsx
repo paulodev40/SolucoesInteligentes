@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { NAV_LINKS } from '../constants';
 
 const socials = [
@@ -11,13 +11,11 @@ const socials = [
 
 const Footer: React.FC = () => {
   return (
-    <footer
-      className="relative z-10 mt-16 border-t border-[var(--border)] bg-[var(--bg2)]"
-    >
+    <footer className="relative z-10 mt-16 border-t border-[var(--border)] bg-[var(--bg2)]">
       <div className="max-w-7xl mx-auto py-14 px-5 sm:px-6 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-10">
           <div className="space-y-6 xl:col-span-1">
-            <Link to="/" className="font-display font-extrabold text-2xl text-si-text inline-block">
+            <Link href="/" className="font-display font-extrabold text-2xl text-si-text inline-block">
               <span className="text-si-cyan">Soluções</span> Inteligentes
             </Link>
             <p className="text-si-muted text-base leading-relaxed max-w-sm">
@@ -43,10 +41,7 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {NAV_LINKS.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      to={link.path}
-                      className="text-si-muted hover:text-si-cyan transition-colors text-sm"
-                    >
+                    <Link href={link.path} className="text-si-muted hover:text-si-cyan transition-colors text-sm">
                       {link.name}
                     </Link>
                   </li>
@@ -57,12 +52,12 @@ const Footer: React.FC = () => {
               <h3 className="section-label" style={{ marginBottom: 16 }}>Legal</h3>
               <ul className="space-y-3">
                 <li>
-                  <Link to="/privacidade" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
+                  <Link href="/privacidade" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
                     Política de Privacidade
                   </Link>
                 </li>
                 <li>
-                  <Link to="/termos" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
+                  <Link href="/termos" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
                     Termos de Serviço
                   </Link>
                 </li>

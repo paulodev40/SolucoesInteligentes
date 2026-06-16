@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import type { Product } from '../types';
 
 interface ProductCardProps {
@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) =
   if (compact) {
     return (
       <Link
-        to={`/produtos/${product.slug}`}
+        href={`/produtos/${product.slug}`}
         className="surface surface-hover relative flex items-center gap-4 p-3 pr-5 group"
       >
         {wip && (
@@ -55,7 +55,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) =
       {ios && (
         <span className="badge badge--cyan absolute top-4 right-4 z-20">📱 iOS</span>
       )}
-      {/* card glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-16 -right-16 w-40 h-40 rounded-full opacity-60 blur-3xl"
@@ -78,7 +77,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, compact = false }) =
         <h3 className="font-display font-bold text-xl text-si-text mb-2">{product.name}</h3>
         <p className="text-si-muted text-sm leading-relaxed mb-5 flex-grow">{product.tagline}</p>
         <Link
-          to={`/produtos/${product.slug}`}
+          href={`/produtos/${product.slug}`}
           className="inline-flex items-center gap-1.5 text-si-cyan font-semibold text-sm group-hover:gap-2.5 transition-all"
         >
           Saiba mais <span aria-hidden>→</span>

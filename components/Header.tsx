@@ -1,10 +1,14 @@
+'use client';
+
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { NAV_LINKS } from '../constants';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -18,6 +22,9 @@ const Header: React.FC = () => {
     return () => { document.body.style.overflow = ''; };
   }, [isMenuOpen]);
 
+  const isActive = (path: string) =>
+    path === '/' ? pathname === '/' : (pathname ?? '').startsWith(path);
+
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 border-b backdrop-blur-xl ${
@@ -29,7 +36,7 @@ const Header: React.FC = () => {
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
-          <NavLink to="/" className="flex items-center gap-3 no-underline group">
+          <Link href="/" className="flex items-center gap-3 no-underline group">
             <img
               src="/assets/images/logotipo.png"
               alt="Soluções Inteligentes 83"
@@ -50,25 +57,22 @@ const Header: React.FC = () => {
               <span className="dot-pulse dot-pulse--green" />
               AI
             </span>
-          </NavLink>
+          </Link>
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
-              <NavLink
+              <Link
                 key={link.name}
-                to={link.path}
-                end={link.path === '/'}
-                className={({ isActive }) =>
-                  `px-3.5 py-2 rounded-md font-body text-sm font-medium transition-all ${
-                    isActive
-                      ? 'text-si-cyan bg-[var(--cyan-dim)]'
-                      : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
-                  }`
-                }
+                href={link.path}
+                className={`px-3.5 py-2 rounded-md font-body text-sm font-medium transition-all ${
+                  isActive(link.path)
+                    ? 'text-si-cyan bg-[var(--cyan-dim)]'
+                    : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
+                }`}
               >
                 {link.name}
-              </NavLink>
+              </Link>
             ))}
           </nav>
 
@@ -94,21 +98,18 @@ const Header: React.FC = () => {
         >
           <div className="px-3 py-4 space-y-1">
             {NAV_LINKS.map((link) => (
-              <NavLink
+              <Link
                 key={link.name}
-                to={link.path}
+                href={link.path}
                 onClick={() => setIsMenuOpen(false)}
-                end={link.path === '/'}
-                className={({ isActive }) =>
-                  `block px-4 py-3 rounded-lg font-body text-base font-medium transition-colors ${
-                    isActive
-                      ? 'text-si-cyan bg-[var(--cyan-dim)] border border-[var(--border-strong)]'
-                      : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
-                  }`
-                }
+                className={`block px-4 py-3 rounded-lg font-body text-base font-medium transition-colors ${
+                  isActive(link.path)
+                    ? 'text-si-cyan bg-[var(--cyan-dim)] border border-[var(--border-strong)]'
+                    : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
+                }`}
               >
                 {link.name}
-              </NavLink>
+              </Link>
             ))}
           </div>
         </div>

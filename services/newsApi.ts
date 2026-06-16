@@ -14,8 +14,8 @@ interface NewsApiResponse {
   articles: NewsArticle[];
 }
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const FUNCTION_PATH = '/functions/v1/news-proxy';
 
 // Cache para evitar múltiplas requisições

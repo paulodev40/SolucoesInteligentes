@@ -1,12 +1,10 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+'use client';
 
-/**
- * Adds `.visible` to elements with `.reveal` class as they enter the viewport.
- * Re-scans on route change.
- */
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+
 export function useReveal() {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
   useEffect(() => {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
@@ -20,8 +18,6 @@ export function useReveal() {
     const observeEl = (el: Element) => {
       if (!(el instanceof HTMLElement)) return;
       if (el.classList.contains('visible')) return;
-      // If already in viewport at observe time, mark visible right away
-      // (covers async-rendered content that mounts already on screen).
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight || document.documentElement.clientHeight;
       if (rect.top < vh && rect.bottom > 0) {
@@ -31,12 +27,10 @@ export function useReveal() {
       io.observe(el);
     };
 
-    // Observe existing elements
     document
       .querySelectorAll<HTMLElement>('.reveal:not(.visible)')
       .forEach(observeEl);
 
-    // Watch for elements added later (e.g. after async data loads)
     const mo = new MutationObserver((mutations) => {
       for (const m of mutations) {
         m.addedNodes.forEach((node) => {

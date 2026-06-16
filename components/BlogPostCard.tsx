@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import type { BlogPost } from '../types';
 
 interface BlogPostCardProps {
@@ -9,7 +9,7 @@ interface BlogPostCardProps {
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
   return (
     <article className="surface surface-hover overflow-hidden flex flex-col group">
-      <Link to={`/blog/${post.slug}`} className="block overflow-hidden border-b border-[var(--border)]">
+      <Link href={`/blog/${post.slug}`} className="block overflow-hidden border-b border-[var(--border)]">
         <img
           src={post.imageUrl}
           alt={post.title}
@@ -20,7 +20,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
         <span className="section-label" style={{ marginBottom: 10 }}>
           {post.category}
         </span>
-        <Link to={`/blog/${post.slug}`}>
+        <Link href={`/blog/${post.slug}`}>
           <h3 className="font-display text-xl font-bold text-si-text leading-snug group-hover:text-si-cyan transition-colors">
             {post.title}
           </h3>
@@ -29,7 +29,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
         <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs text-si-dim font-mono">
           <span>{post.date}</span>
           <Link
-            to={`/blog/${post.slug}`}
+            href={`/blog/${post.slug}`}
             className="text-si-cyan font-semibold flex items-center gap-1 group-hover:gap-2 transition-all"
           >
             Ler mais →

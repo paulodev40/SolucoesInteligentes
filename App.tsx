@@ -1,4 +1,4 @@
-
+﻿
 import React, { useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
@@ -12,22 +12,22 @@ import {
   Spotlight,
   useReveal,
 } from './components/effects';
-import HomePage from './pages/HomePage';
-import ProductsPage from './pages/ProductsPage';
-import OnlineCoursesPage from './pages/OnlineCoursesPage';
-import ProductDetailPage from './pages/ProductDetailPage';
-import BlogPage from './pages/BlogPage';
-import BlogPostPage from './pages/BlogPostPage';
-import AboutPage from './pages/AboutPage';
-import ConsultingPage from './pages/ConsultingPage';
-import ToolsPage from './pages/ToolsPage';
-import FeriasPage from './pages/FeriasPage';
-import CNPJPage from './pages/CNPJPage';
-import PromptPage from './pages/PromptPage';
-import DigitalContentPage from './pages/DigitalContentPage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsPage from './pages/TermsPage';
-import NotFoundPage from './pages/NotFoundPage';
+import HomePage from './views/HomePage';
+import ProductsPage from './views/ProductsPage';
+import OnlineCoursesPage from './views/OnlineCoursesPage';
+import ProductDetailPage from './views/ProductDetailPage';
+import BlogPage from './views/BlogPage';
+import BlogPostPage from './views/BlogPostPage';
+import AboutPage from './views/AboutPage';
+import ConsultingPage from './views/ConsultingPage';
+import ToolsPage from './views/ToolsPage';
+import FeriasPage from './views/FeriasPage';
+import CNPJPage from './views/CNPJPage';
+import PromptPage from './views/PromptPage';
+import DigitalContentPage from './views/DigitalContentPage';
+import PrivacyPolicyPage from './views/PrivacyPolicyPage';
+import TermsPage from './views/TermsPage';
+import NotFoundPage from './views/NotFoundPage';
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();

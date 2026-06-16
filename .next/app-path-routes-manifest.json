@@ -1,0 +1,20 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/consultoria/page": "/consultoria",
+  "/blog/page": "/blog",
+  "/conteudo-digital/page": "/conteudo-digital",
+  "/ferramentas/cnpj/page": "/ferramentas/cnpj",
+  "/cursos-online/page": "/cursos-online",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/ferramentas/prompt-ia/page": "/ferramentas/prompt-ia",
+  "/ferramentas/ferias-13/page": "/ferramentas/ferias-13",
+  "/ferramentas/page": "/ferramentas",
+  "/page": "/",
+  "/privacidade/page": "/privacidade",
+  "/produtos/page": "/produtos",
+  "/sobre/page": "/sobre",
+  "/produtos/[slug]/page": "/produtos/[slug]",
+  "/termos/page": "/termos"
+}

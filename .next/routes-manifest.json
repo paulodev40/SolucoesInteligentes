@@ -1,0 +1,154 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/blog/[slug]",
+      "regex": "^/blog/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/produtos/[slug]",
+      "regex": "^/produtos/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/produtos/(?<nxtPslug>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/blog",
+      "regex": "^/blog(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/blog(?:/)?$"
+    },
+    {
+      "page": "/consultoria",
+      "regex": "^/consultoria(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/consultoria(?:/)?$"
+    },
+    {
+      "page": "/conteudo-digital",
+      "regex": "^/conteudo\\-digital(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/conteudo\\-digital(?:/)?$"
+    },
+    {
+      "page": "/cursos-online",
+      "regex": "^/cursos\\-online(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cursos\\-online(?:/)?$"
+    },
+    {
+      "page": "/ferramentas",
+      "regex": "^/ferramentas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas(?:/)?$"
+    },
+    {
+      "page": "/ferramentas/cnpj",
+      "regex": "^/ferramentas/cnpj(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/cnpj(?:/)?$"
+    },
+    {
+      "page": "/ferramentas/ferias-13",
+      "regex": "^/ferramentas/ferias\\-13(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/ferias\\-13(?:/)?$"
+    },
+    {
+      "page": "/ferramentas/prompt-ia",
+      "regex": "^/ferramentas/prompt\\-ia(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/prompt\\-ia(?:/)?$"
+    },
+    {
+      "page": "/privacidade",
+      "regex": "^/privacidade(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/privacidade(?:/)?$"
+    },
+    {
+      "page": "/produtos",
+      "regex": "^/produtos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/produtos(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/sobre",
+      "regex": "^/sobre(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sobre(?:/)?$"
+    },
+    {
+      "page": "/termos",
+      "regex": "^/termos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/termos(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

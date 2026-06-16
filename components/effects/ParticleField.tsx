@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 
 type Particle = { x: number; y: number; r: number; vx: number; vy: number; alpha: number };
