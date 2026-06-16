@@ -10,6 +10,7 @@ import {
   Scanlines,
   ScrollProgress,
   Spotlight,
+  RevealObserver,
 } from '../components/effects';
 import HashRedirect from '../components/HashRedirect';
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-si-bg text-si-text font-body">
         <HashRedirect />
+        <RevealObserver />
         <ScrollProgress />
         <CustomCursor />
         <Spotlight />

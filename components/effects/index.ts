@@ -7,3 +7,4 @@ export { default as AuroraBackground } from './AuroraBackground';
 export { default as GridOverlay } from './GridOverlay';
 export { default as AnimCounter } from './AnimCounter';
 export { useReveal } from './useReveal';
+export { default as RevealObserver } from './RevealObserver';
