@@ -7,29 +7,14 @@ import BlogPostCard from '../components/BlogPostCard';
 import NewsCard from '../components/NewsCard';
 import BugHuntGame from '../components/games/BugHuntGame';
 import { AnimCounter, AuroraBackground } from '../components/effects';
-import { fetchVisitors } from '../services/analyticsApi';
 import { fetchAINews, type NewsArticle } from '../services/newsApi';
 
 const NEWS_CACHE_KEY = 'si_home_news_v1';
 const NEWS_CACHE_TTL = 10 * 60 * 1000; // 10 min
 
 const HomePage: React.FC = () => {
-  const [visitors, setVisitors] = useState<number | null>(null);
-  const [isLoadingVisitors, setIsLoadingVisitors] = useState<boolean>(true);
   const [news, setNews] = useState<NewsArticle[]>([]);
   const [newsLoading, setNewsLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      const total = await fetchVisitors();
-      if (mounted) {
-        setVisitors(total);
-        setIsLoadingVisitors(false);
-      }
-    })();
-    return () => { mounted = false; };
-  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -103,20 +88,12 @@ const HomePage: React.FC = () => {
             style={{ animation: 'fade-up 0.8s 0.45s ease both' }}
           >
             <Link href="/produtos" className="btn-primary">Ver Produtos →</Link>
-            <Link href="/blog" className="btn-ghost">Últimas Notícias</Link>
+            <Link href="/ferramentas" className="btn-ghost">Ver Ferramentas</Link>
           </div>
 
           <div className="mt-8 visitors-pill">
             <span className="dot-pulse dot-pulse--green" />
-            Visitantes:{' '}
-            <strong className="text-si-text">
-              {isLoadingVisitors
-                ? 'carregando...'
-                : visitors !== null
-                  ? visitors.toLocaleString('pt-BR')
-                  : 'indisponível'}
-            </strong>
-            <span className="text-si-cyan">· Desde Fev 26</span>
+            Desde Fev 26
           </div>
 
           <div className="hidden sm:flex scroll-hint mt-16">

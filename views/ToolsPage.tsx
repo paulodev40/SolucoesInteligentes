@@ -44,6 +44,34 @@ const BUILT_IN_TOOLS = [
     desc: 'Gere QR Code PIX e Pix Copia e Cola a partir da sua chave. Defina valor e descrição, baixe em PNG. 100% no seu navegador.',
     emoji: '⚡',
   },
+  {
+    slug: 'comprimir-imagem',
+    name: 'Comprimir Imagem',
+    category: 'Imagem',
+    desc: 'Reduza o tamanho de imagens JPG, PNG e WEBP com controle de qualidade. Sem upload — 100% no navegador.',
+    emoji: '🗜️',
+  },
+  {
+    slug: 'redimensionar-imagem',
+    name: 'Redimensionar Imagem',
+    category: 'Imagem',
+    desc: 'Altere as dimensões de imagens em pixels com trava de proporção automática. Sem upload.',
+    emoji: '↔️',
+  },
+  {
+    slug: 'converter-imagem',
+    name: 'Converter Imagem',
+    category: 'Imagem',
+    desc: 'Converta imagens entre JPG, PNG e WEBP no navegador. Fundo branco automático ao exportar para JPEG.',
+    emoji: '🔄',
+  },
+  {
+    slug: 'remover-fundo-de-imagem',
+    name: 'Remover Fundo de Imagem',
+    category: 'Imagem · IA',
+    desc: 'Remova o fundo de fotos com IA 100% no navegador. Resultado em PNG transparente. Sem upload, sem cadastro.',
+    emoji: '✂️',
+  },
 ];
 
 const AI_TOOLS = [

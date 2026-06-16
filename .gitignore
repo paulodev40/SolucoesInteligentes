@@ -1,3 +1,17 @@
+# Dependências
+/node_modules
+
+# Build / cache Next.js
+/.next/
+/out/
+/build
+
+# Variáveis de ambiente
+.env
+.env*
+.env.local
+.env*.local
+
 # Logs
 logs
 *.log
@@ -7,14 +21,12 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+# Vite (legado)
 dist
 dist-ssr
 *.local
-.env
-.env.local
 
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
