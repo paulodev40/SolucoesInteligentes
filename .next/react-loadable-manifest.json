@@ -1,4 +1,10 @@
 {
+  "app\\ferramentas\\gerador-qr-code-pix\\PixQRClient.tsx -> qrcode": {
+    "id": 2769,
+    "files": [
+      "static/chunks/769.5c4c215a246a2d9a.js"
+    ]
+  },
   "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
     "id": 5139,
     "files": [

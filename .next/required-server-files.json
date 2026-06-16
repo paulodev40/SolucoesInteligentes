@@ -295,7 +295,19 @@
     "configFileName": "next.config.ts",
     "turbopack": {
       "root": "C:\\GitHubrepositories"
-    }
+    },
+    "_originalRedirects": [
+      {
+        "source": "/ferramentas/ferias-13",
+        "destination": "/ferramentas/calculadora-ferias-13",
+        "permanent": true
+      },
+      {
+        "source": "/ferramentas/prompt-ia",
+        "destination": "/ferramentas/gerador-de-prompts",
+        "permanent": true
+      }
+    ]
   },
   "appDir": "C:\\GitHubrepositories\\SolucoesInteligentes",
   "relativeAppDir": "SolucoesInteligentes",

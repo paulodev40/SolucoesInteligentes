@@ -1,7 +1,8 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import AdSlot from '../components/AdSlot';
 
 const TIPOS = [
   { id: 'email',         label: '📧 E-mail profissional',       placeholder: 'Ex: solicitar reunião, apresentar proposta, responder reclamação' },
@@ -95,6 +96,8 @@ const PromptPage: React.FC = () => {
             Preencha os campos abaixo e gere um prompt estruturado pronto para usar.
           </p>
         </div>
+
+        <AdSlot label="Anúncio" className="my-6" />
 
         <div className="surface p-7 sm:p-8 space-y-7 reveal">
 
@@ -226,6 +229,108 @@ const PromptPage: React.FC = () => {
             </p>
           </div>
         )}
+
+        <AdSlot label="Anúncio" className="my-8" />
+
+        {/* Conteúdo SEO */}
+        <article className="mt-4 space-y-10 text-si-muted leading-relaxed reveal">
+          <div className="section-divider" />
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              O que é um prompt de IA?
+            </h2>
+            <p>
+              Um <strong className="text-si-text">prompt</strong> é a instrução que você envia
+              para uma inteligência artificial — o texto que diz à IA o que fazer, como fazer
+              e em qual contexto. É a diferença entre pedir "escreva um e-mail" e receber algo
+              genérico, ou pedir "escreva um e-mail profissional para um cliente que reclamou
+              de atraso na entrega, tom empático, máximo 150 palavras" e receber um texto
+              pronto para usar.
+            </p>
+            <p className="mt-3">
+              A qualidade do prompt define diretamente a qualidade da resposta. IAs como
+              ChatGPT, Claude e Gemini são poderosas — mas precisam de boas instruções
+              para entregar o melhor resultado.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              Como criar prompts eficientes: a estrutura que funciona
+            </h2>
+            <p>
+              Um bom prompt tem quatro elementos essenciais:
+            </p>
+            <ul className="mt-4 space-y-3 text-sm">
+              {[
+                { t: 'Papel / contexto', d: 'Diga à IA quem ela é. "Você é um especialista em marketing digital com 10 anos de experiência" gera respostas muito mais precisas do que não definir nenhum papel.' },
+                { t: 'Tarefa clara', d: 'Descreva exatamente o que quer: formato (lista, texto, código), tamanho (200 palavras, 5 tópicos) e objetivo (convencer, informar, resumir).' },
+                { t: 'Público-alvo', d: 'Informe para quem o conteúdo é destinado. "Para empreendedores iniciantes" versus "para CTOs de startups" gera textos completamente diferentes.' },
+                { t: 'Restrições', d: 'Diga o que evitar: tom, palavras proibidas, tamanho máximo, o que não incluir. Restrições bem definidas eliminam revisões desnecessárias.' },
+              ].map(({ t, d }) => (
+                <li key={t} className="flex gap-3">
+                  <strong className="text-si-text whitespace-nowrap">{t}:</strong>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              ChatGPT, Claude ou Gemini: qual usar?
+            </h2>
+            <p>
+              Os três são modelos de linguagem avançados com pontos fortes diferentes:
+            </p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {[
+                { ia: 'ChatGPT (OpenAI)', forte: 'Versatilidade geral, ampla base de usuários, ótimo para geração de texto criativo e código.' },
+                { ia: 'Claude (Anthropic)', forte: 'Contexto longo, análise de documentos extensos, respostas mais cuidadosas e alinhadas com instruções detalhadas.' },
+                { ia: 'Gemini (Google)', forte: 'Integração com Google Search, tarefas de pesquisa com dados recentes, multimodalidade (texto + imagem).' },
+              ].map(({ ia, forte }) => (
+                <li key={ia} className="flex gap-3">
+                  <strong className="text-si-text whitespace-nowrap">{ia}:</strong>
+                  <span>{forte}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3">
+              Os prompts gerados por esta ferramenta funcionam nos três — a estrutura é
+              universal. Teste o mesmo prompt nas três IAs e compare os resultados.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-6">
+              Perguntas frequentes
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: 'O que é prompt engineering?',
+                  a: 'É a prática de criar e refinar instruções para IAs de forma sistemática, com o objetivo de obter resultados mais precisos e consistentes. Envolve técnicas como few-shot prompting (dar exemplos), chain-of-thought (pedir raciocínio passo a passo) e role prompting (definir um papel para a IA).',
+                },
+                {
+                  q: 'Como melhorar os resultados da IA com prompts?',
+                  a: 'Seja específico: quanto mais contexto e detalhes você fornecer, melhor a resposta. Peça formatos específicos ("use bullet points", "máximo 3 parágrafos"). Se a resposta não for boa, adicione mais contexto ou diga o que não gostou para a IA refinar.',
+                },
+                {
+                  q: 'Prompts em português funcionam tão bem quanto em inglês?',
+                  a: 'Sim, para ChatGPT, Claude e Gemini — os três têm excelente suporte ao português brasileiro. Para tarefas técnicas muito específicas ou uso de bases de conhecimento especializadas em inglês, pode haver pequena diferença de qualidade, mas para uso geral o português funciona perfeitamente.',
+                },
+              ].map(({ q, a }) => (
+                <div key={q} className="border-l-2 border-si-cyan pl-5">
+                  <p className="font-semibold text-si-text mb-1">{q}</p>
+                  <p className="text-sm">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <AdSlot label="Anúncio" className="mt-16" />
       </div>
     </section>
   );

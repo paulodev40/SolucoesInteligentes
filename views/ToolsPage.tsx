@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const BUILT_IN_TOOLS = [
   {
-    slug: 'ferias-13',
+    slug: 'calculadora-ferias-13',
     name: 'Calculadora de Férias e 13º',
     category: 'Trabalhista',
     desc: 'Calcule férias (com terço constitucional) e 13º salário proporcional, com desconto estimado de INSS e IRRF.',
@@ -11,17 +11,38 @@ const BUILT_IN_TOOLS = [
   },
   {
     slug: 'cnpj',
-    name: 'Verificador de CNPJ',
+    name: 'Consultar CNPJ',
     category: 'Empresarial',
     desc: 'Consulte dados de qualquer empresa pelo CNPJ: razão social, situação cadastral, endereço e sócios — dados da Receita Federal.',
     emoji: '🏢',
   },
   {
-    slug: 'prompt-ia',
+    slug: 'gerador-de-prompts',
     name: 'Gerador de Prompts para IA',
     category: 'Inteligência Artificial',
     desc: 'Crie prompts eficientes para ChatGPT, Claude e Gemini em segundos. Escolha a tarefa e gere um prompt otimizado.',
     emoji: '✨',
+  },
+  {
+    slug: 'calculadora-juros-compostos',
+    name: 'Calculadora de Juros Compostos',
+    category: 'Financeiro',
+    desc: 'Simule o crescimento do seu investimento com aportes mensais e taxa anual. Veja a evolução ano a ano com a fórmula de taxa equivalente correta.',
+    emoji: '📈',
+  },
+  {
+    slug: 'calculadora-porcentagem',
+    name: 'Calculadora de Porcentagem',
+    category: 'Matemática',
+    desc: 'Calcule quanto é X% de um valor, descubra que % um número representa, e calcule descontos, acréscimos e variações percentuais.',
+    emoji: '%',
+  },
+  {
+    slug: 'gerador-qr-code-pix',
+    name: 'Gerador de QR Code PIX',
+    category: 'Finanças',
+    desc: 'Gere QR Code PIX e Pix Copia e Cola a partir da sua chave. Defina valor e descrição, baixe em PNG. 100% no seu navegador.',
+    emoji: '⚡',
   },
 ];
 

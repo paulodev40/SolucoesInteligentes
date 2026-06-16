@@ -10,6 +10,18 @@
       "internal": true,
       "statusCode": 308,
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    },
+    {
+      "source": "/ferramentas/ferias-13",
+      "destination": "/ferramentas/calculadora-ferias-13",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/ferramentas/ferias-13(?:/)?$"
+    },
+    {
+      "source": "/ferramentas/prompt-ia",
+      "destination": "/ferramentas/gerador-de-prompts",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/ferramentas/prompt-ia(?:/)?$"
     }
   ],
   "headers": [],
@@ -80,22 +92,40 @@
       "namedRegex": "^/ferramentas(?:/)?$"
     },
     {
+      "page": "/ferramentas/calculadora-ferias-13",
+      "regex": "^/ferramentas/calculadora\\-ferias\\-13(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/calculadora\\-ferias\\-13(?:/)?$"
+    },
+    {
+      "page": "/ferramentas/calculadora-juros-compostos",
+      "regex": "^/ferramentas/calculadora\\-juros\\-compostos(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/calculadora\\-juros\\-compostos(?:/)?$"
+    },
+    {
+      "page": "/ferramentas/calculadora-porcentagem",
+      "regex": "^/ferramentas/calculadora\\-porcentagem(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ferramentas/calculadora\\-porcentagem(?:/)?$"
+    },
+    {
       "page": "/ferramentas/cnpj",
       "regex": "^/ferramentas/cnpj(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/ferramentas/cnpj(?:/)?$"
     },
     {
-      "page": "/ferramentas/ferias-13",
-      "regex": "^/ferramentas/ferias\\-13(?:/)?$",
+      "page": "/ferramentas/gerador-de-prompts",
+      "regex": "^/ferramentas/gerador\\-de\\-prompts(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/ferramentas/ferias\\-13(?:/)?$"
+      "namedRegex": "^/ferramentas/gerador\\-de\\-prompts(?:/)?$"
     },
     {
-      "page": "/ferramentas/prompt-ia",
-      "regex": "^/ferramentas/prompt\\-ia(?:/)?$",
+      "page": "/ferramentas/gerador-qr-code-pix",
+      "regex": "^/ferramentas/gerador\\-qr\\-code\\-pix(?:/)?$",
       "routeKeys": {},
-      "namedRegex": "^/ferramentas/prompt\\-ia(?:/)?$"
+      "namedRegex": "^/ferramentas/gerador\\-qr\\-code\\-pix(?:/)?$"
     },
     {
       "page": "/privacidade",

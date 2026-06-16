@@ -1,7 +1,8 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import AdSlot from '../components/AdSlot';
 
 interface CNPJData {
   cnpj: string;
@@ -92,12 +93,14 @@ const CNPJPage: React.FC = () => {
 
         <div className="reveal">
           <div className="section-label">Empresarial</div>
-          <h1 className="section-title">Verificador de CNPJ</h1>
+          <h1 className="section-title">Consultar CNPJ</h1>
           <p className="section-desc">
             Consulte dados cadastrais de qualquer empresa diretamente na base da Receita Federal do Brasil,
             de forma gratuita e instantânea.
           </p>
         </div>
+
+        <AdSlot label="Anúncio" className="my-6" />
 
         <div className="surface p-7 sm:p-8 reveal">
           <label className="field-label">CNPJ</label>
@@ -232,6 +235,100 @@ const CNPJPage: React.FC = () => {
             </p>
           </div>
         )}
+
+        <AdSlot label="Anúncio" className="my-8" />
+
+        {/* Conteúdo SEO */}
+        <article className="mt-4 space-y-10 text-si-muted leading-relaxed reveal">
+          <div className="section-divider" />
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              O que é o CNPJ e para que serve?
+            </h2>
+            <p>
+              O <strong className="text-si-text">Cadastro Nacional da Pessoa Jurídica (CNPJ)</strong>{' '}
+              é o registro obrigatório de empresas, associações e outros entes jurídicos perante
+              a Receita Federal do Brasil. É o equivalente ao CPF das pessoas físicas — um
+              identificador único de 14 dígitos atribuído no momento da abertura do negócio.
+            </p>
+            <p className="mt-3">
+              Consultar o CNPJ é essencial antes de fechar negócios, emitir nota fiscal, cadastrar
+              fornecedores ou verificar a idoneidade de um parceiro comercial. Empresas com CNPJ
+              irregular podem ter dificuldades para emitir documentos fiscais e acessar crédito.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              Como verificar a situação cadastral de uma empresa
+            </h2>
+            <p>
+              A situação cadastral indica o status atual do CNPJ perante a Receita Federal.
+              Os principais status são:
+            </p>
+            <ul className="mt-3 space-y-2 text-sm">
+              {[
+                { status: 'Ativa', desc: 'Empresa regularmente inscrita e em funcionamento.' },
+                { status: 'Suspensa', desc: 'CNPJ com pendências cadastrais. A empresa pode ainda funcionar, mas deve regularizar a situação.' },
+                { status: 'Inapta', desc: 'Empresa que não entregou declarações por dois ou mais anos. Não pode emitir NF.' },
+                { status: 'Baixada', desc: 'Empresa encerrada. O CNPJ não está mais em vigor.' },
+                { status: 'Nula', desc: 'Registro cancelado por irregularidade grave na abertura.' },
+              ].map(({ status, desc }) => (
+                <li key={status} className="flex gap-3">
+                  <strong className="text-si-text whitespace-nowrap">{status}:</strong>
+                  <span>{desc}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              O que é CNAE?
+            </h2>
+            <p>
+              A <strong className="text-si-text">Classificação Nacional de Atividades Econômicas (CNAE)</strong>{' '}
+              é o código que define qual é a atividade principal de uma empresa. Ele é composto
+              por 7 dígitos (ex.: 6201-5/01 — Desenvolvimento de programas de computador sob
+              encomenda) e determina aspectos como tributação, obrigações acessórias e
+              enquadramento em regimes especiais como o Simples Nacional.
+            </p>
+            <p className="mt-3">
+              Ao consultar um CNPJ, verificar o CNAE ajuda a confirmar se o fornecedor
+              ou parceiro realmente exerce a atividade que declara.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-6">
+              Perguntas frequentes
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: 'Como saber se um CNPJ é real e está ativo?',
+                  a: 'Use esta ferramenta: informe o CNPJ e clique em "Buscar". Os dados vêm diretamente da Receita Federal via Brasil API. Se a situação cadastral for "Ativa", o CNPJ está regular. Se retornar erro, o número pode estar errado ou o CNPJ não existe.',
+                },
+                {
+                  q: 'Qual a diferença entre razão social e nome fantasia?',
+                  a: 'A razão social é o nome jurídico oficial da empresa, registrado na Receita Federal e nos contratos. O nome fantasia é como a empresa se apresenta ao mercado — o nome da marca ou loja. Uma mesma razão social pode ter vários nomes fantasia.',
+                },
+                {
+                  q: 'O que é o Quadro de Sócios e Administradores (QSA)?',
+                  a: 'O QSA lista as pessoas físicas ou jurídicas que compõem o quadro societário da empresa, com seus percentuais de participação e qualificações. É usado para verificar quem são os responsáveis legais pelo negócio e detectar sócios em comum entre empresas.',
+                },
+              ].map(({ q, a }) => (
+                <div key={q} className="border-l-2 border-si-cyan pl-5">
+                  <p className="font-semibold text-si-text mb-1">{q}</p>
+                  <p className="text-sm">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <AdSlot label="Anúncio" className="mt-16" />
       </div>
     </section>
   );

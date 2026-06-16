@@ -81,6 +81,33 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
+// Validate ../../app/ferramentas/calculadora-ferias-13/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/calculadora-ferias-13">> = Specific
+  const handler = {} as typeof import("../../app/ferramentas/calculadora-ferias-13/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/ferramentas/calculadora-juros-compostos/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/calculadora-juros-compostos">> = Specific
+  const handler = {} as typeof import("../../app/ferramentas/calculadora-juros-compostos/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/ferramentas/calculadora-porcentagem/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/calculadora-porcentagem">> = Specific
+  const handler = {} as typeof import("../../app/ferramentas/calculadora-porcentagem/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../app/ferramentas/cnpj/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/ferramentas/cnpj">> = Specific
@@ -90,10 +117,19 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
   type __Unused = __Check
 }
 
-// Validate ../../app/ferramentas/ferias-13/page.tsx
+// Validate ../../app/ferramentas/gerador-de-prompts/page.tsx
 {
-  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/ferias-13">> = Specific
-  const handler = {} as typeof import("../../app/ferramentas/ferias-13/page.js")
+  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/gerador-de-prompts">> = Specific
+  const handler = {} as typeof import("../../app/ferramentas/gerador-de-prompts/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../app/ferramentas/gerador-qr-code-pix/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/gerador-qr-code-pix">> = Specific
+  const handler = {} as typeof import("../../app/ferramentas/gerador-qr-code-pix/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check
@@ -103,15 +139,6 @@ type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
 {
   type __IsExpected<Specific extends AppPageConfig<"/ferramentas">> = Specific
   const handler = {} as typeof import("../../app/ferramentas/page.js")
-  type __Check = __IsExpected<typeof handler>
-  // @ts-ignore
-  type __Unused = __Check
-}
-
-// Validate ../../app/ferramentas/prompt-ia/page.tsx
-{
-  type __IsExpected<Specific extends AppPageConfig<"/ferramentas/prompt-ia">> = Specific
-  const handler = {} as typeof import("../../app/ferramentas/prompt-ia/page.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

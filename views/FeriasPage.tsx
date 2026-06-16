@@ -1,9 +1,10 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import AdSlot from '../components/AdSlot';
 
-// Tabela INSS progressiva 2025
+// Tabela INSS progressiva 2026
 function calcINSS(base: number): number {
   const faixas = [
     { limite: 1518.00,  aliquota: 0.075 },
@@ -23,7 +24,7 @@ function calcINSS(base: number): number {
   return inss;
 }
 
-// Tabela IRRF 2025 — recebe a base já deduzida do INSS
+// Tabela IRRF 2026 — recebe a base já deduzida do INSS
 function calcIRRF(baseAposINSS: number): number {
   if (baseAposINSS <= 2259.20) return 0;
   if (baseAposINSS <= 2826.65) return baseAposINSS * 0.075 - 169.44;
@@ -102,6 +103,8 @@ const FeriasPage: React.FC = () => {
             com desconto de INSS e IRRF conforme tabelas 2026.
           </p>
         </div>
+
+        <AdSlot label="Anúncio" className="my-6" />
 
         <div className="surface p-7 sm:p-8 reveal">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -195,6 +198,109 @@ const FeriasPage: React.FC = () => {
             </p>
           </div>
         )}
+
+        <AdSlot label="Anúncio" className="my-8" />
+
+        {/* Conteúdo SEO */}
+        <article className="mt-4 space-y-10 text-si-muted leading-relaxed reveal">
+          <div className="section-divider" />
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              O que são férias proporcionais?
+            </h2>
+            <p>
+              As férias proporcionais são o direito do trabalhador a receber, ao ser demitido
+              ou ao término do período aquisitivo, uma fração das férias correspondente aos meses
+              trabalhados. A cada mês completo trabalhado, o empregado adquire 1/12 do direito
+              a férias. Quem trabalhou 6 meses tem direito a 15 dias de férias; quem trabalhou
+              12 meses, a 30 dias completos.
+            </p>
+            <p className="mt-3">
+              Além do salário de férias, a lei garante o <strong className="text-si-text">terço
+              constitucional</strong> — um acréscimo de 1/3 sobre o valor bruto das férias,
+              previsto no artigo 7º, XVII da Constituição Federal.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              Como calcular o 13º salário proporcional
+            </h2>
+            <p>
+              O 13º salário proporcional é calculado dividindo o salário bruto por 12 e
+              multiplicando pelo número de meses trabalhados no ano. Meses com 15 dias ou
+              mais de trabalho contam como mês completo.
+            </p>
+            <div className="my-4 p-4 rounded-lg bg-si-surface2 font-mono text-sm text-si-cyan border border-si-dim/30">
+              13º proporcional = (salário ÷ 12) × meses trabalhados
+            </div>
+            <p>
+              Exemplo: salário de R$ 3.000 com 8 meses trabalhados:
+              (3.000 ÷ 12) × 8 = <strong className="text-si-text">R$ 2.000 brutos</strong>.
+              Sobre esse valor incidem INSS e, se aplicável, IRRF.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              Quais descontos incidem sobre férias e 13º?
+            </h2>
+            <p>
+              Dois descontos principais são aplicados: o <strong className="text-si-text">INSS</strong>{' '}
+              (contribuição previdenciária) e o <strong className="text-si-text">IRRF</strong>{' '}
+              (Imposto de Renda Retido na Fonte). Ambos usam tabelas progressivas — quanto maior
+              o salário, maior a alíquota, mas apenas sobre a faixa que excede cada limite.
+            </p>
+            <p className="mt-3">
+              O INSS em 2026 vai de 7,5% (salários até R$ 1.518) a 14% (acima de R$ 4.189,53),
+              com teto de contribuição em R$ 8.157,41. O IRRF é isento para bases até R$ 2.259,20
+              após a dedução do INSS, chegando a 27,5% para as faixas mais altas.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-3">
+              O 1/3 constitucional de férias paga IRRF?
+            </h2>
+            <p>
+              <strong className="text-si-text">Não</strong>. O Supremo Tribunal Federal decidiu,
+              no Recurso Extraordinário 895.759 (tema 808), que o terço constitucional de férias
+              tem natureza indenizatória e, portanto, é isento de Imposto de Renda. Nossa calculadora
+              aplica essa regra corretamente: o IRRF incide apenas sobre o salário de férias,
+              sem considerar o 1/3.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-display font-bold text-si-text mb-6">
+              Perguntas frequentes
+            </h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: 'Trabalhei menos de 12 meses, tenho direito a férias?',
+                  a: 'Sim. Após completar 12 meses de contrato (período aquisitivo), o trabalhador tem direito a 30 dias de férias. Se for demitido antes disso, tem direito às férias proporcionais — 1/12 para cada mês completo trabalhado.',
+                },
+                {
+                  q: 'Quando é pago o 13º salário?',
+                  a: 'O 13º é pago em duas parcelas: a primeira entre fevereiro e novembro (sem desconto de IR), e a segunda até 20 de dezembro. Na demissão sem justa causa, ambas as parcelas são pagas na rescisão.',
+                },
+                {
+                  q: 'As tabelas de INSS e IRRF mudam todo ano?',
+                  a: 'Sim. O governo federal atualiza as faixas e alíquotas anualmente. Nossa calculadora usa as tabelas vigentes em 2026. Para anos anteriores ou futuros, verifique os valores no site da Receita Federal.',
+                },
+              ].map(({ q, a }) => (
+                <div key={q} className="border-l-2 border-si-cyan pl-5">
+                  <p className="font-semibold text-si-text mb-1">{q}</p>
+                  <p className="text-sm">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <AdSlot label="Anúncio" className="mt-16" />
       </div>
     </section>
   );
