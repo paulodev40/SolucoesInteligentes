@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
     return NextResponse.json(
       { error: 'Configuração incompleta.' },
@@ -22,37 +22,30 @@ export async function POST(req: NextRequest) {
   }
 
   const entrada = texto.slice(0, 2000);
+  const prompt = `Resuma o texto abaixo em português brasileiro de forma clara e objetiva, em no máximo 3 parágrafos curtos. Preserve as informações mais importantes. Comece diretamente com o resumo, sem introdução.\n\n${entrada}`;
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
+  const res = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 500 },
+      }),
     },
-    body: JSON.stringify({
-      model: 'claude-haiku-4-5',
-      max_tokens: 500,
-      messages: [
-        {
-          role: 'user',
-          content: `Resuma o texto abaixo em português brasileiro de forma clara e objetiva, em no máximo 3 parágrafos curtos. Preserve as informações mais importantes. Comece diretamente com o resumo, sem introdução.\n\n${entrada}`,
-        },
-      ],
-    }),
-  });
+  );
 
   if (!res.ok) {
     const err = await res.text();
-    console.error('[resumir] Anthropic error:', res.status, err);
-    return NextResponse.json(
-      { error: `Erro na API: ${res.status}` },
-      { status: 500 },
-    );
+    console.error('[resumir] Gemini error:', res.status, err);
+    return NextResponse.json({ error: `Erro na API: ${res.status}` }, { status: 500 });
   }
 
-  const data = await res.json() as { content: { type: string; text: string }[] };
-  const resumo = data.content?.[0]?.text?.trim() ?? '';
+  const data = await res.json() as {
+    candidates: { content: { parts: { text: string }[] } }[];
+  };
+  const resumo = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() ?? '';
 
   return NextResponse.json({ resumo });
 }
