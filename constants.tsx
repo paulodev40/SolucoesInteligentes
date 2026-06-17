@@ -110,7 +110,7 @@ export const PRODUCTS: Product[] = [
       'Organizar e buscar reuniões por título, transcrição ou participantes.',
     ],
     icon: BriefyIcon,
-    image: 'https://briefy-site.vercel.app/uploads/logo-1777841575531.png',
+    image: '/briefy.png',
   },
 ];
 
