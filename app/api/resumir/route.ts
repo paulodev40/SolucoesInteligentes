@@ -1,6 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
+export const runtime = 'nodejs';
+
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const texto: unknown = body?.texto;
