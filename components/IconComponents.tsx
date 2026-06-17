@@ -55,3 +55,18 @@ export const BriefyIcon: React.FC<{ className?: string }> = ({ className }) => (
     <path d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21h-2a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11z" />
   </svg>
 );
+
+export const WordClimbIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2L2 22h20L12 2zm0 5.5L18 20H6L12 7.5z" />
+    <path d="M10.8 17h2.4l-.4-1.5h-1.6l-.4 1.5zm.6-3h1.2l-.6-2.4-.6 2.4z" />
+    <path d="M11 6.5V4h2v2.5l1.5-1 .5.9L13 7.8V9h-2V7.8L9 6.4l.5-.9L11 6.5z" />
+  </svg>
+);
+
+export const AnaFlowKeysIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3zm1 2h2.5v9H4V7zm3.5 0H10v9H7.5V7zm3.5 0h2.5v9H11V7zm3.5 0H17v9h-2.5V7zm3.5 0h1v9h-1V7z" />
+    <path d="M5 7h1.5v6H5V7zm4 0h1.5v6H9V7zm4 0h1.5v6H13V7zm4 0h.5v6H17V7z" />
+  </svg>
+);

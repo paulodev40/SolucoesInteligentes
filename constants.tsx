@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon } from './components/IconComponents';
+import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -111,6 +111,40 @@ export const PRODUCTS: Product[] = [
     ],
     icon: BriefyIcon,
     image: '/briefy.png',
+  },
+  {
+    slug: 'wordclimb',
+    name: 'WordClimb',
+    tagline: 'Climb your way to fluent English. Pague uma vez, suba para sempre.',
+    description: 'Aplicativo de aprendizado de vocabulário em inglês com repetição espaçada inteligente. 800 palavras essenciais distribuídas em 10 fases (A1 a C1), verificação de pronúncia, streaks diárias e ligas semanais. Uma solução focada, sem distrações e sem assinatura mensal.',
+    problem: 'Aprender inglês parece impossível com apps cheios de distrações, assinaturas caras e falta de progressão clara — a maioria desiste antes de ver resultado.',
+    targetAudience: 'Estudantes e profissionais brasileiros em todos os níveis de inglês (A1 a C1) que querem expandir vocabulário de forma consistente e eficiente.',
+    useCases: [
+      'Aprender 800 palavras essenciais do inglês em 10 fases progressivas.',
+      'Praticar pronúncia com verificação automática e múltiplos sotaques nativos.',
+      'Manter consistência com streaks diárias e competições em ligas semanais.',
+      'Compartilhar o acesso com até 5 membros da família com uma única compra.',
+      'Estudar offline, sem depender de conexão com internet.',
+    ],
+    icon: WordClimbIcon,
+    image: '/assets/images/corujasabia.jpeg',
+  },
+  {
+    slug: 'anaflow-keys',
+    name: 'AnaFlow Keys',
+    tagline: 'Aprenda piano de um jeito divertido. Com IA, sem professor presencial.',
+    description: 'Aplicativo iOS que ensina piano de forma interativa com 21 aulas em vídeo com a professora virtual Ana, detecção de notas em tempo real pelo microfone e sistema de gamificação com XP e rankings. 40+ exercícios, 14 músicas completas e dois modos de prática — tudo processado localmente, sem armazenar áudio.',
+    problem: 'Aulas de piano presenciais são caras, inflexíveis e difíceis de encaixar na rotina — a maioria das pessoas desiste antes de aprender as primeiras músicas.',
+    targetAudience: 'Crianças a partir de 6 anos, adolescentes e adultos iniciantes ou intermediários que querem aprender piano no próprio iPhone ou iPad, no seu ritmo.',
+    useCases: [
+      'Seguir 21 aulas em vídeo com a professora virtual Ana do zero ao intermediário.',
+      'Praticar com detecção de notas em tempo real pelo microfone do iPhone.',
+      'Tocar 14 músicas completas em modo partitura ou notas caindo.',
+      'Evoluir com mais de 40 exercícios interativos e sistema de XP e ranking.',
+      'Estudar offline com processamento de áudio local — privacidade total.',
+    ],
+    icon: AnaFlowKeysIcon,
+    image: '/assets/images/Ana.png',
   },
 ];
 
