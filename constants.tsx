@@ -127,7 +127,7 @@ export const PRODUCTS: Product[] = [
       'Estudar offline, sem depender de conexão com internet.',
     ],
     icon: WordClimbIcon,
-    image: '/assets/images/corujasabia.jpeg',
+    image: '/WordClimb.png',
   },
   {
     slug: 'anaflow-keys',
@@ -144,7 +144,7 @@ export const PRODUCTS: Product[] = [
       'Estudar offline com processamento de áudio local — privacidade total.',
     ],
     icon: AnaFlowKeysIcon,
-    image: '/assets/images/Ana.png',
+    image: '/anaflow _2.png',
   },
 ];
 
