@@ -10,8 +10,19 @@ export interface NewsArticle {
   author: string | null;
 }
 
-interface NewsApiResponse {
-  articles: NewsArticle[];
+interface NewsdataArticle {
+  title: string;
+  link: string;
+  description: string | null;
+  image_url: string | null;
+  pubDate: string;
+  source_name: string;
+  creator: string[] | null;
+}
+
+interface NewsdataResponse {
+  status: string;
+  results: NewsdataArticle[];
 }
 
 let cachedNews: NewsArticle[] | null = null;
@@ -23,23 +34,47 @@ export const fetchAINews = async (limit: number = 6): Promise<NewsArticle[]> => 
     return cachedNews.slice(0, limit);
   }
 
+  const apiKey = process.env.NEXT_PUBLIC_NEWSDATA_API_KEY;
+  if (!apiKey) {
+    console.error('[news] NEXT_PUBLIC_NEWSDATA_API_KEY não configurada');
+    return [];
+  }
+
   try {
-    const response = await fetch(`/api/news?limit=${limit}`);
+    const url = new URL('https://newsdata.io/api/1/latest');
+    url.searchParams.set('apikey', apiKey);
+    url.searchParams.set('q', 'inteligencia artificial OR artificial intelligence');
+    url.searchParams.set('language', 'pt,en');
+    url.searchParams.set('size', String(Math.min(limit, 10)));
+
+    const response = await fetch(url.toString());
 
     if (!response.ok) {
-      throw new Error(`News API error: ${response.status}`);
+      throw new Error(`newsdata.io error: ${response.status}`);
     }
 
-    const data: NewsApiResponse = await response.json();
+    const data: NewsdataResponse = await response.json();
 
-    const filtered = (data.articles ?? []).filter(
-      (a) => a.url && a.title && a.description,
-    );
+    if (data.status !== 'success' || !Array.isArray(data.results)) {
+      return [];
+    }
 
-    cachedNews = filtered;
+    const articles: NewsArticle[] = data.results
+      .filter((a) => a.title && a.link)
+      .map((a) => ({
+        title: a.title,
+        description: a.description ?? '',
+        url: a.link,
+        urlToImage: a.image_url ?? '',
+        publishedAt: a.pubDate,
+        source: { name: a.source_name },
+        author: a.creator?.[0] ?? null,
+      }));
+
+    cachedNews = articles;
     cacheTime = Date.now();
 
-    return filtered.slice(0, limit);
+    return articles.slice(0, limit);
   } catch (error) {
     console.error('Erro ao buscar notícias:', error);
     if (cachedNews) return cachedNews.slice(0, limit);
@@ -49,6 +84,7 @@ export const fetchAINews = async (limit: number = 6): Promise<NewsArticle[]> => 
 
 export const formatNewsDate = (dateString: string): string => {
   const date = new Date(dateString);
+  if (isNaN(date.getTime())) return dateString;
   return date.toLocaleDateString('pt-BR', {
     day: '2-digit',
     month: 'long',
