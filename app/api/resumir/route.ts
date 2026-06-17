@@ -1,7 +1,6 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'nodejs';
+export const runtime = 'edge';
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
@@ -16,19 +15,22 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error('[resumir] ANTHROPIC_API_KEY não definida');
     return NextResponse.json(
-      { error: 'Configuração incompleta. Contate o administrador.' },
+      { error: 'Configuração incompleta.' },
       { status: 500 },
     );
   }
 
   const entrada = texto.slice(0, 2000);
 
-  try {
-    const client = new Anthropic({ apiKey });
-
-    const msg = await client.messages.create({
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 500,
       messages: [
@@ -37,17 +39,20 @@ export async function POST(req: NextRequest) {
           content: `Resuma o texto abaixo em português brasileiro de forma clara e objetiva, em no máximo 3 parágrafos curtos. Preserve as informações mais importantes. Comece diretamente com o resumo, sem introdução.\n\n${entrada}`,
         },
       ],
-    });
+    }),
+  });
 
-    const resumo =
-      msg.content[0].type === 'text' ? msg.content[0].text.trim() : '';
-
-    return NextResponse.json({ resumo });
-  } catch (e) {
-    console.error('[resumir] Erro na API Anthropic:', e);
+  if (!res.ok) {
+    const err = await res.text();
+    console.error('[resumir] Anthropic error:', res.status, err);
     return NextResponse.json(
-      { error: 'Erro ao processar. Tente novamente.' },
+      { error: `Erro na API: ${res.status}` },
       { status: 500 },
     );
   }
+
+  const data = await res.json() as { content: { type: string; text: string }[] };
+  const resumo = data.content?.[0]?.text?.trim() ?? '';
+
+  return NextResponse.json({ resumo });
 }
