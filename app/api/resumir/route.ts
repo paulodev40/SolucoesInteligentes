@@ -39,7 +39,11 @@ export async function POST(req: NextRequest) {
   if (!res.ok) {
     const err = await res.text();
     console.error('[resumir] Gemini error:', res.status, err);
-    return NextResponse.json({ error: `Erro na API: ${res.status}` }, { status: 500 });
+    // detail exposed temporarily for debugging — remove after confirmed working
+    return NextResponse.json(
+      { error: `Gemini ${res.status}: ${err.slice(0, 300)}` },
+      { status: 500 },
+    );
   }
 
   const data = await res.json() as {
