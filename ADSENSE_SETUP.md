@@ -6,7 +6,14 @@ Publisher ID: **pub-3198120470271949**
 
 ## 1. Visão Geral
 
-O site usa um componente central chamado `AdSlot` (`components/AdSlot.tsx`) como espaço reservado em todas as posições de anúncio. Após a criação das unidades de anúncio no painel do AdSense, o componente deve ser atualizado com o código `<ins class="adsbygoogle">` correspondente.
+O site usa um componente central chamado `AdSlot` (`components/AdSlot.tsx`) como espaço reservado em todas as posições de anúncio. Após a criação das unidades de anúncio no painel do AdSense e obtenção dos IDs, o componente deve ser atualizado com o código `<ins class="adsbygoogle">` correspondente.
+
+**Status atual:**
+- ✅ Script `adsbygoogle.js` adicionado em `app/layout.tsx`
+- ✅ `public/ads.txt` criado com publisher ID correto
+- ✅ `public/app-ads.txt` atualizado com publisher ID correto
+- ✅ Slots `<AdSlot>` implementados em todas as páginas (placeholders visuais)
+- ⏳ Aguardando aprovação do AdSense para ativar as unidades reais
 
 ---
 
@@ -73,11 +80,11 @@ Arquivos:
 
 ---
 
-## 4. Como Atualizar o Componente `AdSlot`
+## 4. Como Atualizar o Componente `AdSlot` (após aprovação)
 
-Após criar as unidades no AdSense e obter os IDs (`data-ad-slot`), atualize o arquivo `components/AdSlot.tsx`.
+Após a aprovação do AdSense e obtenção dos IDs (`data-ad-slot`) de cada unidade, atualize `components/AdSlot.tsx`.
 
-### 4.1 Adicionar prop para identificar a unidade
+### 4.1 Novo código do componente
 
 ```tsx
 'use client';
@@ -91,7 +98,7 @@ type AdUnit =
   | 'si-ferramentas-individual'
   | 'si-conversao-discreto';
 
-// Mapear cada nome de unidade para o data-ad-slot gerado pelo AdSense
+// Preencher com os data-ad-slot gerados pelo AdSense após aprovação
 const AD_SLOTS: Record<AdUnit, string> = {
   'si-horizontal-geral':       'SUBSTITUIR_PELO_ID',
   'si-in-article-blog':        'SUBSTITUIR_PELO_ID',
@@ -128,15 +135,16 @@ export default function AdSlot({ unit, className = '' }: AdSlotProps) {
 }
 ```
 
-### 4.2 Adicionar o script do AdSense no layout
+### 4.2 Script no layout ✅ (já adicionado)
 
-Em `app/layout.tsx`, dentro do `<head>`, adicionar:
+O script abaixo já está presente em `app/layout.tsx`:
 
 ```html
-<script
+<Script
   async
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3198120470271949"
   crossOrigin="anonymous"
+  strategy="afterInteractive"
 />
 ```
 
@@ -170,29 +178,34 @@ Pelo formato com a prop `unit` correta. Exemplos:
 
 ## 5. Checklist de Execução
 
-- [ ] Criar as 5 unidades de anúncio no painel do AdSense com os nomes da tabela da seção 2
+- [x] ~~Adicionar o script `adsbygoogle.js` em `app/layout.tsx`~~ ✅ feito
+- [x] ~~Criar `public/ads.txt` com publisher ID~~ ✅ feito (`google.com, pub-3198120470271949, DIRECT, f08c47fec0942fa0`)
+- [x] ~~Implementar `<AdSlot>` (placeholders) em todas as páginas~~ ✅ feito
+- [ ] Aguardar aprovação do site pelo AdSense
+- [ ] Criar as 5 unidades de anúncio no painel do AdSense (seção 2)
 - [ ] Anotar os `data-ad-slot` gerados para cada unidade
 - [ ] Preencher o mapa `AD_SLOTS` em `components/AdSlot.tsx` com os IDs coletados
-- [ ] Adicionar o script `adsbygoogle.js` em `app/layout.tsx`
-- [ ] Atualizar todas as chamadas `<AdSlot>` nos arquivos listados na seção 3 com a prop `unit` correta
-- [ ] Fazer deploy e verificar no AdSense se as unidades estão recebendo impressões
+- [ ] Atualizar todas as chamadas `<AdSlot>` com a prop `unit` correta (seção 4.3)
+- [ ] Fazer deploy final e verificar impressões no painel do AdSense
 
 ---
 
 ## 6. Referências de Arquivos
 
-| Arquivo                          | Unidades utilizadas                                  |
-|----------------------------------|------------------------------------------------------|
-| `components/AdSlot.tsx`          | Componente central — alterar aqui reflete em tudo   |
-| `app/layout.tsx`                 | Inserir script do AdSense no `<head>`                |
-| `views/HomePage.tsx`             | `si-horizontal-geral` (×2)                          |
-| `views/BlogPage.tsx`             | `si-horizontal-geral` (×1) + `si-in-feed-blog` (×N) |
-| `views/BlogPostPage.tsx`         | `si-in-article-blog` (×2)                           |
-| `views/ToolsPage.tsx`            | `si-horizontal-geral` (×2)                          |
-| `views/ProductsPage.tsx`         | `si-horizontal-geral` (×2)                          |
-| `views/OnlineCoursesPage.tsx`    | `si-conversao-discreto` (×1)                        |
-| `views/ConsultingPage.tsx`       | `si-conversao-discreto` (×1)                        |
-| `views/FeriasPage.tsx`           | `si-ferramentas-individual` (×3)                    |
-| `views/CNPJPage.tsx`             | `si-ferramentas-individual` (×3)                    |
-| `views/PromptPage.tsx`           | `si-ferramentas-individual` (×3)                    |
-| `app/ferramentas/*/` (demais)    | `si-ferramentas-individual` (×2–3 cada)             |
+| Arquivo                          | Status | Unidades utilizadas                                   |
+|----------------------------------|--------|-------------------------------------------------------|
+| `components/AdSlot.tsx`          | ⏳     | Componente central — atualizar após aprovação         |
+| `app/layout.tsx`                 | ✅     | Script AdSense já inserido                            |
+| `public/ads.txt`                 | ✅     | Arquivo de autorização para sites                     |
+| `public/app-ads.txt`             | ✅     | Arquivo de autorização para apps                      |
+| `views/HomePage.tsx`             | ✅     | `si-horizontal-geral` (×2)                           |
+| `views/BlogPage.tsx`             | ✅     | `si-horizontal-geral` (×1) + `si-in-feed-blog` (×N)  |
+| `views/BlogPostPage.tsx`         | ✅     | `si-in-article-blog` (×2)                            |
+| `views/ToolsPage.tsx`            | ✅     | `si-horizontal-geral` (×2)                           |
+| `views/ProductsPage.tsx`         | ✅     | `si-horizontal-geral` (×2)                           |
+| `views/OnlineCoursesPage.tsx`    | ✅     | `si-conversao-discreto` (×1)                         |
+| `views/ConsultingPage.tsx`       | ✅     | `si-conversao-discreto` (×1)                         |
+| `views/FeriasPage.tsx`           | ✅     | `si-ferramentas-individual` (×3)                     |
+| `views/CNPJPage.tsx`             | ✅     | `si-ferramentas-individual` (×3)                     |
+| `views/PromptPage.tsx`           | ✅     | `si-ferramentas-individual` (×3)                     |
+| `app/ferramentas/*/` (demais)    | ✅     | `si-ferramentas-individual` (×2–3 cada)              |
