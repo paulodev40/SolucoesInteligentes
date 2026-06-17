@@ -1,8 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest, NextResponse } from 'next/server';
 
-const client = new Anthropic();
-
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const texto: unknown = body?.texto;
@@ -14,9 +12,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    console.error('[resumir] ANTHROPIC_API_KEY não definida');
+    return NextResponse.json(
+      { error: 'Configuração incompleta. Contate o administrador.' },
+      { status: 500 },
+    );
+  }
+
   const entrada = texto.slice(0, 2000);
 
   try {
+    const client = new Anthropic({ apiKey });
+
     const msg = await client.messages.create({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 500,
@@ -32,7 +41,8 @@ export async function POST(req: NextRequest) {
       msg.content[0].type === 'text' ? msg.content[0].text.trim() : '';
 
     return NextResponse.json({ resumo });
-  } catch {
+  } catch (e) {
+    console.error('[resumir] Erro na API Anthropic:', e);
     return NextResponse.json(
       { error: 'Erro ao processar. Tente novamente.' },
       { status: 500 },
