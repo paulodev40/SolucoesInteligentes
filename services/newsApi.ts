@@ -34,11 +34,7 @@ export const fetchAINews = async (limit: number = 6): Promise<NewsArticle[]> => 
     return cachedNews.slice(0, limit);
   }
 
-  const apiKey = process.env.NEXT_PUBLIC_NEWSDATA_API_KEY;
-  if (!apiKey) {
-    console.error('[news] NEXT_PUBLIC_NEWSDATA_API_KEY não configurada');
-    return [];
-  }
+  const apiKey = process.env.NEXT_PUBLIC_NEWSDATA_API_KEY ?? 'pub_b4932d3c259f4cf693ad66d2376ec6a7';
 
   try {
     const url = new URL('https://newsdata.io/api/1/latest');
