@@ -24,8 +24,10 @@ export async function POST(req: NextRequest) {
   const entrada = texto.slice(0, 2000);
   const prompt = `Resuma o texto abaixo em português brasileiro de forma clara e objetiva, em no máximo 3 parágrafos curtos. Preserve as informações mais importantes. Comece diretamente com o resumo, sem introdução.\n\n${entrada}`;
 
+  const model = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
+
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
