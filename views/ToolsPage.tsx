@@ -87,20 +87,29 @@ const BUILT_IN_TOOLS = [
     desc: 'Extraia páginas, separe em individuais ou divida em blocos. Resultado em .zip. 100% no navegador.',
     emoji: '✂️',
   },
-];
-
-const AI_TOOLS = [
   {
-    slug: 'dashgenius',
-    name: 'DashGenius',
-    category: 'Dados e Visualização',
-    url: 'https://dash-genius.vercel.app/',
-    description:
-      'Envie sua planilha e transforme automaticamente os dados em um dashboard visual e fácil de entender, com gráficos e indicadores prontos para análise.',
-    bestFor: 'Empreendedores, equipes comerciais, financeiro e operações.',
-    highlight: 'Converte planilhas em dashboard em poucos minutos.',
+    slug: 'resumidor-de-texto',
+    name: 'Resumidor de Texto com IA',
+    category: 'Inteligência Artificial',
+    desc: 'Cole qualquer texto — artigo, relatório, contrato, e-mail — e receba um resumo claro e objetivo em segundos, gerado por IA.',
+    emoji: '🤖',
+  },
+  {
+    slug: 'analisador-de-legibilidade',
+    name: 'Analisador de Legibilidade',
+    category: 'Conteúdo e Escrita',
+    desc: 'Descubra quão fácil é ler o seu texto. Score Flesch adaptado para português com nível de escolaridade e dicas de melhoria.',
+    emoji: '📊',
+  },
+  {
+    slug: 'gerador-de-bio',
+    name: 'Gerador de Bio Profissional',
+    category: 'Perfil Profissional',
+    desc: 'Crie uma bio para LinkedIn, Instagram, Twitter/X e WhatsApp em segundos. Preencha cargo, nicho e diferenciais.',
+    emoji: '✍️',
   },
 ];
+
 
 const ToolsPage: React.FC = () => (
   <section className="relative py-20 sm:py-24 px-5">
@@ -139,52 +148,7 @@ const ToolsPage: React.FC = () => (
         ))}
       </div>
 
-      {/* ── Divisor ── */}
-      <div className="section-divider my-16 reveal" />
-
-      <AdSlot className="mb-10" label="Anúncio" />
-
-      {/* ── Ferramentas de IA externas ── */}
-      <div className="reveal">
-        <div className="section-label">Ferramentas de IA</div>
-        <h2 className="section-title">Recursos para acelerar seu trabalho</h2>
-        <p className="section-desc">
-          Ferramentas e sistemas de IA para facilitar tarefas do dia a dia.
-          Esta seção será atualizada com novas opções gratuitas.
-        </p>
-      </div>
-
-      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
-        {AI_TOOLS.map((tool) => (
-          <article key={tool.slug} className="surface surface-hover p-7 sm:p-8">
-            <div className="flex flex-wrap items-center gap-2 mb-4">
-              <span className="chip chip--cyan">{tool.category}</span>
-              <span className="badge badge--green">Gratuito</span>
-            </div>
-
-            <h3 className="font-display font-extrabold text-2xl text-si-text">{tool.name}</h3>
-            <p className="mt-3 text-si-muted leading-relaxed">{tool.description}</p>
-
-            <div className="mt-5 rounded-lg border border-[var(--border-strong)] bg-[var(--bg)] p-4">
-              <p className="section-label" style={{ marginBottom: 4 }}>Destaque</p>
-              <p className="text-si-text">{tool.highlight}</p>
-            </div>
-
-            <p className="mt-4 text-sm text-si-muted">
-              <span className="text-si-text font-semibold">Ideal para:</span> {tool.bestFor}
-            </p>
-
-            <a
-              href={tool.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary mt-6"
-            >
-              Acessar ferramenta →
-            </a>
-          </article>
-        ))}
-      </div>
+      <AdSlot className="mt-12" label="Anúncio" />
 
     </div>
   </section>
