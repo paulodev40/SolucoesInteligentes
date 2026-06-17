@@ -21,10 +21,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const entrada = texto.slice(0, 2000);
-  const prompt = `Resuma o texto abaixo em português brasileiro de forma clara e objetiva, em no máximo 3 parágrafos curtos. Preserve as informações mais importantes. Comece diretamente com o resumo, sem introdução.\n\n${entrada}`;
-
   const model = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
+  const entrada = texto.slice(0, 2000);
 
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
@@ -32,8 +30,25 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 500 },
+        systemInstruction: {
+          parts: [{
+            text: [
+              'Você é um assistente especializado em resumir textos em português brasileiro.',
+              'Suas respostas devem ser sempre:',
+              '- Escritas em português brasileiro claro e formal',
+              '- Fiéis ao conteúdo original — nunca invente informações',
+              '- Organizadas em até 3 parágrafos curtos e objetivos',
+              '- Diretas: comece imediatamente com o resumo, sem frases introdutórias como "O texto fala sobre..." ou "Este é um resumo de..."',
+              '- Completas: nunca corte uma frase ou ideia no meio',
+            ].join('\n'),
+          }],
+        },
+        contents: [{
+          parts: [{
+            text: `Resuma o texto abaixo preservando as informações mais importantes:\n\n${entrada}`,
+          }],
+        }],
+        generationConfig: { maxOutputTokens: 1024 },
       }),
     },
   );
@@ -41,11 +56,7 @@ export async function POST(req: NextRequest) {
   if (!res.ok) {
     const err = await res.text();
     console.error('[resumir] Gemini error:', res.status, err);
-    // detail exposed temporarily for debugging — remove after confirmed working
-    return NextResponse.json(
-      { error: `Gemini ${res.status}: ${err.slice(0, 300)}` },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: `Erro na API: ${res.status}` }, { status: 500 });
   }
 
   const data = await res.json() as {
