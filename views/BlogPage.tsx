@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { BLOG_POSTS } from '../constants';
 import BlogPostCard from '../components/BlogPostCard';
+import AdSlot from '../components/AdSlot';
 
 const BlogPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
@@ -70,11 +71,22 @@ const BlogPage: React.FC = () => {
           </div>
         </div>
 
+        <AdSlot className="mb-10" label="Anúncio" />
+
         {filteredPosts.length > 0 ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 reveal">
-            {filteredPosts.map((post) => (
-              <BlogPostCard key={post.slug} post={post} />
-            ))}
+            {filteredPosts.flatMap((post, index) => {
+              const card = <BlogPostCard key={post.slug} post={post} />;
+              if ((index + 1) % 6 === 0 && index !== filteredPosts.length - 1) {
+                return [
+                  card,
+                  <div key={`ad-${index}`} className="md:col-span-2 lg:col-span-3">
+                    <AdSlot label="Anúncio" />
+                  </div>,
+                ];
+              }
+              return [card];
+            })}
           </div>
         ) : (
           <div className="surface text-center py-16">

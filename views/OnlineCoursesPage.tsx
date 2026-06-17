@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import React from 'react';
+import AdSlot from '../components/AdSlot';
 
 const learningPoints = [
   'Como usar IA para aprender programação mais rápido, mesmo começando do zero.',
@@ -170,6 +171,8 @@ const OnlineCoursesPage: React.FC = () => {
             </ul>
           </article>
         </div>
+
+        <AdSlot label="Anúncio" />
 
         {/* Final CTA */}
         <div className="surface p-7 sm:p-8 reveal" style={{

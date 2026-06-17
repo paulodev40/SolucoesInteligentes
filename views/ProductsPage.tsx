@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import { PRODUCTS } from '../constants';
 import ProductCard from '../components/ProductCard';
+import AdSlot from '../components/AdSlot';
 
 const ProductsPage: React.FC = () => {
   const productsWithGifs = PRODUCTS
@@ -31,11 +32,15 @@ const ProductsPage: React.FC = () => {
             Ferramentas de IA projetadas para resolver problemas reais e otimizar seu fluxo de trabalho.
           </p>
         </div>
+        <AdSlot className="mb-10" label="Anúncio" />
+
         <div className="grid gap-8 md:grid-cols-2 reveal">
           {productsWithGifs.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>
+
+        <AdSlot className="mt-10" label="Anúncio" />
       </div>
     </section>
   );

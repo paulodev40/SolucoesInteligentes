@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import AdSlot from '../components/AdSlot';
 
 const ConsultingPage: React.FC = () => {
   const steps = [
@@ -80,6 +81,8 @@ const ConsultingPage: React.FC = () => {
             ))}
           </div>
         </div>
+
+        <AdSlot className="mt-12" label="Anúncio" />
 
         {/* Final CTA */}
         <div className="mt-12 surface p-8 sm:p-10 text-center reveal" style={{

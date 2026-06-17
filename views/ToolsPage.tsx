@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import Link from 'next/link';
+import AdSlot from '../components/AdSlot';
 
 const BUILT_IN_TOOLS = [
   {
@@ -115,6 +116,8 @@ const ToolsPage: React.FC = () => (
         </p>
       </div>
 
+      <AdSlot className="mt-10 mb-4" label="Anúncio" />
+
       {/* ── Ferramentas interativas ── */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
         {BUILT_IN_TOOLS.map((tool) => (
@@ -138,6 +141,8 @@ const ToolsPage: React.FC = () => (
 
       {/* ── Divisor ── */}
       <div className="section-divider my-16 reveal" />
+
+      <AdSlot className="mb-10" label="Anúncio" />
 
       {/* ── Ferramentas de IA externas ── */}
       <div className="reveal">

@@ -5,6 +5,7 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { BLOG_POSTS, PRODUCTS } from '../constants';
 import NotFoundPage from './NotFoundPage';
+import AdSlot from '../components/AdSlot';
 
 const BlogPostPage: React.FC = () => {
   const params = useParams();
@@ -50,6 +51,8 @@ const BlogPostPage: React.FC = () => {
             alt={post.title}
           />
 
+          <AdSlot className="mb-10" label="Anúncio" />
+
           <div
             className="prose prose-invert prose-lg max-w-none text-si-muted reveal"
             style={{
@@ -59,6 +62,8 @@ const BlogPostPage: React.FC = () => {
             }}
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          <AdSlot className="mt-10" label="Anúncio" />
         </article>
 
         {relatedProduct && (

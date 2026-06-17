@@ -8,6 +8,7 @@ import NewsCard from '../components/NewsCard';
 import BugHuntGame from '../components/games/BugHuntGame';
 import { AnimCounter, AuroraBackground } from '../components/effects';
 import { fetchAINews, type NewsArticle } from '../services/newsApi';
+import AdSlot from '../components/AdSlot';
 
 const NEWS_CACHE_KEY = 'si_home_news_v1';
 const NEWS_CACHE_TTL = 10 * 60 * 1000; // 10 min
@@ -121,6 +122,11 @@ const HomePage: React.FC = () => {
 
       <div className="section-divider" />
 
+      {/* ─────── ANÚNCIO ─────── */}
+      <div className="max-w-5xl mx-auto px-5 py-6">
+        <AdSlot label="Anúncio" />
+      </div>
+
       {/* ─────── ÚLTIMAS NOTÍCIAS ─────── */}
       <section className="relative py-20 sm:py-24 px-5">
         <div className="max-w-7xl mx-auto">
@@ -228,6 +234,11 @@ const HomePage: React.FC = () => {
       </section>
 
       <div className="section-divider" />
+
+      {/* ─────── ANÚNCIO ─────── */}
+      <div className="max-w-5xl mx-auto px-5 py-6">
+        <AdSlot label="Anúncio" />
+      </div>
 
       {/* ─────── BLOG ─────── */}
       <section id="blog" className="relative py-20 sm:py-24 px-5">
