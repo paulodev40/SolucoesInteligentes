@@ -345,6 +345,26 @@ body.cursor-click #cursor-dot {
 }
 textarea.field { min-height: 120px; resize: vertical; }
 
+/* Inputs das ferramentas — mesmo visual de .field (tema escuro) */
+.form-field {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.form-field::placeholder { color: var(--text-faint); }
+.form-field:focus {
+  border-color: var(--cyan);
+  background: var(--surface2);
+  box-shadow: 0 0 0 3px var(--cyan-dim);
+}
+
 .field-label {
   font-size: 0.78rem;
   color: var(--text-muted);
