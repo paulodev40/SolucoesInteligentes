@@ -1,36 +1,30 @@
 ﻿import type { Metadata } from 'next';
-import { Syne, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
+import { Manrope, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {
-  CustomCursor,
-  ParticleField,
-  Scanlines,
-  ScrollProgress,
-  Spotlight,
-  RevealObserver,
-} from '../components/effects';
+import { ScrollProgress } from '../components/effects';
+import NeuralBackground from '../components/NeuralBackground';
 import HashRedirect from '../components/HashRedirect';
 
-const syne = Syne({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
-  variable: '--font-syne',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-manrope',
   display: 'swap',
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-space',
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '700'],
   variable: '--font-jetbrains',
   display: 'swap',
 });
@@ -55,7 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pt-BR"
-      className={`${syne.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`${manrope.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <meta name="google-adsense-account" content="ca-pub-3198120470271949" />
@@ -88,15 +82,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-si-bg text-si-text font-body">
         <HashRedirect />
-        <RevealObserver />
         <ScrollProgress />
-        <CustomCursor />
-        <Spotlight />
-        <ParticleField />
-        <Scanlines />
-        <div className="flex flex-col min-h-screen bg-si-bg text-si-text font-body">
+        <NeuralBackground />
+        <div className="flex flex-col min-h-screen relative" style={{ zIndex: 2 }}>
           <Header />
-          <main className="flex-grow relative z-10">{children}</main>
+          <main className="flex-grow relative">{children}</main>
           <Footer />
         </div>
       </body>

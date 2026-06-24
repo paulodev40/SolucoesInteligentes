@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<canvas ref="{{ c }}" style="position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;}}">
+class Component extends DCLogic {
+  constructor(props){ super(props); this.c = React.createRef(); this._stop=false; }
+  componentDidMount(){ this.initBg(); this.initParallax(); this.initReveal(); }
+  componentWillUnmount(){
+    this._stop=true;
+    if(this._raf) cancelAnimationFrame(this._raf);
+    if(this._onResize) removeEventListener('resize', this._onResize);
+    if(this._onMove) removeEventListener('mousemove', this._onMove);
+    if(this._io) this._io.disconnect();
+    if(this._revealSafety) clearTimeout(this._revealSafety);
+  }
+  initBg(){
+    const canvas=this.c.current; if(!canvas) return;
+    const ctx=canvas.getContext('2d');
+    let w=0,h=0,dpr=1;
+    const resize=()=>{ dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.clientWidth||window.innerWidth; h=canvas.clientHeight||window.innerHeight; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
+    resize(); this._onResize=resize; addEventListener('resize',resize);
+    const N=Math.max(40,Math.min(120,Math.floor(w*h/15000)));
+    const pts=[];
+    for(let i=0;i<N;i++) pts.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,r:Math.random()*1.6+0.8});
+    this._mx=w/2; this._my=h/2;
+    const loop=()=>{
+      if(this._stop) return;
+      ctx.clearRect(0,0,w,h);
+      const ox=(this._mx-w/2)*0.012, oy=(this._my-h/2)*0.012;
+      for(const p of pts){
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>w) p.vx*=-1;
+        if(p.y<0||p.y>h) p.vy*=-1;
+        const dxm=this._mx-p.x, dym=this._my-p.y, dm=Math.hypot(dxm,dym);
+        if(dm<170){ p.x+=dxm/dm*0.5; p.y+=dym/dm*0.5; }
+      }
+      for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++){
+        const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);
+        if(d<128){ const al=(1-d/128)*0.5; ctx.strokeStyle='rgba(90,180,255,'+al+')'; ctx.lineWidth=0.7; ctx.beginPath(); ctx.moveTo(a.x+ox,a.y+oy); ctx.lineTo(b.x+ox,b.y+oy); ctx.stroke(); }
+      }
+      for(const p of pts){
+        const dx=p.x-this._mx,dy=p.y-this._my,d=Math.hypot(dx,dy);
+        if(d<170){ const al=(1-d/170)*0.6; ctx.strokeStyle='rgba(34,224,255,'+al+')'; ctx.lineWidth=0.9; ctx.beginPath(); ctx.moveTo(p.x+ox,p.y+oy); ctx.lineTo(this._mx,this._my); ctx.stroke(); }
+      }
+      for(const p of pts){
+        ctx.beginPath(); ctx.arc(p.x+ox,p.y+oy,p.r,0,Math.PI*2);
+        ctx.fillStyle='rgba(150,210,255,0.85)'; ctx.shadowColor='rgba(34,224,255,0.8)'; ctx.shadowBlur=6; ctx.fill();
+      }
+      ctx.shadowBlur=0;
+      this._raf=requestAnimationFrame(loop);
+    };
+    loop();
+  }
+  initParallax(){
+    this._onMove=(e)=>{
+      this._mx=e.clientX; this._my=e.clientY;
+      const nx=(e.clientX/window.innerWidth-0.5), ny=(e.clientY/window.innerHeight-0.5);
+      document.querySelectorAll('[data-parallax]').forEach(el=>{
+        const dep=parseFloat(el.getAttribute('data-depth')||'10');
+        el.style.transform='translate('+(nx*dep)+'px,'+(ny*dep)+'px)';
+      });
+    };
+    addEventListener('mousemove',this._onMove);
+  }
+  reveal(el){ if(!el) return; el.style.opacity=1; el.style.transform='none'; }
+  setupReveal(){
+    const els=document.querySelectorAll('[data-reveal]');
+    if(!els.length){ return false; }
+    if(!('IntersectionObserver' in window)){ els.forEach(el=>this.reveal(el)); return true; }
+    this._io=new IntersectionObserver((entries)=>{
+      entries.forEach((en)=>{
+        if(en.isIntersecting){
+          const el=en.target;
+          const sib=Array.from(el.parentNode.children).indexOf(el);
+          el.style.transitionDelay=Math.min(sib,5)*70+'ms';
+          this.reveal(el);
+          this._io.unobserve(el);
+        }
+      });
+    },{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>this._io.observe(el));
+    // immediate pass: reveal anything already in view
+    const vh=window.innerHeight||800;
+    els.forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top < vh*0.95){ this.reveal(el); if(this._io) this._io.unobserve(el); } });
+    return true;
+  }
+  initReveal(){
+    // content arrives async (dc-import); retry until elements exist
+    let tries=0;
+    const attempt=()=>{ if(this._stop) return; if(!this.setupReveal() && tries++ < 25) setTimeout(attempt,120); };
+    attempt();
+    // safety net: never leave content hidden
+    this._revealSafety=setTimeout(()=>{ document.querySelectorAll('[data-reveal]').forEach(el=>this.reveal(el)); }, 1800);
+  }
+  renderVals(){ return { c:this.c }; }
+}
+</script>
+</body>
+</html>

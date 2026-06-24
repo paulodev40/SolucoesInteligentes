@@ -1,79 +1,103 @@
 import React from 'react';
 import Link from 'next/link';
-import { NAV_LINKS } from '../constants';
+
+const navLinks = [
+  { name: 'Produtos', href: '/produtos' },
+  { name: 'Cursos Online', href: '/cursos-online' },
+  { name: 'Ferramentas', href: '/ferramentas' },
+  { name: 'Conteúdo Digital', href: '/conteudo-digital' },
+  { name: 'Blog', href: '/blog' },
+];
+
+const legalLinks = [
+  { name: 'Política de Privacidade', href: '/privacidade' },
+  { name: 'Termos de Serviço', href: '/termos' },
+  { name: 'Sobre', href: '/sobre' },
+];
 
 const socials = [
-  { href: '#', label: 'Facebook', icon: 'fab fa-facebook-f' },
-  { href: '#', label: 'Instagram', icon: 'fab fa-instagram' },
-  { href: '#', label: 'Twitter', icon: 'fab fa-twitter' },
-  { href: '#', label: 'LinkedIn', icon: 'fab fa-linkedin-in' },
+  { label: 'Instagram', icon: 'fab fa-instagram', href: 'https://instagram.com/solucoesinteligentes83' },
+  { label: 'YouTube', icon: 'fab fa-youtube', href: 'https://youtube.com/@solucoesinteligentes83' },
+  { label: 'Facebook', icon: 'fab fa-facebook-f', href: 'https://www.facebook.com/profile.php?id=61586224777647' },
 ];
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative z-10 mt-16 border-t border-[var(--border)] bg-[var(--bg2)]">
-      <div className="max-w-7xl mx-auto py-14 px-5 sm:px-6 lg:px-8">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-10">
-          <div className="space-y-6 xl:col-span-1">
-            <Link href="/" className="font-display font-extrabold text-2xl text-si-text inline-block">
-              <span className="text-si-cyan">Soluções</span> Inteligentes
-            </Link>
-            <p className="text-si-muted text-base leading-relaxed max-w-sm">
-              Inteligência artificial, soluções reais.
-            </p>
-            <div className="flex gap-3">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  className="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-[var(--border)] text-si-muted hover:text-si-cyan hover:border-[var(--border-strong)] hover:bg-[var(--cyan-dim)] transition-all hover:shadow-[0_0_20px_var(--cyan-glow)]"
-                >
-                  <i className={`${s.icon} text-base`} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-            <div>
-              <h3 className="section-label" style={{ marginBottom: 16 }}>Navegação</h3>
-              <ul className="space-y-3">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.name}>
-                    <Link href={link.path} className="text-si-muted hover:text-si-cyan transition-colors text-sm">
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="section-label" style={{ marginBottom: 16 }}>Legal</h3>
-              <ul className="space-y-3">
-                <li>
-                  <Link href="/privacidade" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
-                    Política de Privacidade
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/termos" className="text-si-muted hover:text-si-cyan transition-colors text-sm">
-                    Termos de Serviço
-                  </Link>
-                </li>
-              </ul>
-            </div>
+    <footer
+      className="relative max-w-[1180px] mx-auto mt-20 px-6 pt-12 pb-10"
+      style={{ borderTop: '1px solid rgba(140,170,255,.12)' }}
+    >
+      <div className="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr]">
+        <div>
+          <Link href="/" className="flex items-center gap-[11px] font-display font-bold text-base">
+            <img
+              src="/assets/images/logotipo.png"
+              alt=""
+              width={40}
+              height={40}
+              className="object-contain"
+              style={{ width: 40, height: 40, filter: 'drop-shadow(0 0 10px rgba(34,224,255,.4))' }}
+            />
+            Soluções Inteligentes<span className="text-si-cyan"> 83</span>
+          </Link>
+          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed" style={{ color: '#8a97b5' }}>
+            Inteligência artificial, soluções reais. Ferramentas gratuitas de IA para
+            profissionais, empreendedores e entusiastas de tecnologia.
+          </p>
+          <div className="mt-5 flex gap-3">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+                className="social-link inline-flex items-center justify-center w-10 h-10 rounded-xl transition-all"
+                style={{
+                  color: '#aab6d6',
+                  background: 'rgba(255,255,255,.04)',
+                  border: '1px solid rgba(140,170,255,.16)',
+                }}
+              >
+                <i className={`${s.icon} text-base`} />
+              </a>
+            ))}
           </div>
         </div>
 
-        <div className="mt-12 border-t border-[var(--border)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-si-dim font-mono">
-            © {new Date().getFullYear()} <span className="text-si-cyan">Soluções Inteligentes 83</span>. Todos os direitos reservados.
-          </p>
-          <p className="text-xs text-si-dim font-mono tracking-widest uppercase">
-            Powered by AI · Made in Brazil
-          </p>
+        <div>
+          <div className="mono-label mb-4" style={{ fontSize: 11, letterSpacing: '2px', color: '#6b78a0' }}>
+            Navegação
+          </div>
+          <div className="flex flex-col gap-[11px] text-sm" style={{ color: '#aab6d6' }}>
+            {navLinks.map((l) => (
+              <Link key={l.name} href={l.href} className="footer-link transition-colors w-fit">
+                {l.name}
+              </Link>
+            ))}
+          </div>
         </div>
+
+        <div>
+          <div className="mono-label mb-4" style={{ fontSize: 11, letterSpacing: '2px', color: '#6b78a0' }}>
+            Legal
+          </div>
+          <div className="flex flex-col gap-[11px] text-sm" style={{ color: '#aab6d6' }}>
+            {legalLinks.map((l) => (
+              <Link key={l.name} href={l.href} className="footer-link transition-colors w-fit">
+                {l.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div
+        className="mt-10 pt-[22px] flex flex-wrap justify-between gap-[10px] font-mono"
+        style={{ borderTop: '1px solid rgba(140,170,255,.1)', fontSize: 12.5, color: '#6b78a0' }}
+      >
+        <span>© 2026 Soluções Inteligentes 83. Todos os direitos reservados.</span>
+        <span>Powered by AI · Made in Brazil 🇧🇷</span>
       </div>
     </footer>
   );

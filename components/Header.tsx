@@ -3,118 +3,149 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { NAV_LINKS } from '../constants';
+
+const LINKS = [
+  { name: 'Home', path: '/' },
+  { name: 'Produtos', path: '/produtos' },
+  { name: 'Cursos', path: '/cursos-online' },
+  { name: 'Ferramentas', path: '/ferramentas' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Sobre', path: '/sobre' },
+];
 
 const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isMenuOpen]);
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   const isActive = (path: string) =>
     path === '/' ? pathname === '/' : (pathname ?? '').startsWith(path);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 border-b backdrop-blur-xl ${
-        scrolled
-          ? 'bg-[rgba(5,8,16,0.95)] border-[var(--border-strong)] shadow-[0_0_40px_rgba(0,212,255,0.06)]'
-          : 'bg-[rgba(5,8,16,0.75)] border-[var(--border)]'
-      }`}
+    <nav
+      className="fixed top-[18px] left-1/2 z-50 flex items-center gap-[18px] py-[11px] pl-[18px] pr-[14px]"
+      style={{
+        transform: 'translateX(-50%)',
+        width: 'min(1180px, calc(100% - 32px))',
+        background: 'var(--glass-nav)',
+        backdropFilter: 'blur(20px) saturate(150%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+        border: '1px solid rgba(140,170,255,.16)',
+        borderRadius: 18,
+        boxShadow:
+          '0 18px 50px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.07)',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[68px]">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 no-underline group">
-            <img
-              src="/assets/images/logotipo.png"
-              alt="Soluções Inteligentes 83"
-              className="h-9 w-auto transition-transform duration-300 group-hover:scale-105"
-              style={{ filter: 'drop-shadow(0 0 12px rgba(0,212,255,0.35))' }}
-            />
-            <span className="font-display font-extrabold text-base sm:text-lg tracking-tight text-si-text">
-              <span className="text-si-cyan">Soluções</span> Inteligentes 83
-            </span>
-            <span
-              className="hidden sm:inline-flex items-center gap-1.5 ml-2 px-2 py-0.5 rounded-full font-mono text-[0.62rem] tracking-[0.12em] uppercase"
-              style={{
-                background: 'rgba(0,255,136,0.08)',
-                color: 'var(--green)',
-                border: '1px solid rgba(0,255,136,0.25)',
+      <Link href="/" className="flex items-center gap-[11px] font-display font-bold">
+        <img
+          src="/assets/images/logotipo.png"
+          alt="Soluções Inteligentes 83"
+          width={38}
+          height={38}
+          className="object-contain"
+          style={{ width: 38, height: 38, filter: 'drop-shadow(0 0 10px rgba(34,224,255,.5))' }}
+        />
+        <span className="text-[15px] tracking-[0.2px] whitespace-nowrap">
+          Soluções Inteligentes<span className="text-si-cyan"> 83</span>
+        </span>
+      </Link>
+
+      <div className="flex-1" />
+
+      {/* Desktop nav */}
+      <div className="hidden md:flex items-center gap-1 text-[13.5px] font-semibold" style={{ color: '#aeb9d6' }}>
+        {LINKS.map((link) => {
+          const active = isActive(link.path);
+          return (
+            <Link
+              key={link.name}
+              href={link.path}
+              className="px-3 py-2 rounded-[10px] transition-colors"
+              style={
+                active
+                  ? { background: 'rgba(34,224,255,.12)', color: '#fff' }
+                  : undefined
+              }
+              onMouseEnter={(e) => {
+                if (!active) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,.06)';
+                  e.currentTarget.style.color = '#fff';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!active) {
+                  e.currentTarget.style.background = '';
+                  e.currentTarget.style.color = '';
+                }
               }}
             >
-              <span className="dot-pulse dot-pulse--green" />
-              AI
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.path}
-                className={`px-3.5 py-2 rounded-md font-body text-sm font-medium transition-all ${
-                  isActive(link.path)
-                    ? 'text-si-cyan bg-[var(--cyan-dim)]'
-                    : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setIsMenuOpen((v) => !v)}
-            type="button"
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)] transition-colors focus:outline-none focus:ring-2 focus:ring-si-cyan"
-            aria-controls="mobile-menu"
-            aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
-          >
-            {isMenuOpen ? <i className="fas fa-times text-lg" /> : <i className="fas fa-bars text-lg" />}
-          </button>
-        </div>
+              {link.name}
+            </Link>
+          );
+        })}
       </div>
 
+      <Link href="/produtos" className="hidden md:inline-flex cta-grad" style={{ padding: '10px 18px', borderRadius: 12, fontSize: 13.5 }}>
+        Começar →
+      </Link>
+
+      {/* Mobile toggle */}
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+        aria-expanded={open}
+        className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-[10px] text-si-muted"
+        style={{ background: 'rgba(255,255,255,.05)', border: '1px solid rgba(140,170,255,.16)' }}
+      >
+        {open ? <i className="fas fa-times text-lg" /> : <i className="fas fa-bars text-lg" />}
+      </button>
+
       {/* Mobile menu */}
-      {isMenuOpen && (
+      {open && (
         <div
-          id="mobile-menu"
-          className="md:hidden border-t border-[var(--border)] bg-[rgba(5,8,16,0.98)] backdrop-blur-xl"
+          className="md:hidden absolute left-0 right-0 top-[calc(100%+10px)] p-3 flex flex-col gap-1"
+          style={{
+            background: 'rgba(10,14,26,.96)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
+            border: '1px solid rgba(140,170,255,.16)',
+            borderRadius: 18,
+            boxShadow: '0 18px 50px -20px rgba(0,0,0,.7)',
+          }}
         >
-          <div className="px-3 py-4 space-y-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.name}
-                href={link.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block px-4 py-3 rounded-lg font-body text-base font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-si-cyan bg-[var(--cyan-dim)] border border-[var(--border-strong)]'
-                    : 'text-si-muted hover:text-si-cyan hover:bg-[var(--cyan-dim)]'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-          </div>
+          {LINKS.map((link) => (
+            <Link
+              key={link.name}
+              href={link.path}
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 rounded-[10px] text-[15px] font-semibold transition-colors"
+              style={
+                isActive(link.path)
+                  ? { background: 'rgba(34,224,255,.12)', color: '#fff' }
+                  : { color: '#aeb9d6' }
+              }
+            >
+              {link.name}
+            </Link>
+          ))}
+          <Link
+            href="/produtos"
+            onClick={() => setOpen(false)}
+            className="cta-grad justify-center mt-1"
+            style={{ padding: '12px 18px', borderRadius: 12, fontSize: 14 }}
+          >
+            Começar →
+          </Link>
         </div>
       )}
-    </header>
+    </nav>
   );
 };
 

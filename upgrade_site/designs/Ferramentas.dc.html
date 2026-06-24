@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#05070f;color:#e8eeff;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:rgba(34,224,255,.3);color:#fff}
+  @keyframes shimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+  @keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(34,224,255,.5)}50%{box-shadow:0 0 0 6px rgba(34,224,255,0)}}
+  @keyframes riseIn{from{transform:translateY(22px)}to{transform:none}}
+</style>
+</helmet>
+<div style="position:relative;min-height:100vh;background:radial-gradient(1200px 700px at 78% -8%,rgba(34,224,255,.12),transparent 60%),radial-gradient(1000px 800px at 12% 18%,rgba(139,92,255,.13),transparent 60%),#05070f;overflow-x:hidden">
+  <dc-import name="NeuralBg" hint-size="100%,100%"></dc-import>
+
+  <nav style="position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;width:min(1180px,calc(100% - 32px));display:flex;align-items:center;gap:18px;padding:11px 14px 11px 18px;background:rgba(14,19,34,.55);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(140,170,255,.16);border-radius:18px;box-shadow:0 18px 50px -20px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.07)">
+    <a href="https://www.solucoesinteligentes83.com/" style="display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700"><img src="uploads/logo-1782297911799.png" alt="Soluções Inteligentes 83" style="width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(34,224,255,.5))"><span style="font-size:15px">Soluções Inteligentes<span style="color:#22e0ff"> 83</span></span></a>
+    <div style="flex:1"></div>
+    <div style="display:flex;gap:4px;align-items:center;font-size:13.5px;font-weight:600;color:#aeb9d6">
+      <a href="https://www.solucoesinteligentes83.com/" style="padding:8px 12px;border-radius:10px" style-hover="background:rgba(255,255,255,.06);color:#fff">Home</a>
+      <a href="Produtos.dc.html" style="padding:8px 12px;border-radius:10px" style-hover="background:rgba(255,255,255,.06);color:#fff">Produtos</a>
+      <a href="Cursos.dc.html" style="padding:8px 12px;border-radius:10px" style-hover="background:rgba(255,255,255,.06);color:#fff">Cursos</a>
+      <a href="Ferramentas.dc.html" style="padding:8px 12px;border-radius:10px;background:rgba(34,224,255,.12);color:#fff">Ferramentas</a>
+      <a href="Blog.dc.html" style="padding:8px 12px;border-radius:10px" style-hover="background:rgba(255,255,255,.06);color:#fff">Blog</a>
+      <a href="Sobre.dc.html" style="padding:8px 12px;border-radius:10px" style-hover="background:rgba(255,255,255,.06);color:#fff">Sobre</a>
+    </div>
+    <a href="Produtos.dc.html" style="padding:10px 18px;border-radius:12px;font-weight:700;font-size:13.5px;color:#05070f;background:linear-gradient(135deg,#22e0ff,#8b5cff);box-shadow:0 8px 24px -6px rgba(34,224,255,.6)" style-hover="filter:brightness(1.08)">Produtos →</a>
+  </nav>
+
+  <main style="position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:160px 24px 0">
+    <header style="text-align:center;position:relative">
+      <div data-parallax data-depth="16" style="position:absolute;top:-40px;left:14%;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(43,255,154,.14),transparent 68%);filter:blur(24px);pointer-events:none"></div>
+      <div data-parallax data-depth="-18" style="position:absolute;top:0;right:12%;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(34,224,255,.16),transparent 68%);filter:blur(24px);pointer-events:none"></div>
+      <div style="position:relative;display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border-radius:999px;background:rgba(43,255,154,.08);border:1px solid rgba(43,255,154,.28);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2.5px;color:#7fffc0;text-transform:uppercase"><span style="width:7px;height:7px;border-radius:50%;background:#2bff9a;animation:badgePulse 2s infinite"></span>Ferramentas · 100% Gratuitas</div>
+      <h1 style="position:relative;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(36px,5.4vw,64px);letter-spacing:-1.5px;margin:24px 0 0;line-height:1.05">Recursos para o seu <span style="background:linear-gradient(100deg,#22e0ff,#2bff9a 60%,#8b5cff);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% auto;animation:shimmer 6s linear infinite">dia a dia</span></h1>
+      <p style="position:relative;margin:22px auto 0;max-width:58ch;color:#aab6d6;font-size:18px;line-height:1.6">Calculadoras, verificadores, geradores e ferramentas de IA — tudo gratuito, sem login e direto no navegador.</p>
+    </header>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px">
+      <sc-for list="{{ tools }}" as="t" hint-placeholder-count="9">
+        <a href="{{ t.href }}" target="_blank" data-reveal style="display:flex;flex-direction:column;padding:24px 22px;border-radius:20px;background:rgba(16,22,40,.5);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(140,170,255,.14);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);animation:riseIn .65s cubic-bezier(.2,.7,.2,1) both" style-hover="transform:translateY(-6px);border-color:rgba(34,224,255,.4);box-shadow:0 22px 50px -22px rgba(34,224,255,.5)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+            <div style="font-size:30px">{{ t.icon }}</div>
+            <span style="padding:4px 10px;border-radius:999px;font-size:10.5px;font-weight:700;letter-spacing:.5px;background:rgba(34,224,255,.12);border:1px solid rgba(34,224,255,.3);color:#7fe9ff">{{ t.cat }}</span>
+          </div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:600;line-height:1.25">{{ t.name }}</h3>
+          <p style="margin-top:9px;font-size:13.5px;color:#8a97b5;line-height:1.55;flex:1">{{ t.desc }}</p>
+          <div style="margin-top:16px;font-size:13px;font-weight:700;color:#22e0ff">Acessar →</div>
+        </a>
+      </sc-for>
+    </div>
+  </main>
+
+  <footer style="position:relative;z-index:2;max-width:1180px;margin:80px auto 0;padding:48px 24px 40px;border-top:1px solid rgba(140,170,255,.12)">
+    <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:40px">
+      <div>
+        <a href="https://www.solucoesinteligentes83.com/" style="display:flex;align-items:center;gap:11px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px"><img src="uploads/logo-1782297911799.png" alt="" style="width:40px;height:40px;object-fit:contain;filter:drop-shadow(0 0 10px rgba(34,224,255,.4))">Soluções Inteligentes<span style="color:#22e0ff"> 83</span></a>
+        <p style="margin-top:16px;max-width:38ch;color:#8a97b5;font-size:14px;line-height:1.6">Inteligência artificial, soluções reais. Ferramentas gratuitas de IA para profissionais, empreendedores e entusiastas.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#6b78a0;text-transform:uppercase;margin-bottom:16px">Navegação</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;color:#aab6d6">
+          <a href="Produtos.dc.html" style-hover="color:#22e0ff">Produtos</a>
+          <a href="Cursos.dc.html" style-hover="color:#22e0ff">Cursos Online</a>
+          <a href="Ferramentas.dc.html" style-hover="color:#22e0ff">Ferramentas</a>
+          <a href="Blog.dc.html" style-hover="color:#22e0ff">Blog</a>
+          <a href="Sobre.dc.html" style-hover="color:#22e0ff">Sobre</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;color:#6b78a0;text-transform:uppercase;margin-bottom:16px">Legal</div>
+        <div style="display:flex;flex-direction:column;gap:11px;font-size:14px;color:#aab6d6">
+          <a href="https://www.solucoesinteligentes83.com/privacidade" style-hover="color:#22e0ff">Política de Privacidade</a>
+          <a href="https://www.solucoesinteligentes83.com/termos" style-hover="color:#22e0ff">Termos de Serviço</a>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:40px;padding-top:22px;border-top:1px solid rgba(140,170,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#6b78a0;font-family:'JetBrains Mono',monospace"><span>© 2026 Soluções Inteligentes 83. Todos os direitos reservados.</span><span>Powered by AI · Made in Brazil 🇧🇷</span></div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals(){
+    return {
+      tools: [
+        { icon:'🏖️', cat:'Trabalhista', name:'Calculadora de Férias e 13º', desc:'Calcule férias (com terço constitucional) e 13º proporcional, com desconto estimado de INSS e IRRF.', href:'https://www.solucoesinteligentes83.com/ferramentas/calculadora-ferias-13' },
+        { icon:'🏢', cat:'Empresarial', name:'Consultar CNPJ', desc:'Consulte razão social, situação cadastral, endereço e sócios — dados da Receita Federal.', href:'https://www.solucoesinteligentes83.com/ferramentas/cnpj' },
+        { icon:'✨', cat:'IA', name:'Gerador de Prompts para IA', desc:'Crie prompts eficientes para ChatGPT, Claude e Gemini em segundos.', href:'https://www.solucoesinteligentes83.com/ferramentas/gerador-de-prompts' },
+        { icon:'📈', cat:'Financeiro', name:'Calculadora de Juros Compostos', desc:'Simule o crescimento do investimento com aportes mensais e taxa anual, ano a ano.', href:'https://www.solucoesinteligentes83.com/ferramentas/calculadora-juros-compostos' },
+        { icon:'%', cat:'Matemática', name:'Calculadora de Porcentagem', desc:'Quanto é X% de um valor, descontos, acréscimos e variações percentuais.', href:'https://www.solucoesinteligentes83.com/ferramentas/calculadora-porcentagem' },
+        { icon:'⚡', cat:'Finanças', name:'Gerador de QR Code PIX', desc:'Gere QR Code e Pix Copia e Cola a partir da sua chave. 100% no navegador.', href:'https://www.solucoesinteligentes83.com/ferramentas/gerador-qr-code-pix' },
+        { icon:'🗜️', cat:'Imagem', name:'Comprimir Imagem', desc:'Reduza o tamanho de JPG, PNG e WEBP com controle de qualidade. Sem upload.', href:'https://www.solucoesinteligentes83.com/ferramentas/comprimir-imagem' },
+        { icon:'↔️', cat:'Imagem', name:'Redimensionar Imagem', desc:'Altere dimensões em pixels com trava de proporção automática. Sem upload.', href:'https://www.solucoesinteligentes83.com/ferramentas/redimensionar-imagem' },
+        { icon:'🔄', cat:'Imagem', name:'Converter Imagem', desc:'Converta entre JPG, PNG e WEBP no navegador, com fundo branco no JPEG.', href:'https://www.solucoesinteligentes83.com/ferramentas/converter-imagem' },
+        { icon:'✂️', cat:'Imagem · IA', name:'Remover Fundo de Imagem', desc:'Remova o fundo de fotos com IA no navegador. Resultado em PNG transparente.', href:'https://www.solucoesinteligentes83.com/ferramentas/remover-fundo-de-imagem' },
+        { icon:'📎', cat:'PDF', name:'Juntar PDF', desc:'Una vários PDFs em um só, na ordem que quiser. Reordene arrastando.', href:'https://www.solucoesinteligentes83.com/ferramentas/juntar-pdf' },
+        { icon:'✂️', cat:'PDF', name:'Dividir PDF', desc:'Extraia páginas, separe em individuais ou divida em blocos. Resultado em .zip.', href:'https://www.solucoesinteligentes83.com/ferramentas/dividir-pdf' },
+        { icon:'🤖', cat:'IA', name:'Resumidor de Texto com IA', desc:'Cole qualquer texto e receba um resumo claro e objetivo em segundos.', href:'https://www.solucoesinteligentes83.com/ferramentas/resumidor-de-texto' },
+        { icon:'📊', cat:'Escrita', name:'Analisador de Legibilidade', desc:'Score Flesch adaptado para português com nível de escolaridade e dicas.', href:'https://www.solucoesinteligentes83.com/ferramentas/analisador-de-legibilidade' },
+        { icon:'✍️', cat:'Perfil', name:'Gerador de Bio Profissional', desc:'Bio para LinkedIn, Instagram, Twitter/X e WhatsApp em segundos.', href:'https://www.solucoesinteligentes83.com/ferramentas/gerador-de-bio' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

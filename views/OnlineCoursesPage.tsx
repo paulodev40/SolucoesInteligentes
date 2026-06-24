@@ -1,9 +1,9 @@
-﻿'use client';
-
 import React from 'react';
-import AdSlot from '../components/AdSlot';
+import Link from 'next/link';
 
-const learningPoints = [
+const KIWIFY_URL = 'https://pay.kiwify.com.br/JPfyumd';
+
+const learn = [
   'Como usar IA para aprender programação mais rápido, mesmo começando do zero.',
   'Fundamentos de lógica e estrutura de código sem linguagem complicada.',
   'Criação de prompts eficientes para gerar e melhorar código com segurança.',
@@ -12,197 +12,407 @@ const learningPoints = [
   'Rotina de estudo orientada para manter consistência e progresso real.',
 ];
 
-const audiencePoints = [
+const audience = [
   'Quem quer entrar na área de tecnologia sem se sentir perdido.',
   'Profissionais de outras áreas que desejam criar soluções digitais.',
   'Iniciantes que já tentaram estudar sozinhos e travaram no caminho.',
   'Pessoas que querem aprender com prática, clareza e apoio da IA.',
 ];
 
-const copyVariants = {
-  A: {
-    title: 'Aprenda programação com I.A. e tire seu primeiro projeto do papel',
-    subtitle:
-      'Um curso objetivo para iniciantes que querem sair da teoria e construir soluções reais com apoio da inteligência artificial, de forma prática e guiada.',
-    primaryCta: 'Comprar curso agora',
-    secondaryCta: 'Garantir minha vaga',
-    mobileCta: 'Quero começar agora',
-  },
-  B: {
-    title: 'Do zero ao seu primeiro software com I.A., passo a passo',
-    subtitle:
-      'Aprenda com um método direto ao ponto para iniciar em programação, acelerar com IA e publicar seu primeiro projeto com mais confiança.',
-    primaryCta: 'Começar agora',
-    secondaryCta: 'Quero entrar na turma',
-    mobileCta: 'Entrar agora',
-  },
-};
-
-const KIWIFY_URL = 'https://pay.kiwify.com.br/JPfyumd';
-
 const OnlineCoursesPage: React.FC = () => {
-  const [variant, setVariant] = React.useState<'A' | 'B'>('A');
-
-  React.useEffect(() => {
-    const saved = window.localStorage.getItem('onlineCourseCopyVariant');
-    if (saved === 'A' || saved === 'B') {
-      setVariant(saved);
-      return;
-    }
-    const selected: 'A' | 'B' = Math.random() < 0.5 ? 'A' : 'B';
-    window.localStorage.setItem('onlineCourseCopyVariant', selected);
-    setVariant(selected);
-  }, []);
-
-  const copy = copyVariants[variant];
-
   return (
-    <section className="relative py-20 pb-32 sm:py-24 sm:pb-24 px-5">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Hero */}
-        <div className="surface p-8 sm:p-12 relative overflow-hidden reveal">
-          <div aria-hidden className="absolute -top-24 -left-24 h-72 w-72 rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(circle, var(--cyan-glow), transparent 70%)' }} />
-          <div aria-hidden className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl"
-            style={{ background: 'radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%)' }} />
+    <main className="relative max-w-[1100px] mx-auto px-6 pt-[160px]">
+      {/* HERO HEADER */}
+      <header className="text-center relative">
+        <div
+          data-parallax
+          data-depth="16"
+          className="absolute pointer-events-none"
+          style={{
+            top: -30,
+            left: '16%',
+            width: 300,
+            height: 300,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle,rgba(139,92,255,.2),transparent 68%)',
+            filter: 'blur(24px)',
+          }}
+        />
+        <div
+          className="relative inline-flex items-center"
+          style={{
+            gap: 9,
+            padding: '8px 16px',
+            borderRadius: 999,
+            background: 'rgba(139,92,255,.1)',
+            border: '1px solid rgba(139,92,255,.3)',
+            fontFamily: "'JetBrains Mono',monospace",
+            fontSize: 12,
+            letterSpacing: '2.5px',
+            color: '#c9b4ff',
+            textTransform: 'uppercase',
+          }}
+        >
+          <span
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: '50%',
+              background: '#8b5cff',
+              animation: 'badgePulse 2s infinite',
+            }}
+          />
+          Curso disponível agora
+        </div>
+        <h1
+          className="relative"
+          style={{
+            fontFamily: "'Space Grotesk',sans-serif",
+            fontWeight: 700,
+            fontSize: 'clamp(32px,4.8vw,56px)',
+            letterSpacing: '-1.5px',
+            margin: '24px auto 0',
+            maxWidth: '18ch',
+            lineHeight: 1.08,
+          }}
+        >
+          Aprenda programação com{' '}
+          <span
+            style={{
+              backgroundImage: 'linear-gradient(100deg,#8b5cff,#22e0ff 60%,#2bff9a)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              backgroundSize: '200% auto',
+              animation: 'shimmerBg 6s linear infinite',
+            }}
+          >
+            I.A.
+          </span>{' '}
+          e tire seu primeiro projeto do papel
+        </h1>
+        <p
+          className="relative"
+          style={{
+            margin: '22px auto 0',
+            maxWidth: '60ch',
+            color: '#aab6d6',
+            fontSize: 18,
+            lineHeight: 1.6,
+          }}
+        >
+          Um curso objetivo para iniciantes que querem sair da teoria e construir soluções reais com
+          apoio da inteligência artificial, de forma prática e guiada.
+        </p>
+      </header>
 
-          <div className="relative z-10">
-            <span className="badge badge--green">
-              <span className="dot-pulse dot-pulse--green" /> Curso disponível agora
-            </span>
-
-            <h1 className="mt-6 font-display font-extrabold text-3xl sm:text-5xl text-si-text leading-tight">
-              {copy.title}
-            </h1>
-            <p className="mt-4 max-w-3xl text-lg text-si-muted leading-relaxed">{copy.subtitle}</p>
-
-            <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-              <div className="lg:col-span-8 surface p-6 sm:p-8" style={{ background: 'var(--surface2)' }}>
-                <div className="section-label">Formação</div>
-                <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text">
-                  Programação Turbo com I.A.
-                </h2>
-                <p className="mt-4 text-si-muted leading-relaxed">
-                  Aprender a programar não precisa ser um processo lento e solitário. No curso{' '}
-                  <strong className="text-si-text">Programando com I.A. para Iniciantes</strong>, você aprenderá
-                  a utilizar as ferramentas de Inteligência Artificial mais avançadas do mercado como seu
-                  mentor pessoal. Do zero ao seu primeiro projeto real, com linguagem simples e prática imediata.
-                </p>
-
-                <div className="mt-6 overflow-hidden rounded-xl border border-[var(--border-strong)] bg-[var(--bg)]"
-                  style={{ boxShadow: '0 0 32px var(--cyan-dim)' }}>
-                  <div className="aspect-video w-full">
-                    <iframe
-                      className="h-full w-full"
-                      src="https://www.youtube.com/embed/J5SSLrWO05g"
-                      title="Programando com I.A. para Iniciantes"
-                      loading="lazy"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-2">
-                  <span className="chip chip--cyan">Nível: Iniciante</span>
-                  <span className="chip chip--cyan">Formato: Online</span>
-                  <span className="chip chip--cyan">Plataforma: Kiwify</span>
-                </div>
-              </div>
-
-              <div className="lg:col-span-4 surface p-6 sm:p-7 flex flex-col justify-center gap-6"
-                style={{ background: 'var(--surface2)' }}>
-                <div>
-                  <h3 className="font-display font-bold text-xl text-si-text">Inscrições abertas</h3>
-                  <p className="mt-3 text-si-muted">
-                    O curso já está pronto. Garanta seu acesso agora e comece a aprender com aulas práticas.
-                  </p>
-                </div>
-
-                <div className="rounded-lg border border-[var(--border-strong)] p-4 text-sm space-y-2"
-                  style={{ background: 'var(--cyan-dim)' }}>
-                  <p className="text-si-text">✓ Acesso online imediato</p>
-                  <p className="text-si-text">✓ Pagamento seguro via Kiwify</p>
-                  <p className="text-si-text">✓ Conteúdo pensado para iniciantes</p>
-                </div>
-
-                <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary w-full">
-                  {copy.primaryCta} →
-                </a>
-              </div>
+      {/* VIDEO + INSCRIÇÕES */}
+      <section
+        data-reveal
+        className="grid grid-cols-1 lg:grid-cols-[1.3fr_.9fr]"
+        style={{ marginTop: 56, gap: 24, animation: 'riseIn .7s cubic-bezier(.2,.7,.2,1) both' }}
+      >
+        <div
+          style={{
+            borderRadius: 24,
+            overflow: 'hidden',
+            background: 'rgba(16,22,40,.5)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(140,170,255,.14)',
+          }}
+        >
+          <div style={{ position: 'relative', aspectRatio: '16/9', background: '#000' }}>
+            <iframe
+              src="https://www.youtube.com/embed/J5SSLrWO05g"
+              title="Programação Turbo com I.A."
+              allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture"
+              allowFullScreen
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+            />
+          </div>
+          <div style={{ padding: '24px 26px' }}>
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono',monospace",
+                fontSize: 11,
+                letterSpacing: '2px',
+                color: '#8b5cff',
+                textTransform: 'uppercase',
+                marginBottom: 10,
+              }}
+            >
+              Formação
+            </div>
+            <h2
+              style={{
+                fontFamily: "'Space Grotesk',sans-serif",
+                fontSize: 26,
+                fontWeight: 700,
+                letterSpacing: '-.5px',
+              }}
+            >
+              Programação Turbo com I.A.
+            </h2>
+            <p style={{ marginTop: 12, color: '#aab6d6', fontSize: 15, lineHeight: 1.65 }}>
+              Aprender a programar não precisa ser lento e solitário. No curso{' '}
+              <b style={{ color: '#e8eeff' }}>Programando com I.A. para Iniciantes</b>, você usa as
+              ferramentas de IA mais avançadas como seu mentor pessoal — do zero ao seu primeiro
+              projeto real, com linguagem simples e prática imediata.
+            </p>
+            <div className="flex flex-wrap" style={{ gap: 10, marginTop: 18 }}>
+              {['Nível: Iniciante', 'Formato: Online', 'Plataforma: Kiwify'].map((tag) => (
+                <span
+                  key={tag}
+                  style={{
+                    padding: '7px 14px',
+                    borderRadius: 999,
+                    fontSize: 12.5,
+                    fontWeight: 600,
+                    background: 'rgba(255,255,255,.05)',
+                    border: '1px solid rgba(140,170,255,.16)',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Two columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 reveal">
-          <article className="surface surface-hover p-7 sm:p-8">
-            <div className="section-label">Conteúdo</div>
-            <h2 className="font-display font-bold text-2xl text-si-text">O que você vai aprender</h2>
-            <p className="mt-3 text-si-muted">
-              Conteúdo focado em aplicação prática para você ganhar confiança e começar a programar.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {learningPoints.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-si-muted">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-si-cyan flex-shrink-0"
-                    style={{ boxShadow: '0 0 8px var(--cyan)' }} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-
-          <article className="surface surface-hover p-7 sm:p-8">
-            <div className="section-label">Público</div>
-            <h2 className="font-display font-bold text-2xl text-si-text">Para quem este curso é ideal</h2>
-            <p className="mt-3 text-si-muted">
-              Se você quer aprender com clareza e evitar frustração, este formato foi desenhado para você.
-            </p>
-            <ul className="mt-6 space-y-3">
-              {audiencePoints.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-si-muted">
-                  <span className="mt-1.5 h-2 w-2 rounded-full bg-si-cyan flex-shrink-0"
-                    style={{ boxShadow: '0 0 8px var(--cyan)' }} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+        <div
+          className="flex flex-col"
+          style={{
+            padding: '30px 28px',
+            borderRadius: 24,
+            background: 'linear-gradient(160deg,rgba(139,92,255,.14),rgba(34,224,255,.1))',
+            border: '1px solid rgba(140,170,255,.22)',
+            backdropFilter: 'blur(16px)',
+            boxShadow: '0 26px 60px -28px rgba(139,92,255,.5)',
+          }}
+        >
+          <h3 style={{ fontFamily: "'Space Grotesk',sans-serif", fontSize: 24, fontWeight: 700 }}>
+            Inscrições abertas
+          </h3>
+          <p style={{ marginTop: 10, color: '#c4cee8', fontSize: 15, lineHeight: 1.6 }}>
+            O curso já está pronto. Garanta seu acesso agora e comece a aprender com aulas práticas.
+          </p>
+          <div className="flex flex-col" style={{ gap: 13, margin: '22px 0 26px' }}>
+            {[
+              'Acesso online imediato',
+              'Pagamento seguro via Kiwify',
+              'Conteúdo pensado para iniciantes',
+            ].map((item) => (
+              <div
+                key={item}
+                className="flex items-center"
+                style={{ gap: 11, fontSize: 14.5, color: '#dbe4f7' }}
+              >
+                <span style={{ color: '#2bff9a', fontWeight: 800 }}>✓</span> {item}
+              </div>
+            ))}
+          </div>
+          <div style={{ flex: 1 }} />
+          <a
+            href={KIWIFY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'block',
+              textAlign: 'center',
+              padding: 16,
+              borderRadius: 14,
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#05070f',
+              background: 'linear-gradient(135deg,#22e0ff,#8b5cff)',
+              boxShadow: '0 14px 38px -10px rgba(34,224,255,.65)',
+            }}
+          >
+            Comprar curso agora →
+          </a>
         </div>
+      </section>
 
-        <AdSlot label="Anúncio" />
-
-        {/* Final CTA */}
-        <div className="surface p-7 sm:p-8 reveal" style={{
-          background: 'linear-gradient(135deg, var(--cyan-dim), rgba(124,58,237,0.08))',
-        }}>
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="section-label">Comece hoje</div>
-              <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text">
-                Pronto para acelerar sua jornada na programação?
-              </h2>
-              <p className="mt-3 text-si-muted max-w-2xl">
-                Entre agora para o curso e aprenda com um plano claro, do primeiro passo ao seu primeiro projeto prático.
-              </p>
-            </div>
-            <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer" className="btn-primary flex-shrink-0">
-              {copy.secondaryCta} →
-            </a>
+      {/* APRENDER + PÚBLICO */}
+      <section className="grid grid-cols-1 md:grid-cols-2" style={{ marginTop: 80, gap: 24 }}>
+        <div
+          data-reveal
+          style={{
+            padding: '32px 30px',
+            borderRadius: 24,
+            background: 'rgba(16,22,40,.5)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(140,170,255,.14)',
+            animation: 'riseIn .7s cubic-bezier(.2,.7,.2,1) both',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono',monospace",
+              fontSize: 11,
+              letterSpacing: '2px',
+              color: '#22e0ff',
+              textTransform: 'uppercase',
+              marginBottom: 12,
+            }}
+          >
+            Conteúdo
+          </div>
+          <h2
+            style={{
+              fontFamily: "'Space Grotesk',sans-serif",
+              fontSize: 26,
+              fontWeight: 700,
+              letterSpacing: '-.5px',
+            }}
+          >
+            O que você vai aprender
+          </h2>
+          <div className="flex flex-col" style={{ gap: 14, marginTop: 22 }}>
+            {learn.map((item) => (
+              <div key={item} className="flex items-start" style={{ gap: 13 }}>
+                <span
+                  style={{
+                    flexShrink: 0,
+                    width: 24,
+                    height: 24,
+                    borderRadius: 7,
+                    display: 'grid',
+                    placeItems: 'center',
+                    fontSize: 13,
+                    fontWeight: 800,
+                    color: '#22e0ff',
+                    background: 'rgba(34,224,255,.12)',
+                    border: '1px solid rgba(34,224,255,.3)',
+                  }}
+                >
+                  ✓
+                </span>
+                <span style={{ fontSize: 15, color: '#cdd6ec', lineHeight: 1.5 }}>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Mobile sticky CTA */}
-      <div className="fixed inset-x-0 bottom-4 z-40 px-4 sm:hidden">
-        <a href={KIWIFY_URL} target="_blank" rel="noopener noreferrer"
-          className="btn-primary w-full max-w-md mx-auto block text-center">
-          {copy.mobileCta} →
-        </a>
-      </div>
-    </section>
+        <div
+          data-reveal
+          style={{
+            padding: '32px 30px',
+            borderRadius: 24,
+            background: 'rgba(16,22,40,.5)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(140,170,255,.14)',
+            animation: 'riseIn .7s cubic-bezier(.2,.7,.2,1) both',
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono',monospace",
+              fontSize: 11,
+              letterSpacing: '2px',
+              color: '#8b5cff',
+              textTransform: 'uppercase',
+              marginBottom: 12,
+            }}
+          >
+            Público
+          </div>
+          <h2
+            style={{
+              fontFamily: "'Space Grotesk',sans-serif",
+              fontSize: 26,
+              fontWeight: 700,
+              letterSpacing: '-.5px',
+            }}
+          >
+            Para quem é ideal
+          </h2>
+          <div className="flex flex-col" style={{ gap: 14, marginTop: 22 }}>
+            {audience.map((item) => (
+              <div key={item} className="flex items-start" style={{ gap: 13 }}>
+                <span
+                  style={{
+                    flexShrink: 0,
+                    width: 24,
+                    height: 24,
+                    borderRadius: 7,
+                    display: 'grid',
+                    placeItems: 'center',
+                    fontSize: 13,
+                    color: '#c9b4ff',
+                    background: 'rgba(139,92,255,.14)',
+                    border: '1px solid rgba(139,92,255,.32)',
+                  }}
+                >
+                  →
+                </span>
+                <span style={{ fontSize: 15, color: '#cdd6ec', lineHeight: 1.5 }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section
+        data-reveal
+        className="text-center relative overflow-hidden"
+        style={{
+          marginTop: 70,
+          padding: '54px 32px',
+          borderRadius: 28,
+          background: 'linear-gradient(135deg,rgba(139,92,255,.14),rgba(34,224,255,.12))',
+          border: '1px solid rgba(140,170,255,.2)',
+          backdropFilter: 'blur(16px)',
+          animation: 'riseIn .7s cubic-bezier(.2,.7,.2,1) both',
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: "'Space Grotesk',sans-serif",
+            fontSize: 'clamp(26px,3.4vw,40px)',
+            fontWeight: 700,
+            letterSpacing: '-1px',
+            maxWidth: '20ch',
+            margin: '0 auto',
+          }}
+        >
+          Pronto para acelerar sua jornada na programação?
+        </h2>
+        <p
+          style={{
+            margin: '16px auto 0',
+            maxWidth: '52ch',
+            color: '#c4cee8',
+            fontSize: 16.5,
+            lineHeight: 1.6,
+          }}
+        >
+          Entre agora e aprenda com um plano claro, do primeiro passo ao seu primeiro projeto prático.
+        </p>
+        <div className="flex flex-wrap justify-center" style={{ gap: 14, marginTop: 28 }}>
+          <a
+            href={KIWIFY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '16px 32px',
+              borderRadius: 14,
+              fontWeight: 700,
+              fontSize: 16,
+              color: '#05070f',
+              background: 'linear-gradient(135deg,#22e0ff,#8b5cff)',
+              boxShadow: '0 16px 40px -10px rgba(34,224,255,.7)',
+            }}
+          >
+            Garantir minha vaga →
+          </a>
+        </div>
+      </section>
+    </main>
   );
 };
 
