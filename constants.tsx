@@ -2,6 +2,7 @@
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
 import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
+import generatedPosts from './content/generated-posts.json';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -280,7 +281,7 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
-export const BLOG_POSTS: BlogPost[] = [
+const CORE_BLOG_POSTS: BlogPost[] = [
   {
     slug: 'agentes-de-ia-assistentes-autonomos-2026',
     title: 'Agentes de IA: Como os Assistentes Autônomos Estão Revolucionando o Trabalho em 2026',
@@ -865,6 +866,20 @@ export const BLOG_POSTS: BlogPost[] = [
     imageUrl: '/artigo_image6.png',
   },
 ];
+
+// Posts gerados pela automação (scripts/blog.mjs). Cada item tem `status`:
+// 'draft' (invisível no site, aguardando aprovação) ou 'published' (no ar).
+// Os posts gerados aprovados aparecem primeiro (mais recentes).
+const GENERATED_BLOG_POSTS = generatedPosts as unknown as BlogPost[];
+
+// Lista completa (inclui rascunhos) — usada para localizar um post pelo slug.
+export const BLOG_POSTS: BlogPost[] = [...GENERATED_BLOG_POSTS, ...CORE_BLOG_POSTS];
+
+// Apenas posts publicados — usada na listagem pública, sitemap e geração estática.
+// Posts sem `status` definido (os originais) contam como publicados.
+export const PUBLISHED_BLOG_POSTS: BlogPost[] = BLOG_POSTS.filter(
+  (post) => post.status !== 'draft',
+);
 
 export const TESTIMONIALS: Testimonial[] = [
   {

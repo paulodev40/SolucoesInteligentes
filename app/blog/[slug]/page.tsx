@@ -1,13 +1,19 @@
 import type { Metadata } from 'next';
-import { BLOG_POSTS } from '../../../constants';
+import { BLOG_POSTS, PUBLISHED_BLOG_POSTS } from '../../../constants';
 import BlogPostPage from '../../../views/BlogPostPage';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// Só os posts publicados são pré-renderizados. Com dynamicParams = false,
+// qualquer slug fora dessa lista (ex.: rascunhos) retorna 404 em produção.
+// Em desenvolvimento (npm run dev) os rascunhos continuam acessíveis por URL
+// para revisão visual antes da aprovação.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({ slug: post.slug }));
+  return PUBLISHED_BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

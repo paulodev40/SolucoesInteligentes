@@ -37,6 +37,13 @@ export interface BlogPost {
   content: string;
   imageUrl: string;
   relatedProductSlug?: string;
+  /**
+   * Estado de publicação. Ausente = publicado (posts originais).
+   * 'draft' fica invisível no site até ser aprovado para 'published'.
+   */
+  status?: 'draft' | 'published';
+  /** Meta description para SEO (gerada pela automação). */
+  metaDescription?: string;
 }
 
 export interface Testimonial {

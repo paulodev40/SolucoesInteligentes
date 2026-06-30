@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
-import { BLOG_POSTS } from '../constants';
+import { PUBLISHED_BLOG_POSTS } from '../constants';
 
-const posts = BLOG_POSTS.map((post) => ({
+const posts = PUBLISHED_BLOG_POSTS.map((post) => ({
   tag: post.category,
   title: post.title,
   excerpt: post.excerpt,

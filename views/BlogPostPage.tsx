@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { BLOG_POSTS, PRODUCTS } from '../constants';
+import { BLOG_POSTS, PUBLISHED_BLOG_POSTS, PRODUCTS } from '../constants';
 import NotFoundPage from './NotFoundPage';
 import AdSlot from '../components/AdSlot';
 
@@ -15,21 +15,26 @@ const BlogPostPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const postIndex = BLOG_POSTS.findIndex((p) => p.slug === slug);
-  const post = postIndex >= 0 ? BLOG_POSTS[postIndex] : undefined;
+  // Localiza o post na lista completa (inclui rascunhos, para o preview em dev).
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) return <NotFoundPage />;
 
   const relatedProduct = post.relatedProductSlug
     ? PRODUCTS.find((p) => p.slug === post.relatedProductSlug)
     : null;
 
-  const prevPost = postIndex > 0 ? BLOG_POSTS[postIndex - 1] : null;
-  const nextPost = postIndex < BLOG_POSTS.length - 1 ? BLOG_POSTS[postIndex + 1] : null;
+  // Navegação e relacionados usam apenas posts publicados — nunca linkam rascunhos.
+  const publishedIndex = PUBLISHED_BLOG_POSTS.findIndex((p) => p.slug === slug);
+  const prevPost = publishedIndex > 0 ? PUBLISHED_BLOG_POSTS[publishedIndex - 1] : null;
+  const nextPost =
+    publishedIndex >= 0 && publishedIndex < PUBLISHED_BLOG_POSTS.length - 1
+      ? PUBLISHED_BLOG_POSTS[publishedIndex + 1]
+      : null;
 
   // Posts relacionados: mesma categoria primeiro, completando com os mais recentes.
   const relatedPosts = [
-    ...BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category === post.category),
-    ...BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category !== post.category),
+    ...PUBLISHED_BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category === post.category),
+    ...PUBLISHED_BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category !== post.category),
   ].slice(0, 3);
 
   return (

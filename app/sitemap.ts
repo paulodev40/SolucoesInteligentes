@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { BLOG_POSTS, PRODUCTS } from '../constants';
+import { PUBLISHED_BLOG_POSTS, PRODUCTS } from '../constants';
 
 const BASE = 'https://solucoesinteligentes83.com';
 
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sobre`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+  const blogRoutes: MetadataRoute.Sitemap = PUBLISHED_BLOG_POSTS.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
