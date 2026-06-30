@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getStoredPosts } from '../../../lib/blogStore';
 import { createDraft, setStoredStatus, deleteStored } from '../../../lib/blogPipeline';
+
+// Atualiza imediatamente a listagem, a página do post e o sitemap após uma ação,
+// para o post publicado aparecer na hora (sem esperar a revalidação de 5 min).
+function revalidateBlog(slug?: string) {
+  revalidatePath('/blog');
+  revalidatePath('/sitemap.xml');
+  if (slug) revalidatePath(`/blog/${slug}`);
+}
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -43,16 +52,19 @@ export async function POST(req: NextRequest) {
       case 'publish': {
         if (!slug) return NextResponse.json({ error: 'slug obrigatório.' }, { status: 400 });
         const found = await setStoredStatus(slug, 'published');
+        revalidateBlog(slug);
         return NextResponse.json({ ok: found });
       }
       case 'unpublish': {
         if (!slug) return NextResponse.json({ error: 'slug obrigatório.' }, { status: 400 });
         const found = await setStoredStatus(slug, 'draft');
+        revalidateBlog(slug);
         return NextResponse.json({ ok: found });
       }
       case 'delete': {
         if (!slug) return NextResponse.json({ error: 'slug obrigatório.' }, { status: 400 });
         const found = await deleteStored(slug);
+        revalidateBlog(slug);
         return NextResponse.json({ ok: found });
       }
       default:
