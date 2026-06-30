@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
+import { MacaquitoRunnerIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
 import generatedPosts from './content/generated-posts.json';
 
 export const NAV_LINKS = [
@@ -60,86 +60,6 @@ export const PRODUCTS: Product[] = [
     ],
     icon: MacaquitoRunnerIcon,
     image: '/assets/images/icone_macaquito.png',
-  },
-  {
-    slug: 'slidegenius',
-    name: 'SlideGenius',
-    tagline: 'Gere apresentações prontas com imagens em poucos cliques.',
-    description: 'Transforme suas ideias em apresentações profissionais e visualmente impactantes. A IA cuida do design e da busca de imagens, para que você foque no conteúdo.',
-    problem: 'Perda de tempo excessiva na formatação e design de slides, resultando em apresentações monótonas.',
-    targetAudience: 'Estudantes, profissionais corporativos, palestrantes e consultores.',
-    useCases: [
-      'Criar apresentações para reuniões de negócios.',
-      'Desenvolver slides para aulas e seminários.',
-      'Montar pitches de vendas para investidores.',
-      'Elaborar relatórios visuais de resultados.',
-    ],
-    platform: '🌐 Web',
-    overview:
-      'SlideGenius transforma uma ideia em uma apresentação pronta em poucos minutos. Em vez de você perder horas escolhendo layout, alinhando caixas de texto e procurando imagens em bancos genéricos, a inteligência artificial monta a estrutura dos slides, sugere o texto de cada tópico e busca imagens que combinam com o tema. Você entra com o assunto e o objetivo; o SlideGenius entrega um rascunho coerente, com começo, meio e fim — pronto para você revisar e ajustar ao seu gosto. É a forma mais rápida de sair do zero e chegar a uma apresentação profissional, mesmo para quem não tem nenhuma habilidade com design.',
-    features: [
-      'Geração automática da estrutura completa da apresentação a partir de um tema.',
-      'Sugestão de texto objetivo para cada slide, no tom que você escolher.',
-      'Busca e inserção automática de imagens relacionadas ao conteúdo.',
-      'Layouts harmoniosos aplicados automaticamente, sem trabalho manual.',
-      'Edição livre do resultado para personalizar antes de apresentar.',
-    ],
-    faq: [
-      {
-        q: 'Preciso saber design para usar o SlideGenius?',
-        a: 'Não. A ferramenta cuida da parte visual e da organização. Você só precisa informar o tema e o objetivo da apresentação.',
-      },
-      {
-        q: 'Consigo editar os slides depois de gerados?',
-        a: 'Sim. O resultado é um ponto de partida — você pode ajustar textos, trocar imagens e reorganizar os slides como quiser.',
-      },
-      {
-        q: 'Para que tipo de apresentação ele serve?',
-        a: 'Reuniões de negócios, aulas e seminários, pitches de vendas e relatórios visuais. Funciona bem sempre que você precisa comunicar uma ideia com clareza.',
-      },
-    ],
-    icon: SlideGeniusIcon,
-    image: '/assets/images/camaleao_fundo.jpeg',
-  },
-  {
-    slug: 'read-write',
-    name: 'Listen&Write',
-    tagline: 'Grave reuniões, transcreva e gere atas organizadas automaticamente.',
-    description: 'Nunca mais perca uma informação importante. Grave suas reuniões, obtenha transcrições precisas e receba uma ata com os principais pontos e ações a serem tomadas.',
-    problem: 'Dificuldade em tomar notas durante reuniões e organizar as decisões e tarefas discutidas.',
-    targetAudience: 'Gerentes de projeto, equipes remotas, executivos e qualquer pessoa que participe de reuniões.',
-    useCases: [
-      'Gravar e transcrever entrevistas com clientes.',
-      'Gerar atas automáticas de reuniões de equipe.',
-      'Documentar decisões importantes de brainstormings.',
-      'Manter um registro pesquisável de todas as conversas.',
-    ],
-    platform: '🌐 Web',
-    overview:
-      'Listen&Write resolve um problema clássico de quem participa de muitas reuniões: a informação importante se perde entre anotações apressadas e a memória falha. Com ele, você grava a reunião, recebe uma transcrição precisa de tudo que foi dito e, a partir dela, uma ata organizada com os principais pontos, decisões e tarefas. Em vez de tentar anotar e participar ao mesmo tempo, você fica presente na conversa e deixa a IA cuidar do registro. No fim, todo o conteúdo vira um documento pesquisável — fácil de consultar, compartilhar com a equipe e usar como prova do que foi combinado.',
-    features: [
-      'Gravação de reuniões com transcrição automática e precisa.',
-      'Geração de ata com resumo, decisões e lista de tarefas.',
-      'Registro pesquisável para encontrar qualquer trecho depois.',
-      'Organização por reunião, facilitando o acompanhamento de pendências.',
-      'Compartilhamento simples do resultado com a equipe.',
-    ],
-    faq: [
-      {
-        q: 'A transcrição funciona em português?',
-        a: 'Sim. O Listen&Write foi pensado para reuniões em português brasileiro, com transcrição e geração de ata no idioma.',
-      },
-      {
-        q: 'Preciso ficar anotando durante a reunião?',
-        a: 'Não. Essa é justamente a ideia: você participa da conversa e a ferramenta cuida da transcrição e do resumo automaticamente.',
-      },
-      {
-        q: 'Posso editar a ata gerada?',
-        a: 'Sim. A ata é um ponto de partida estruturado que você pode revisar, complementar e ajustar antes de compartilhar.',
-      },
-    ],
-    icon: ReadWriteIcon,
-    image: '/assets/images/lobo_guara.png',
   },
   {
     slug: 'briefy',
