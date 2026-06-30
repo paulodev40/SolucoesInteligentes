@@ -10,6 +10,7 @@
     "lint": "next lint",
     "blog:draft": "node scripts/blog.mjs draft",
     "blog:list": "node scripts/blog.mjs list",
+    "blog:image": "node scripts/blog.mjs image",
     "blog:publish": "node scripts/blog.mjs publish",
     "blog:unpublish": "node scripts/blog.mjs unpublish"
   },

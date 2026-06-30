@@ -16,7 +16,7 @@
 // de conteúdo gerado com IA (revisão e supervisão humana).
 // ---------------------------------------------------------------------------
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -24,6 +24,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const POSTS_FILE = join(ROOT, 'content', 'generated-posts.json');
 const CONSTANTS_FILE = join(ROOT, 'constants.tsx');
+const COVERS_DIR = join(ROOT, 'public', 'blog-covers');
 
 // --- .env loader mínimo (sem dependências) --------------------------------
 function loadEnv() {
@@ -213,6 +214,64 @@ async function generateWithGemini(prompt) {
   return text;
 }
 
+// Gera a imagem de capa com o Imagen (Google), com base no título do post.
+// Usa a GEMINI_API_KEY. Retorna o caminho público da imagem, ou null se falhar.
+async function generateCoverImage(slug, title, category) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.log('  ⚠ Sem GEMINI_API_KEY — usando imagem padrão (capa não gerada).');
+    return null;
+  }
+  if (process.env.BLOG_IMAGE === 'off') return null;
+
+  const model = process.env.BLOG_IMAGE_MODEL || 'imagen-4.0-fast-generate-001';
+  // Importante: NÃO passar título nem categoria como frase no prompt — o Imagen
+  // tende a "escrever" qualquer conceito textual como título na imagem (muitas vezes
+  // truncado). Por isso o prompt é puramente VISUAL, proibindo texto explicitamente.
+  // (A variável `category` é mantida na assinatura para uso futuro, mas não entra no prompt.)
+  void category;
+  const imagePrompt =
+    `Abstract isometric technology and artificial intelligence illustration. ` +
+    `Floating glowing geometric blocks and circular nodes connected by thin luminous circuit lines, ` +
+    `neural network motif, flowing data streams. ` +
+    `Cyan (#22e0ff) and violet (#8b5cff) gradients on a dark navy background. ` +
+    `Minimalist, clean, professional, futuristic, high quality, depth of field. ` +
+    `No people, no faces, no hands, no screens, no monitors, no user interface, ` +
+    `absolutely NO text, NO words, NO letters, NO numbers, NO labels, NO captions, NO typography anywhere.`;
+
+  console.log('→ Gerando imagem de capa com o Imagen...');
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:predict?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          instances: [{ prompt: imagePrompt }],
+          parameters: { sampleCount: 1, aspectRatio: '16:9' },
+        }),
+      },
+    );
+    if (!res.ok) {
+      console.log(`  ⚠ Falha na geração da imagem (HTTP ${res.status}). Usando imagem padrão.`);
+      return null;
+    }
+    const data = await res.json();
+    const b64 = data.predictions?.[0]?.bytesBase64Encoded;
+    if (!b64) {
+      console.log('  ⚠ A API não retornou imagem. Usando imagem padrão.');
+      return null;
+    }
+    mkdirSync(COVERS_DIR, { recursive: true });
+    writeFileSync(join(COVERS_DIR, `${slug}.png`), Buffer.from(b64, 'base64'));
+    console.log(`  ✔ Capa salva em public/blog-covers/${slug}.png`);
+    return `/blog-covers/${slug}.png`;
+  } catch (err) {
+    console.log(`  ⚠ Erro ao gerar imagem (${err.message}). Usando imagem padrão.`);
+    return null;
+  }
+}
+
 async function generateDraft(topic) {
   const posts = readPosts();
   const existingTitles = posts.map((p) => p.title);
@@ -241,6 +300,7 @@ async function generateDraft(topic) {
   }
 
   const slug = uniqueSlug(slugify(parsed.title));
+  const coverPath = await generateCoverImage(slug, parsed.title.trim(), parsed.category.trim());
   const post = {
     slug,
     title: parsed.title.trim(),
@@ -250,7 +310,7 @@ async function generateDraft(topic) {
     excerpt: parsed.excerpt.trim(),
     metaDescription: (parsed.metaDescription || parsed.excerpt).trim().slice(0, 160),
     content: parsed.content,
-    imageUrl: DEFAULT_IMAGE,
+    imageUrl: coverPath || DEFAULT_IMAGE,
     status: 'draft',
   };
 
@@ -305,6 +365,30 @@ function setStatus(slug, status) {
   }
 }
 
+async function regenerateImage(slug) {
+  if (!slug) {
+    console.error('✖ Informe o slug. Ex.: npm run blog:image -- meu-slug');
+    process.exit(1);
+  }
+  const posts = readPosts();
+  const post = posts.find((p) => p.slug === slug);
+  if (!post) {
+    console.error(`✖ Post "${slug}" não encontrado. Use "npm run blog:list".`);
+    process.exit(1);
+  }
+  const coverPath = await generateCoverImage(post.slug, post.title, post.category);
+  if (!coverPath) {
+    console.error('✖ Não foi possível gerar a imagem.');
+    process.exit(1);
+  }
+  post.imageUrl = coverPath;
+  writePosts(posts);
+  console.log(`✔ Capa atualizada para "${post.title}".`);
+  if (post.status === 'published') {
+    console.log('  Faça commit e deploy para a nova capa entrar no ar.');
+  }
+}
+
 // --- Main ------------------------------------------------------------------
 loadEnv();
 const [cmd, ...rest] = process.argv.slice(2);
@@ -324,10 +408,14 @@ try {
     case 'unpublish':
       setStatus(arg, 'draft');
       break;
+    case 'image':
+      await regenerateImage(arg);
+      break;
     default:
       console.log('Uso:');
-      console.log('  npm run blog:draft -- "Tema do artigo"   Gera um rascunho com IA');
+      console.log('  npm run blog:draft -- "Tema do artigo"   Gera um rascunho com IA (com capa)');
       console.log('  npm run blog:list                        Lista os posts gerados');
+      console.log('  npm run blog:image -- <slug>             (Re)gera a imagem de capa');
       console.log('  npm run blog:publish -- <slug>           Publica um rascunho');
       console.log('  npm run blog:unpublish -- <slug>         Volta um post para rascunho');
   }

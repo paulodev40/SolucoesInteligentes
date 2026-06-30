@@ -33,6 +33,20 @@ npm run blog:draft -- "Como pequenos negócios podem usar IA no atendimento"
   ```
 - O rascunho é adicionado a `content/generated-posts.json` com `status: "draft"`.
 - **Rascunhos não aparecem no site** (nem na listagem, nem no sitemap).
+- Uma **imagem de capa** é gerada automaticamente com IA (Imagen, via `GEMINI_API_KEY`)
+  e salva em `public/blog-covers/<slug>.png`. Se não houver chave ou a geração falhar,
+  usa a imagem padrão. Para gerar sem capa: `BLOG_IMAGE=off npm run blog:draft -- "..."`.
+
+#### (Re)gerar só a imagem de capa
+
+Se quiser uma capa diferente para um post já gerado:
+
+```bash
+npm run blog:image -- <slug>
+```
+
+Roda quantas vezes quiser até gostar do resultado (cada execução gera uma nova imagem).
+As capas são abstratas e sem texto, no estilo visual do site.
 
 ### 2. Listar o que já foi gerado
 
@@ -80,9 +94,11 @@ npm run blog:unpublish -- <slug>
 
 | Variável | Padrão | Descrição |
 |---|---|---|
-| `BLOG_MODEL` | `claude-sonnet-4-6` | Modelo do Claude usado na geração |
-| `GEMINI_MODEL` | `gemini-2.5-flash` | Modelo do Gemini (fallback) |
-| `BLOG_DEFAULT_IMAGE` | `/artigo_image1.png` | Imagem padrão dos rascunhos |
+| `BLOG_MODEL` | `claude-sonnet-4-6` | Modelo do Claude usado na geração de texto |
+| `GEMINI_MODEL` | `gemini-2.5-flash` | Modelo do Gemini (fallback de texto) |
+| `BLOG_IMAGE_MODEL` | `imagen-4.0-fast-generate-001` | Modelo de imagem (capa) |
+| `BLOG_IMAGE` | (ligado) | Defina `off` para não gerar capa com IA |
+| `BLOG_DEFAULT_IMAGE` | `/artigo_image1.png` | Imagem usada quando a capa não é gerada |
 
 ## Boas práticas AdSense
 
