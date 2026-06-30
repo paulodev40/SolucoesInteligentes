@@ -1,13 +1,14 @@
 import { put, list } from '@vercel/blob';
 import type { BlogPost } from '../types';
 
-// Camada de armazenamento dos posts gerados pela automação, usando Vercel Blob.
-// - O índice (lista de posts) fica em "blog/index.json".
-// - As capas ficam em "blog/covers/<slug>.png" (URL pública de CDN).
+// Armazenamento dos posts gerados pela automação, usando Vercel Blob (store PRIVADO).
+// - Índice (lista de posts): "blog/index.json"
+// - Capas: "blog/covers/<slug>.png"
 //
-// Se BLOB_READ_WRITE_TOKEN não estiver definido (ex.: dev local sem Blog
-// configurado), tudo degrada graciosamente: leitura retorna [] e escrita lança
-// um erro claro. Assim o site continua funcionando com os posts atuais.
+// Como o store é privado, a leitura é feita no servidor com o BLOB_READ_WRITE_TOKEN.
+// As capas são expostas ao público pela rota /api/blog/cover/<slug>.
+//
+// Sem BLOB_READ_WRITE_TOKEN (ex.: dev local), tudo degrada graciosamente.
 
 const INDEX_PATH = 'blog/index.json';
 const TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
@@ -16,20 +17,27 @@ export function blobEnabled(): boolean {
   return Boolean(TOKEN);
 }
 
-async function getIndexUrl(): Promise<string | null> {
-  const { blobs } = await list({ prefix: INDEX_PATH, token: TOKEN });
-  const found = blobs.find((b) => b.pathname === INDEX_PATH);
+async function findBlobUrl(pathname: string): Promise<string | null> {
+  const { blobs } = await list({ prefix: pathname, token: TOKEN });
+  const found = blobs.find((b) => b.pathname === pathname);
   return found?.url ?? null;
+}
+
+// Busca o conteúdo de um blob privado (autenticado com o token).
+async function fetchBlob(url: string): Promise<Response> {
+  return fetch(`${url}?t=${Date.now()}`, {
+    cache: 'no-store',
+    headers: { Authorization: `Bearer ${TOKEN}` },
+  });
 }
 
 /** Lê os posts gerados do Blob. Retorna [] se o Blob não estiver configurado. */
 export async function getStoredPosts(): Promise<BlogPost[]> {
   if (!TOKEN) return [];
   try {
-    const url = await getIndexUrl();
+    const url = await findBlobUrl(INDEX_PATH);
     if (!url) return [];
-    // cache-busting: o índice muda quando publicamos/geramos.
-    const res = await fetch(`${url}?t=${Date.now()}`, { cache: 'no-store' });
+    const res = await fetchBlob(url);
     if (!res.ok) return [];
     const data = (await res.json()) as BlogPost[];
     return Array.isArray(data) ? data : [];
@@ -42,7 +50,7 @@ export async function getStoredPosts(): Promise<BlogPost[]> {
 export async function saveStoredPosts(posts: BlogPost[]): Promise<void> {
   if (!TOKEN) throw new Error('BLOB_READ_WRITE_TOKEN ausente — configure o Vercel Blob.');
   await put(INDEX_PATH, JSON.stringify(posts, null, 2), {
-    access: 'public',
+    access: 'private',
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'application/json',
@@ -51,16 +59,33 @@ export async function saveStoredPosts(posts: BlogPost[]): Promise<void> {
   });
 }
 
-/** Faz upload da capa (PNG) e retorna a URL pública. */
+/**
+ * Faz upload da capa (PNG) no Blob privado e retorna o caminho público pelo qual
+ * ela será servida (rota /api/blog/cover/<slug>).
+ */
 export async function saveCover(slug: string, png: Buffer | Uint8Array): Promise<string> {
   if (!TOKEN) throw new Error('BLOB_READ_WRITE_TOKEN ausente — configure o Vercel Blob.');
   const body = new Blob([new Uint8Array(png)], { type: 'image/png' });
-  const { url } = await put(`blog/covers/${slug}.png`, body, {
-    access: 'public',
+  await put(`blog/covers/${slug}.png`, body, {
+    access: 'private',
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: 'image/png',
     token: TOKEN,
   });
-  return url;
+  return `/api/blog/cover/${slug}`;
+}
+
+/** Lê os bytes de uma capa do Blob privado (usado pela rota pública de imagem). */
+export async function getCoverBytes(slug: string): Promise<ArrayBuffer | null> {
+  if (!TOKEN) return null;
+  try {
+    const url = await findBlobUrl(`blog/covers/${slug}.png`);
+    if (!url) return null;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}` } });
+    if (!res.ok) return null;
+    return await res.arrayBuffer();
+  } catch {
+    return null;
+  }
 }
