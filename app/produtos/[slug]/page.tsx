@@ -6,6 +6,11 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// Apenas produtos existentes são pré-renderizados. Qualquer outro slug (ex.: produtos
+// descontinuados como rememberme/scei) retorna 404 de verdade, em vez de um soft-404
+// com status 200 — melhor para SEO e para a revisão do AdSense.
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return PRODUCTS.map((p) => ({ slug: p.slug }));
 }
