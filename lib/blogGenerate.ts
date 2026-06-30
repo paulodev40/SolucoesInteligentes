@@ -107,14 +107,21 @@ async function generateTextWithAnthropic(prompt: string): Promise<string | null>
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return null;
   const model = process.env.BLOG_MODEL || 'claude-sonnet-4-6';
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const client = new Anthropic({ apiKey });
-  const msg = await client.messages.create({
-    model,
-    max_tokens: 8000,
-    messages: [{ role: 'user', content: prompt }],
-  });
-  return msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
+  try {
+    const { default: Anthropic } = await import('@anthropic-ai/sdk');
+    const client = new Anthropic({ apiKey });
+    const msg = await client.messages.create({
+      model,
+      max_tokens: 8000,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    return msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
+  } catch (err) {
+    // Se o Claude falhar (limite de uso, indisponibilidade etc.), retorna null
+    // para cair no fallback (Gemini), em vez de quebrar a geração.
+    console.warn('[blogGenerate] Claude indisponível, tentando Gemini:', err instanceof Error ? err.message : err);
+    return null;
+  }
 }
 
 async function generateTextWithGemini(prompt: string): Promise<string | null> {

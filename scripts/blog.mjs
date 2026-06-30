@@ -185,14 +185,19 @@ async function generateWithAnthropic(prompt) {
   if (!apiKey) return null;
   const model = process.env.BLOG_MODEL || 'claude-sonnet-4-6';
   console.log(`→ Gerando com Claude (${model})...`);
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const client = new Anthropic({ apiKey });
-  const msg = await client.messages.create({
-    model,
-    max_tokens: 8000,
-    messages: [{ role: 'user', content: prompt }],
-  });
-  return msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
+  try {
+    const { default: Anthropic } = await import('@anthropic-ai/sdk');
+    const client = new Anthropic({ apiKey });
+    const msg = await client.messages.create({
+      model,
+      max_tokens: 8000,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    return msg.content.map((b) => (b.type === 'text' ? b.text : '')).join('');
+  } catch (err) {
+    console.warn(`  ⚠ Claude indisponível (${err.message}). Tentando Gemini...`);
+    return null;
+  }
 }
 
 async function generateWithGemini(prompt) {
