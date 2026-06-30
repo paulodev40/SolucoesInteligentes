@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import ResumirClient from './ResumirClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,16 @@ export default function ResumidorPage() {
               claro e objetivo em segundos, gerado por inteligência artificial.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Cole o texto que deseja resumir no campo (até 2.000 caracteres).',
+              'Clique em "Resumir com IA".',
+              'Aguarde alguns segundos e leia o resumo gerado.',
+            ]}
+            output="Um resumo claro e objetivo do texto em português, com os pontos principais condensados em até 3 parágrafos. O texto não é armazenado."
+          />
 
           <div className="mt-10">
             <ResumirClient />

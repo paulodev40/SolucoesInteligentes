@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import AnalisadorClient from './AnalisadorClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,16 @@ export default function AnalisadorPage() {
               o nível de escolaridade exigido e dicas para tornar sua escrita mais acessível.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Cole o texto que deseja analisar no campo.',
+              'O cálculo acontece automaticamente, sem precisar clicar em nada.',
+              'Veja o score e as métricas de legibilidade do seu texto.',
+            ]}
+            output="O score de legibilidade Flesch (0 a 100) com o nível de dificuldade, além de métricas como média de palavras por frase e sílabas por palavra e o nível de escolaridade exigido."
+          />
 
           <div className="mt-10">
             <AnalisadorClient />

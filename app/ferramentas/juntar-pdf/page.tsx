@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import JuntarPdfClient from './JuntarPdfClient';
 
 export const metadata: Metadata = {
@@ -81,6 +82,16 @@ export default function JuntarPdfPage() {
               processado diretamente no seu navegador.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Clique na área de upload ou arraste vários arquivos PDF de uma vez.',
+              'Reordene os arquivos com as setas ↑↓ ou arrastando — a ordem da lista é a ordem das páginas no PDF final.',
+              'Clique em "Juntar PDFs e Baixar" para gerar o documento unificado.',
+            ]}
+            output="Um único arquivo PDF contendo todas as páginas dos arquivos enviados, na ordem escolhida, baixado automaticamente. Todo o processamento ocorre no seu navegador — nenhum arquivo é enviado a servidores."
+          />
 
           <div className="mt-10">
             <JuntarPdfClient />

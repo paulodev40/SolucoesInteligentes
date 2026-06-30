@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import GeradorBioClient from './GeradorBioClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,17 @@ export default function GeradorBioPage() {
               Preencha suas informações e gere um perfil estruturado e pronto para usar.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Escolha a plataforma (LinkedIn, Instagram, Twitter/X ou WhatsApp).',
+              'Preencha cargo e nicho (obrigatórios) e, se quiser, nome, diferenciais e CTA.',
+              'Clique em "Gerar Bio" e copie o texto pronto.',
+            ]}
+            output="Uma bio pronta, formatada e adaptada ao limite de caracteres da plataforma escolhida, com contador de caracteres e botão para copiar."
+            example="Cargo 'Designer Gráfico' + nicho 'branding para pequenas empresas' no Instagram gera uma bio curta com diferenciais e CTA."
+          />
 
           <div className="mt-10">
             <GeradorBioClient />

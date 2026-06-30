@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import RedimensionarClient from './RedimensionarClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,17 @@ export default function RedimensionarImagemPage() {
               evitar distorções. Processado no navegador — nenhuma imagem sai do seu dispositivo.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Carregue a imagem (JPG, PNG ou WEBP) na área de upload.',
+              'Defina a nova largura e altura em pixels — mantenha o cadeado 🔒 ativo para preservar a proporção.',
+              'Escolha o formato de saída, clique em "Redimensionar Imagem" e baixe o resultado.',
+            ]}
+            output="A imagem redimensionada nas dimensões escolhidas, pronta para baixar. O processamento acontece no seu navegador, sem upload — nenhuma imagem sai do seu dispositivo."
+            example="Ajuste uma foto para 1.080 × 1.080 px para o feed do Instagram."
+          />
 
           <div className="mt-10">
             <RedimensionarClient />

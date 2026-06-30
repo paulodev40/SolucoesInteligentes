@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import ConverterClient from './ConverterClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,17 @@ export default function ConverterImagemPage() {
               seu navegador — suas imagens não são enviadas a nenhum servidor.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Carregue a imagem que deseja converter (JPG, PNG ou WEBP).',
+              'Escolha o formato de saída (PNG, JPEG ou WEBP).',
+              'Faça a conversão e baixe a imagem no novo formato.',
+            ]}
+            output="A imagem convertida no formato escolhido, pronta para baixar. Ao exportar para JPEG, as áreas transparentes são preenchidas com fundo branco automaticamente. Tudo é processado no navegador, sem upload."
+            example="Converta um PNG com transparência em WEBP para usar no seu site."
+          />
 
           <div className="mt-10">
             <ConverterClient />

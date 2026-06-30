@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import PorcentagemClient from './PorcentagemClient';
 
 export const metadata: Metadata = {
@@ -84,6 +85,17 @@ export default function CalculadoraPorcentagem() {
               descontos ou acréscimos.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Escolha o modo de cálculo (quanto é X% de Y, qual o percentual, variação ou desconto/acréscimo).',
+              'Preencha os dois campos numéricos do modo selecionado.',
+              'O resultado aparece automaticamente, sem precisar clicar em nada.',
+            ]}
+            output="O valor calculado em destaque — por exemplo, o valor da porcentagem, o percentual correspondente, a variação em % ou o preço final com desconto."
+            example="20% de R$ 150 resulta em R$ 30."
+          />
 
           <div className="mt-10">
             <PorcentagemClient />

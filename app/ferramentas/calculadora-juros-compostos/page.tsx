@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import JurosCompostosClient from './JurosCompostosClient';
 
 export const metadata: Metadata = {
@@ -91,6 +92,17 @@ export default function CalculadoraJurosCompostos() {
               ano a ano. Taxa mensal calculada pela fórmula equivalente correta.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Informe o capital inicial e o aporte mensal (em R$).',
+              'Defina a taxa de juros anual (%) e o prazo em anos.',
+              'O resultado é atualizado automaticamente — abra a tabela para ver a evolução ano a ano.',
+            ]}
+            output="Três valores em destaque: valor final, total investido e rendimento (juros), além de uma tabela opcional com saldo, aportes e juros de cada ano."
+            example="R$ 10.000 iniciais + R$ 500/mês a 12% ao ano por 10 anos."
+          />
 
           <div className="mt-10">
             <JurosCompostosClient />

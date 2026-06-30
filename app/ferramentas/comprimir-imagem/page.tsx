@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import ComprimirClient from './ComprimirClient';
 
 export const metadata: Metadata = {
@@ -80,6 +81,17 @@ export default function ComprimirImagemPage() {
               upload — tudo processado no seu navegador, com privacidade total.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Selecione ou arraste a imagem (JPG, PNG ou WEBP) para a área de upload.',
+              'Escolha o formato de saída e ajuste o slider de qualidade (80–85% é o ponto ideal).',
+              'Clique em "Comprimir Imagem" e baixe o arquivo reduzido.',
+            ]}
+            output="A imagem comprimida pronta para baixar, com tamanho de arquivo menor e as dimensões originais preservadas. Tudo é processado no seu navegador, sem upload — suas imagens não saem do dispositivo."
+            example="Uma foto de 4 MB pode cair para menos de 500 KB com qualidade praticamente idêntica."
+          />
 
           <div className="mt-10">
             <ComprimirClient />

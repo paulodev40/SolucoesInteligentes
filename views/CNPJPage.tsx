@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import AdSlot from '../components/AdSlot';
+import ComoUsar from '../components/ComoUsar';
 
 interface CNPJData {
   cnpj: string;
@@ -99,6 +100,16 @@ const CNPJPage: React.FC = () => {
             de forma gratuita e instantânea.
           </p>
         </div>
+
+        <ComoUsar
+          className="mt-8"
+          steps={[
+            'Digite o CNPJ da empresa no campo (a máscara é aplicada automaticamente).',
+            'Clique em "Buscar" ou pressione Enter.',
+          ]}
+          output="Os dados públicos da empresa: razão social, nome fantasia, situação cadastral, natureza jurídica, porte, capital social, CNAE, endereço e quadro de sócios."
+          example="00.000.000/0000-00"
+        />
 
         <AdSlot label="Anúncio" className="my-6" />
 

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import AdSlot from '../components/AdSlot';
+import ComoUsar from '../components/ComoUsar';
 
 // Tabela INSS progressiva 2026
 function calcINSS(base: number): number {
@@ -103,6 +104,17 @@ const FeriasPage: React.FC = () => {
             com desconto de INSS e IRRF conforme tabelas 2026.
           </p>
         </div>
+
+        <ComoUsar
+          className="mt-8"
+          steps={[
+            'Digite o salário bruto (R$).',
+            'Informe os meses trabalhados no período (de 1 a 12).',
+            'Clique em "Calcular" para ver os valores.',
+          ]}
+          output="Os valores líquidos das férias (com terço constitucional) e do 13º salário, já com os descontos de INSS e IRRF, mais o total líquido a receber."
+          example="Salário de R$ 3.500 com 12 meses trabalhados."
+        />
 
         <AdSlot label="Anúncio" className="my-6" />
 

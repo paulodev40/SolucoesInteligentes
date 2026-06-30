@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import DividirPdfClient from './DividirPdfClient';
 
 export const metadata: Metadata = {
@@ -81,6 +82,17 @@ export default function DividirPdfPage() {
               nenhum servidor.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Envie o PDF que deseja dividir (arraste ou clique na área de upload).',
+              'Escolha o modo: extrair páginas por intervalo, uma página por arquivo ou dividir a cada N páginas.',
+              'Clique em dividir para gerar e baixar os arquivos resultantes.',
+            ]}
+            output="Um PDF com as páginas extraídas (no modo intervalo) ou um arquivo .zip com vários PDFs (nos modos uma por arquivo / a cada N páginas). Todo o processamento ocorre no seu navegador — seu PDF nunca é enviado a servidores."
+            example='No modo "Extrair páginas", informe 1-3, 5, 8-10 para gerar um PDF só com essas páginas.'
+          />
 
           <div className="mt-10">
             <DividirPdfClient />

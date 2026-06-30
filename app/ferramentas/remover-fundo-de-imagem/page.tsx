@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import RemoverFundoClient from './RemoverFundoClient';
 
 export const metadata: Metadata = {
@@ -81,6 +82,17 @@ export default function RemoverFundoPage() {
               em PNG com fundo transparente, pronto para baixar.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Carregue a imagem da qual deseja remover o fundo.',
+              'Clique em "Remover Fundo" — na primeira vez o modelo de IA (~30 MB) é baixado e fica em cache.',
+              'Aguarde o processamento e baixe a imagem com fundo transparente.',
+            ]}
+            output="A imagem com o fundo removido em PNG transparente, pronta para baixar. O modelo de IA roda 100% no seu navegador (WebAssembly) — suas imagens não são enviadas a nenhum servidor."
+            example="Isole uma foto de produto sobre fundo transparente para usar em marketplaces."
+          />
 
           <div className="mt-10">
             <RemoverFundoClient />

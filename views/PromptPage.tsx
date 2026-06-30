@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import AdSlot from '../components/AdSlot';
+import ComoUsar from '../components/ComoUsar';
 
 const TIPOS = [
   { id: 'email',         label: '📧 E-mail profissional',       placeholder: 'Ex: solicitar reunião, apresentar proposta, responder reclamação' },
@@ -96,6 +97,17 @@ const PromptPage: React.FC = () => {
             Preencha os campos abaixo e gere um prompt estruturado pronto para usar.
           </p>
         </div>
+
+        <ComoUsar
+          className="mt-8"
+          steps={[
+            'Escolha o tipo de tarefa (e-mail, post, artigo, copy, código etc.).',
+            'Descreva o contexto e preencha público-alvo, tom, objetivo e detalhes.',
+            'Clique em "Gerar Prompt" e copie o texto pronto.',
+          ]}
+          output="Um prompt estruturado em texto, pronto para colar no ChatGPT, Claude ou Gemini, com papel, contexto, público, tom e instruções organizados."
+          example="Tipo 'E-mail profissional' + objetivo 'agendar reunião' gera um prompt completo para a IA escrever o e-mail."
+        />
 
         <AdSlot label="Anúncio" className="my-6" />
 

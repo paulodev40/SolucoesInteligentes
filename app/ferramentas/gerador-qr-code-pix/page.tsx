@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import AdSlot from '../../../components/AdSlot';
+import ComoUsar from '../../../components/ComoUsar';
 import PixQRClient from './PixQRClient';
 
 export const metadata: Metadata = {
@@ -84,6 +85,17 @@ export default function GeradorQRCodePix() {
               sua chave nunca é enviada a nenhum servidor.
             </p>
           </div>
+
+          <ComoUsar
+            className="mt-8"
+            steps={[
+              'Escolha o tipo de chave e informe sua chave PIX.',
+              'Preencha o nome do recebedor e a cidade (e, opcionalmente, valor e descrição).',
+              'Clique em "Gerar QR Code PIX" para ver o resultado.',
+            ]}
+            output="O QR Code PIX em imagem (com botão para baixar em PNG) e o código Pix Copia e Cola pronto para copiar — tudo gerado no seu navegador."
+            example="Chave de e-mail + nome 'JOAO SILVA' + cidade 'SAO PAULO', sem valor, gera um QR Code que o pagador escaneia e define o valor."
+          />
 
           <div className="mt-10">
             <PixQRClient />
