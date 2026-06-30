@@ -1,27 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import { BLOG_POSTS } from '../constants';
 
-const posts = [
-  {
-    tag: 'Tendências',
-    title:
-      'Agentes de IA: Como os Assistentes Autônomos Estão Revolucionando o Trabalho em 2026',
-    excerpt:
-      'Os agentes de IA deixaram de ser ficção científica e fazem parte do dia a dia de empresas e profissionais. Descubra como essa tecnologia está transformando a forma como trabalhamos — e como começar a usar hoje.',
-    date: '18 de maio de 2026',
-    img: 'https://www.solucoesinteligentes83.com/artigo_image1.png',
-    href: '/blog/agentes-de-ia-assistentes-autonomos-2026',
-  },
-  {
-    tag: 'Marketing com IA',
-    title: 'Como Usar IA para Criar Campanhas de Marketing que Realmente Convertem',
-    excerpt:
-      'Esqueça os templates genéricos e as campanhas que não geram resultado. Com as ferramentas certas de IA, qualquer profissional pode criar estratégias personalizadas, criativas e com alto potencial de conversão.',
-    date: '18 de maio de 2026',
-    img: 'https://www.solucoesinteligentes83.com/artigo_image2.png',
-    href: '/blog/ia-para-campanhas-de-marketing-que-convertem',
-  },
-];
+const posts = BLOG_POSTS.map((post) => ({
+  tag: post.category,
+  title: post.title,
+  excerpt: post.excerpt,
+  date: post.date,
+  img: post.imageUrl,
+  href: `/blog/${post.slug}`,
+}));
 
 const BlogPage: React.FC = () => {
   return (
@@ -175,7 +163,7 @@ const BlogPage: React.FC = () => {
           className="font-display font-bold"
           style={{ fontSize: 'clamp(24px,3vw,34px)', letterSpacing: '-.5px' }}
         >
-          Quer ver todos os artigos?
+          Coloque a IA para trabalhar por você
         </h2>
         <p
           style={{
@@ -186,10 +174,11 @@ const BlogPage: React.FC = () => {
             lineHeight: 1.6,
           }}
         >
-          Acesse o blog completo com todas as novidades e tutoriais sobre IA.
+          Aprendeu uma nova técnica por aqui? Experimente nossas ferramentas gratuitas de IA e
+          aplique o que leu na prática.
         </p>
-        <Link href="/blog" className="cta-grad" style={{ marginTop: 24 }}>
-          Ver todos os posts →
+        <Link href="/ferramentas" className="cta-grad" style={{ marginTop: 24 }}>
+          Explorar ferramentas gratuitas →
         </Link>
       </div>
     </main>

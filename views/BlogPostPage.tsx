@@ -15,12 +15,22 @@ const BlogPostPage: React.FC = () => {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const post = BLOG_POSTS.find((p) => p.slug === slug);
+  const postIndex = BLOG_POSTS.findIndex((p) => p.slug === slug);
+  const post = postIndex >= 0 ? BLOG_POSTS[postIndex] : undefined;
   if (!post) return <NotFoundPage />;
 
   const relatedProduct = post.relatedProductSlug
     ? PRODUCTS.find((p) => p.slug === post.relatedProductSlug)
     : null;
+
+  const prevPost = postIndex > 0 ? BLOG_POSTS[postIndex - 1] : null;
+  const nextPost = postIndex < BLOG_POSTS.length - 1 ? BLOG_POSTS[postIndex + 1] : null;
+
+  // Posts relacionados: mesma categoria primeiro, completando com os mais recentes.
+  const relatedPosts = [
+    ...BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category === post.category),
+    ...BLOG_POSTS.filter((p) => p.slug !== post.slug && p.category !== post.category),
+  ].slice(0, 3);
 
   return (
     <section className="relative py-20 sm:py-24 px-5">
@@ -81,6 +91,72 @@ const BlogPostPage: React.FC = () => {
               Saiba Mais →
             </Link>
           </div>
+        )}
+
+        {/* Navegação entre posts (anterior / próximo) */}
+        {(prevPost || nextPost) && (
+          <nav className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-4 reveal" aria-label="Navegação entre artigos">
+            {prevPost ? (
+              <Link
+                href={`/blog/${prevPost.slug}`}
+                className="surface surface-hover p-5 flex flex-col gap-1 group"
+              >
+                <span className="text-si-cyan font-mono text-xs uppercase tracking-wider">
+                  <i className="fas fa-arrow-left mr-2" /> Artigo anterior
+                </span>
+                <span className="font-display font-bold text-si-text group-hover:text-si-cyan transition-colors">
+                  {prevPost.title}
+                </span>
+              </Link>
+            ) : (
+              <span className="hidden sm:block" />
+            )}
+            {nextPost && (
+              <Link
+                href={`/blog/${nextPost.slug}`}
+                className="surface surface-hover p-5 flex flex-col gap-1 group sm:text-right"
+              >
+                <span className="text-si-cyan font-mono text-xs uppercase tracking-wider">
+                  Próximo artigo <i className="fas fa-arrow-right ml-2" />
+                </span>
+                <span className="font-display font-bold text-si-text group-hover:text-si-cyan transition-colors">
+                  {nextPost.title}
+                </span>
+              </Link>
+            )}
+          </nav>
+        )}
+
+        {/* Posts relacionados */}
+        {relatedPosts.length > 0 && (
+          <section className="mt-16 reveal" aria-label="Posts relacionados">
+            <div className="section-label">Continue lendo</div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text mb-6">
+              Posts relacionados
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/blog/${rp.slug}`}
+                  className="surface surface-hover flex flex-col overflow-hidden group"
+                >
+                  <div className="relative overflow-hidden" style={{ height: 160 }}>
+                    <img src={rp.imageUrl} alt={rp.title} className="w-full h-full object-cover block" />
+                  </div>
+                  <div className="flex flex-col flex-1 p-5">
+                    <span className="text-si-cyan font-mono text-xs uppercase tracking-wider">
+                      {rp.category}
+                    </span>
+                    <h3 className="mt-2 font-display font-bold text-lg text-si-text leading-snug group-hover:text-si-cyan transition-colors">
+                      {rp.title}
+                    </h3>
+                    <span className="mt-3 text-sm font-bold text-si-cyan">Ler mais →</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
         )}
       </div>
     </section>
