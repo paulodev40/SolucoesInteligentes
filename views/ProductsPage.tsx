@@ -1,36 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
+import { PRODUCTS } from '../constants';
 
-const products = [
-  {
-    name: 'Macaquito Runner',
-    platform: '📱 iOS',
-    desc: 'O endless runner mais eletrizante do Brasil! Disponível na App Store.',
-    img: 'https://www.solucoesinteligentes83.com/assets/images/icone_macaquito.png',
-    href: '/produtos/macaquito-runner',
-  },
-  {
-    name: 'Briefy',
-    platform: '📱 iOS',
-    desc: 'Suas reuniões, resumidas com IA. Direto do seu iPhone.',
-    img: 'https://www.solucoesinteligentes83.com/briefy.png',
-    href: '/produtos/briefy',
-  },
-  {
-    name: 'WordClimb',
-    platform: '🌐 Web',
-    desc: 'Climb your way to fluent English. Pague uma vez, suba para sempre.',
-    img: 'https://www.solucoesinteligentes83.com/WordClimb.png',
-    href: '/produtos/wordclimb',
-  },
-  {
-    name: 'AnaFlow Keys',
-    platform: '🎹 App',
-    desc: 'Aprenda piano de um jeito divertido. Com IA, sem professor presencial.',
-    img: 'https://www.solucoesinteligentes83.com/anaflow%20_2.png',
-    href: '/produtos/anaflow-keys',
-  },
-];
+const products = PRODUCTS.map((p) => ({
+  name: p.name,
+  platform: p.platform ?? 'App',
+  tagline: p.tagline,
+  desc: p.description,
+  audience: p.targetAudience,
+  img: p.image,
+  href: `/produtos/${p.slug}`,
+}));
 
 const FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSefilKN4FAEBcBkJNLZOIzUJBqe0SHY7tW2t3ZqTN2dXXWW0g/viewform?usp=publish-editor';
@@ -120,7 +100,7 @@ const ProductsPage: React.FC = () => {
             key={p.name}
             href={p.href}
             data-reveal
-            className="flex items-center"
+            className="flex items-start"
             style={{
               gap: 22,
               padding: 26,
@@ -170,10 +150,16 @@ const ProductsPage: React.FC = () => {
               <h3 className="font-display" style={{ fontSize: 21, fontWeight: 600 }}>
                 {p.name}
               </h3>
-              <p style={{ marginTop: 6, fontSize: 14, color: '#8a97b5', lineHeight: 1.55 }}>
+              <p style={{ marginTop: 4, fontSize: 13.5, color: '#22e0ff', lineHeight: 1.5, fontWeight: 600 }}>
+                {p.tagline}
+              </p>
+              <p style={{ marginTop: 9, fontSize: 14, color: '#8a97b5', lineHeight: 1.55 }}>
                 {p.desc}
               </p>
-              <div style={{ marginTop: 12, fontSize: 13, fontWeight: 700, color: '#22e0ff' }}>
+              <p style={{ marginTop: 10, fontSize: 13, color: '#aab6d6', lineHeight: 1.5 }}>
+                <strong style={{ color: '#c9d3ec' }}>Para quem é:</strong> {p.audience}
+              </p>
+              <div style={{ marginTop: 14, fontSize: 13, fontWeight: 700, color: '#22e0ff' }}>
                 Saiba mais →
               </div>
             </div>

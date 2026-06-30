@@ -1,11 +1,36 @@
 ﻿import React from 'react';
 
 const DIGITAL_VIDEOS = [
-  { id: 'O5nABJGU6QA', title: 'Origem da I.A. • Episódio 1', description: 'Primeiro vídeo da série sobre a origem da Inteligência Artificial.' },
-  { id: 'lnFb7tTus0E', title: 'Supabase', description: 'Vídeo sobre Supabase e aplicações práticas no desenvolvimento.' },
-  { id: '_R_YBMvNQV0', title: 'Programando com IA', description: 'Conteúdo sobre programação com apoio de Inteligência Artificial.' },
-  { id: 'hZ_ZZH_EwPo', title: 'GitHub tutorial', description: 'Tutorial prático de GitHub para organizar e versionar projetos.' },
-  { id: 'ePwFe4cfIWo', title: 'Seu Capi, o técnico de TI', description: 'Apresentação do Seu Capi e sua atuação como técnico de TI.' },
+  {
+    id: 'O5nABJGU6QA',
+    title: 'Origem da I.A. • Episódio 1',
+    description:
+      'Episódio de abertura da nossa série sobre Inteligência Artificial. Voltamos às origens do conceito para entender como ele nasceu, quais foram os marcos históricos que levaram aos modelos de hoje e por que a IA deixou de ser ficção científica para se tornar parte do dia a dia. Ideal para quem quer construir uma base sólida antes de mergulhar nas ferramentas práticas.',
+  },
+  {
+    id: 'lnFb7tTus0E',
+    title: 'Supabase na prática',
+    description:
+      'Uma apresentação do Supabase, a plataforma open-source que oferece banco de dados, autenticação e APIs prontas para suas aplicações. Mostramos para que ele serve, como se compara a outras soluções de backend e em que tipo de projeto ele acelera o desenvolvimento — útil tanto para quem está começando quanto para quem quer evitar montar infraestrutura do zero.',
+  },
+  {
+    id: '_R_YBMvNQV0',
+    title: 'Programando com IA',
+    description:
+      'Como usar a Inteligência Artificial como parceira de programação no dia a dia. Demonstramos na prática como a IA ajuda a escrever, revisar e explicar código, acelerando tarefas repetitivas e reduzindo o tempo gasto na resolução de problemas — sem substituir o entendimento de quem programa.',
+  },
+  {
+    id: 'hZ_ZZH_EwPo',
+    title: 'GitHub: tutorial para iniciantes',
+    description:
+      'Tutorial prático de GitHub para quem precisa organizar e versionar projetos com segurança. Explicamos os conceitos essenciais — repositórios, commits e histórico de versões — e mostramos o fluxo básico para guardar seu trabalho, acompanhar mudanças e colaborar com outras pessoas sem perder nada pelo caminho.',
+  },
+  {
+    id: 'ePwFe4cfIWo',
+    title: 'Seu Capi, o técnico de TI',
+    description:
+      'Conheça o Seu Capi, nosso personagem que descomplica a tecnologia. Neste vídeo ele atua como técnico de TI, traduzindo problemas comuns do dia a dia em explicações simples e bem-humoradas — uma forma leve de aprender boas práticas e entender melhor as ferramentas que usamos.',
+  },
 ];
 
 const DigitalContentPage: React.FC = () => {
@@ -16,7 +41,12 @@ const DigitalContentPage: React.FC = () => {
           <div className="section-label" style={{ justifyContent: 'center' }}>Conteúdo Digital</div>
           <h2 className="section-title">Vídeos do nosso canal no YouTube</h2>
           <p className="section-desc mx-auto">
-            Acompanhe demonstrações, dicas práticas e novidades sobre Inteligência Artificial para aplicar no seu negócio.
+            Reunimos aqui uma seleção de vídeos do nosso canal para você aprender Inteligência
+            Artificial e tecnologia de forma prática e descomplicada. São conteúdos que vão da
+            história da IA às ferramentas que usamos no dia a dia — programação assistida por IA,
+            banco de dados, versionamento de código e muito mais. Cada vídeo foi pensado para ser
+            direto ao ponto e aplicável, seja você iniciante ou alguém que já trabalha com tecnologia
+            e quer se atualizar.
           </p>
         </div>
 

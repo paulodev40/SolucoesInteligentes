@@ -82,6 +82,118 @@ const ConsultingPage: React.FC = () => {
           </div>
         </div>
 
+        {/* O que está incluso */}
+        <div className="mt-16 reveal">
+          <div className="text-center mx-auto" style={{ maxWidth: 720 }}>
+            <div className="section-label" style={{ justifyContent: 'center' }}>O que está incluso</div>
+            <h2 className="section-title">Da ideia ao software funcionando</h2>
+            <p className="section-desc mx-auto">
+              Nossa consultoria acompanha você em todas as etapas — não entregamos apenas um relatório,
+              e sim um caminho prático para colocar a Inteligência Artificial para trabalhar no seu negócio.
+            </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              {
+                title: 'Análise da sua necessidade',
+                desc: 'Mergulhamos no seu processo atual para entender onde a IA pode gerar mais impacto e o que realmente vale automatizar.',
+              },
+              {
+                title: 'Proposta de solução sob medida',
+                desc: 'Definimos a arquitetura técnica, as ferramentas e o escopo ideal para resolver o seu problema específico — sem soluções genéricas.',
+              },
+              {
+                title: 'Estimativa de prazos e custos',
+                desc: 'Você recebe uma visão clara de tempo e investimento antes de qualquer desenvolvimento, para decidir com segurança.',
+              },
+              {
+                title: 'Acompanhamento próximo',
+                desc: 'Mantemos comunicação direta durante a execução, ajustando o rumo conforme o projeto evolui e novas necessidades aparecem.',
+              },
+            ].map((item) => (
+              <div key={item.title} className="surface p-6 flex items-start gap-4">
+                <i className="fas fa-check-circle text-si-cyan mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-display font-bold text-lg text-si-text">{item.title}</h3>
+                  <p className="mt-2 text-si-muted leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Exemplos de projetos */}
+        <div className="mt-16 reveal">
+          <div className="text-center mx-auto" style={{ maxWidth: 720 }}>
+            <div className="section-label" style={{ justifyContent: 'center' }}>Exemplos de projetos</div>
+            <h2 className="section-title">O que dá para construir com IA</h2>
+          </div>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: 'fas fa-robot',
+                title: 'Automação de tarefas',
+                desc: 'Fluxos que eliminam trabalho manual repetitivo — leitura de documentos, geração de relatórios, respostas automáticas e integração entre sistemas.',
+              },
+              {
+                icon: 'fas fa-comments',
+                title: 'Assistentes e chatbots',
+                desc: 'Assistentes virtuais treinados com o conhecimento do seu negócio para atender clientes, qualificar leads ou apoiar a sua equipe interna.',
+              },
+              {
+                icon: 'fas fa-chart-line',
+                title: 'Análise de dados',
+                desc: 'Soluções que transformam dados dispersos em insights úteis: previsões, classificações e painéis que apoiam decisões melhores.',
+              },
+            ].map((item) => (
+              <article key={item.title} className="surface surface-hover p-7">
+                <div className="flex items-center justify-center w-12 h-12 rounded-lg mb-4"
+                  style={{ background: 'var(--cyan-dim)', border: '1px solid var(--border-strong)' }}>
+                  <i className={`${item.icon} text-si-cyan text-xl`} />
+                </div>
+                <h3 className="font-display font-bold text-xl text-si-text">{item.title}</h3>
+                <p className="mt-3 text-si-muted leading-relaxed">{item.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="mt-16 reveal">
+          <div className="text-center mx-auto" style={{ maxWidth: 720 }}>
+            <div className="section-label" style={{ justifyContent: 'center' }}>Perguntas frequentes</div>
+            <h2 className="section-title">Dúvidas comuns sobre a consultoria</h2>
+          </div>
+          <div className="mt-8 space-y-4 max-w-4xl mx-auto">
+            {[
+              {
+                q: 'Preciso entender de tecnologia para contratar?',
+                a: 'Não. Nosso papel é justamente traduzir a sua necessidade de negócio em uma solução técnica. Você descreve o problema com suas palavras e nós cuidamos do resto.',
+              },
+              {
+                q: 'Como começa o processo?',
+                a: 'Você preenche o formulário com o máximo de detalhes sobre a sua demanda. A partir disso, fazemos uma análise inicial e entramos em contato para alinhar os próximos passos.',
+              },
+              {
+                q: 'Vocês atendem pequenos negócios?',
+                a: 'Sim. Trabalhamos com empreendedores e empresas de diferentes portes, dimensionando a solução ao tamanho e ao orçamento de cada projeto.',
+              },
+              {
+                q: 'Quanto custa?',
+                a: 'O investimento depende do escopo. Após entender a sua necessidade, apresentamos uma estimativa clara de prazo e custo antes de iniciar qualquer desenvolvimento.',
+              },
+            ].map((item) => (
+              <div key={item.q} className="surface p-6">
+                <h3 className="font-display font-bold text-lg text-si-text flex items-start gap-3">
+                  <i className="fas fa-circle-question text-si-cyan mt-1 flex-shrink-0" />
+                  {item.q}
+                </h3>
+                <p className="mt-3 text-si-muted leading-relaxed pl-8">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <AdSlot className="mt-12" label="Anúncio" />
 
         {/* Final CTA */}

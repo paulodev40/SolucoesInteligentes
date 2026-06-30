@@ -53,25 +53,31 @@ const ProductDetailPage: React.FC = () => {
   const trialHref =
     product.slug === 'copymaster-pro'
       ? 'https://copymasterpro.com/'
-      : product.slug === 'read-write'
-        ? 'https://geraata.com/'
-        : product.slug === 'briefy'
-          ? 'https://briefy-site.vercel.app/'
-          : product.slug === 'wordclimb'
-            ? 'https://word-climb-beta.vercel.app/'
-            : product.slug === 'anaflow-keys'
-              ? 'https://www.anaflowkeys.com/'
-              : '#';
+      : product.slug === 'macaquito-runner'
+        ? 'https://apps.apple.com/br/app/macaquito/id6769919474'
+        : product.slug === 'read-write'
+          ? 'https://geraata.com/'
+          : product.slug === 'briefy'
+            ? 'https://briefy-site.vercel.app/'
+            : product.slug === 'wordclimb'
+              ? 'https://word-climb-beta.vercel.app/'
+              : product.slug === 'anaflow-keys'
+                ? 'https://www.anaflowkeys.com/'
+                : '#';
+
+  const externalSlugs = [
+    'copymaster-pro',
+    'macaquito-runner',
+    'read-write',
+    'briefy',
+    'wordclimb',
+    'anaflow-keys',
+  ];
+  const isAppStore = product.slug === 'macaquito-runner' || product.slug === 'briefy' || product.slug === 'anaflow-keys';
 
   return (
     <section className="relative py-20 sm:py-24 px-5">
       <div className="max-w-7xl mx-auto">
-        {(product.slug === 'rememberme' || product.slug === 'scei') && (
-          <div className="mb-8 flex justify-center reveal">
-            <span className="badge badge--yellow">🚧 Em Construção</span>
-          </div>
-        )}
-
         <div className="lg:grid lg:grid-cols-12 lg:gap-10 items-start">
           <div className="lg:col-span-7 reveal">
             <div className="flex items-center gap-5 mb-6">
@@ -124,10 +130,10 @@ const ProductDetailPage: React.FC = () => {
                 </button>
               ) : (
                 <a href={trialHref}
-                  target={['copymaster-pro', 'read-write', 'briefy', 'wordclimb', 'anaflow-keys'].includes(product.slug) ? '_blank' : undefined}
-                  rel={['copymaster-pro', 'read-write', 'briefy', 'wordclimb', 'anaflow-keys'].includes(product.slug) ? 'noopener noreferrer' : undefined}
+                  target={externalSlugs.includes(product.slug) ? '_blank' : undefined}
+                  rel={externalSlugs.includes(product.slug) ? 'noopener noreferrer' : undefined}
                   className="btn-primary">
-                  {product.slug === 'briefy' || product.slug === 'anaflow-keys' ? 'Baixar na App Store →' : 'Faça teste gratuito →'}
+                  {isAppStore ? 'Baixar na App Store →' : 'Faça teste gratuito →'}
                 </a>
               )}
               {planButtons.map((plan) =>
@@ -179,6 +185,56 @@ const ProductDetailPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Visão geral aprofundada */}
+        {product.overview && (
+          <div className="mt-16 reveal">
+            <div className="section-label">Visão geral</div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text mb-4">
+              Sobre o {product.name}
+            </h2>
+            <p className="text-lg text-si-muted leading-relaxed max-w-4xl">{product.overview}</p>
+          </div>
+        )}
+
+        {/* Funcionalidades */}
+        {product.features && product.features.length > 0 && (
+          <div className="mt-14 reveal">
+            <div className="section-label">Funcionalidades</div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text mb-6">
+              O que o {product.name} oferece
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {product.features.map((feature, index) => (
+                <div key={index} className="surface p-5 flex items-start gap-4">
+                  <i className="fas fa-bolt text-si-cyan mt-1 flex-shrink-0" />
+                  <span className="text-si-muted">{feature}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* FAQ */}
+        {product.faq && product.faq.length > 0 && (
+          <div className="mt-14 reveal">
+            <div className="section-label">Perguntas frequentes</div>
+            <h2 className="font-display font-bold text-2xl sm:text-3xl text-si-text mb-6">
+              Dúvidas comuns sobre o {product.name}
+            </h2>
+            <div className="space-y-4 max-w-4xl">
+              {product.faq.map((item, index) => (
+                <div key={index} className="surface p-6">
+                  <h3 className="font-display font-bold text-lg text-si-text flex items-start gap-3">
+                    <i className="fas fa-circle-question text-si-cyan mt-1 flex-shrink-0" />
+                    {item.q}
+                  </h3>
+                  <p className="mt-3 text-si-muted leading-relaxed pl-8">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-16 text-center">
           <Link href="/produtos" className="btn-ghost">

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, RememberMeIcon, SCEIIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
+import { MacaquitoRunnerIcon, SlideGeniusIcon, ReadWriteIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
 
 export const NAV_LINKS = [
   { name: 'Home', path: '/' },
@@ -28,6 +28,35 @@ export const PRODUCTS: Product[] = [
       'Sobreviver ao Vulcão em Chamas com rochas e geiseres de lava.',
       'Desafiar o Modo Infinito e bater recordes com combo até x5.',
     ],
+    platform: '📱 iOS',
+    overview:
+      'Macaquito Runner é um endless runner brasileiro feito para sessões rápidas e viciantes. Você controla o Macaquito neon em uma corrida sem fim por quatro mundos com identidade visual própria — Selva Neon, Cidade Cyberpunk, Espaço Sideral e Vulcão em Chamas —, cada um com obstáculos, ritmo e trilha sonora exclusivos. A proposta é simples de aprender e difícil de largar: quanto mais longe você vai, mais rápido fica, e o sistema de combo recompensa quem mantém a sequência de bananas sem errar. É o tipo de jogo perfeito para preencher aqueles minutos parados na fila, no transporte ou no intervalo — sempre com aquele "só mais uma corrida".',
+    features: [
+      'Quatro mundos temáticos com obstáculos e trilha sonora exclusivos por fase.',
+      'Mecânica de duplo pulo e deslize para desviar de obstáculos altos e baixos.',
+      'Sistema de combo multiplicador (até x5) que premia sequências sem erro.',
+      'Modo infinito com ranking de recordes para competir com você mesmo.',
+      'Controles de um toque, fáceis de aprender e responsivos.',
+      'Visual neon e desempenho otimizado para iPhone.',
+    ],
+    faq: [
+      {
+        q: 'Macaquito Runner é gratuito?',
+        a: 'O jogo está disponível para download na App Store. Baixe pelo botão acima para conferir a forma de acesso atual diretamente na loja.',
+      },
+      {
+        q: 'Funciona offline?',
+        a: 'Sim. Depois de instalado, você pode correr e bater recordes mesmo sem conexão com a internet.',
+      },
+      {
+        q: 'Para qual idade o jogo é indicado?',
+        a: 'É um jogo casual de mecânica simples, adequado para todas as idades — divertido tanto para crianças quanto para adultos que gostam de jogos de reflexo.',
+      },
+      {
+        q: 'Em quais dispositivos roda?',
+        a: 'Macaquito Runner foi desenvolvido para iPhone e está disponível na App Store brasileira.',
+      },
+    ],
     icon: MacaquitoRunnerIcon,
     image: '/assets/images/icone_macaquito.png',
   },
@@ -43,6 +72,30 @@ export const PRODUCTS: Product[] = [
       'Desenvolver slides para aulas e seminários.',
       'Montar pitches de vendas para investidores.',
       'Elaborar relatórios visuais de resultados.',
+    ],
+    platform: '🌐 Web',
+    overview:
+      'SlideGenius transforma uma ideia em uma apresentação pronta em poucos minutos. Em vez de você perder horas escolhendo layout, alinhando caixas de texto e procurando imagens em bancos genéricos, a inteligência artificial monta a estrutura dos slides, sugere o texto de cada tópico e busca imagens que combinam com o tema. Você entra com o assunto e o objetivo; o SlideGenius entrega um rascunho coerente, com começo, meio e fim — pronto para você revisar e ajustar ao seu gosto. É a forma mais rápida de sair do zero e chegar a uma apresentação profissional, mesmo para quem não tem nenhuma habilidade com design.',
+    features: [
+      'Geração automática da estrutura completa da apresentação a partir de um tema.',
+      'Sugestão de texto objetivo para cada slide, no tom que você escolher.',
+      'Busca e inserção automática de imagens relacionadas ao conteúdo.',
+      'Layouts harmoniosos aplicados automaticamente, sem trabalho manual.',
+      'Edição livre do resultado para personalizar antes de apresentar.',
+    ],
+    faq: [
+      {
+        q: 'Preciso saber design para usar o SlideGenius?',
+        a: 'Não. A ferramenta cuida da parte visual e da organização. Você só precisa informar o tema e o objetivo da apresentação.',
+      },
+      {
+        q: 'Consigo editar os slides depois de gerados?',
+        a: 'Sim. O resultado é um ponto de partida — você pode ajustar textos, trocar imagens e reorganizar os slides como quiser.',
+      },
+      {
+        q: 'Para que tipo de apresentação ele serve?',
+        a: 'Reuniões de negócios, aulas e seminários, pitches de vendas e relatórios visuais. Funciona bem sempre que você precisa comunicar uma ideia com clareza.',
+      },
     ],
     icon: SlideGeniusIcon,
     image: '/assets/images/camaleao_fundo.jpeg',
@@ -60,40 +113,32 @@ export const PRODUCTS: Product[] = [
       'Documentar decisões importantes de brainstormings.',
       'Manter um registro pesquisável de todas as conversas.',
     ],
+    platform: '🌐 Web',
+    overview:
+      'Listen&Write resolve um problema clássico de quem participa de muitas reuniões: a informação importante se perde entre anotações apressadas e a memória falha. Com ele, você grava a reunião, recebe uma transcrição precisa de tudo que foi dito e, a partir dela, uma ata organizada com os principais pontos, decisões e tarefas. Em vez de tentar anotar e participar ao mesmo tempo, você fica presente na conversa e deixa a IA cuidar do registro. No fim, todo o conteúdo vira um documento pesquisável — fácil de consultar, compartilhar com a equipe e usar como prova do que foi combinado.',
+    features: [
+      'Gravação de reuniões com transcrição automática e precisa.',
+      'Geração de ata com resumo, decisões e lista de tarefas.',
+      'Registro pesquisável para encontrar qualquer trecho depois.',
+      'Organização por reunião, facilitando o acompanhamento de pendências.',
+      'Compartilhamento simples do resultado com a equipe.',
+    ],
+    faq: [
+      {
+        q: 'A transcrição funciona em português?',
+        a: 'Sim. O Listen&Write foi pensado para reuniões em português brasileiro, com transcrição e geração de ata no idioma.',
+      },
+      {
+        q: 'Preciso ficar anotando durante a reunião?',
+        a: 'Não. Essa é justamente a ideia: você participa da conversa e a ferramenta cuida da transcrição e do resumo automaticamente.',
+      },
+      {
+        q: 'Posso editar a ata gerada?',
+        a: 'Sim. A ata é um ponto de partida estruturado que você pode revisar, complementar e ajustar antes de compartilhar.',
+      },
+    ],
     icon: ReadWriteIcon,
     image: '/assets/images/lobo_guara.png',
-  },
-  {
-    slug: 'rememberme',
-    name: 'RememberMe',
-    tagline: 'Restaure e colore fotos antigas com qualidade profissional usando IA.',
-    description: 'Resgate suas memórias mais preciosas. Nossa IA remove arranhões, melhora a nitidez e adiciona cores vibrantes a fotos antigas, trazendo o passado de volta à vida.',
-    problem: 'Fotos de família antigas estão danificadas, desbotadas ou em preto e branco, perdendo seu valor emocional.',
-    targetAudience: 'Famílias, entusiastas de genealogia, fotógrafos e qualquer pessoa que queira preservar memórias.',
-    useCases: [
-      'Colorir fotos em preto e branco de avós e bisavós.',
-      'Restaurar fotos de infância danificadas pelo tempo.',
-      'Melhorar a qualidade de imagens antigas para impressão.',
-      'Criar presentes emocionantes e personalizados.',
-    ],
-    icon: RememberMeIcon,
-    image: '/assets/images/jabuti.png',
-  },
-  {
-    slug: 'scei',
-    name: 'SCEI',
-    tagline: 'Sistema de Controle de Estoque Inteligente para Pequenos Empreendedores.',
-    description: 'Controle seu estoque de forma simples e inteligente. O SCEI ajuda pequenos empreendedores a acompanhar entradas e saídas, evitar perdas, prever reposição e tomar decisões com base em dados.',
-    problem: 'Pequenos empreendedores perdem vendas e dinheiro por falta de controle de estoque, rupturas de produtos e compras sem planejamento.',
-    targetAudience: 'Pequenos empreendedores, lojas de bairro, vendedores autônomos e negócios locais que precisam organizar o estoque.',
-    useCases: [
-      'Registrar entradas e saídas de produtos em tempo real.',
-      'Receber alertas de estoque baixo antes da ruptura.',
-      'Acompanhar itens com maior giro para planejar compras.',
-      'Reduzir perdas por vencimento e excesso de mercadoria.',
-    ],
-    icon: SCEIIcon,
-    image: '/assets/images/SCEI.png',
   },
   {
     slug: 'briefy',
@@ -108,6 +153,35 @@ export const PRODUCTS: Product[] = [
       'Gerar atas formais, resumos executivos e listas de pontos de ação automaticamente.',
       'Exportar relatórios em PDF, Markdown ou enviar por email com um toque.',
       'Organizar e buscar reuniões por título, transcrição ou participantes.',
+    ],
+    platform: '📱 iOS',
+    overview:
+      'Briefy é o app de iPhone para quem não pode perder o que acontece nas reuniões — mas também não tem tempo de montar atas manualmente. Ele grava com qualidade, transcreve em tempo real e gera relatórios profissionais (ata formal, resumo executivo e lista de pontos de ação) em segundos. O grande diferencial é a privacidade: todo o processamento acontece no próprio dispositivo, então suas conversas confidenciais não saem do seu iPhone. Ideal para profissionais que lidam com informação sensível e precisam de um registro confiável, sem depender de servidores externos nem de conexão com a internet.',
+    features: [
+      'Gravação em alta qualidade pelo iPhone, AirPods ou microfone Bluetooth.',
+      'Transcrição em tempo real durante a própria reunião, mesmo offline.',
+      'Geração automática de ata formal, resumo executivo e pontos de ação.',
+      'Exportação em PDF, Markdown ou envio por e-mail com um toque.',
+      'Busca por título, transcrição ou participantes.',
+      'Processamento 100% no dispositivo — privacidade total dos dados.',
+    ],
+    faq: [
+      {
+        q: 'Minhas reuniões ficam armazenadas em algum servidor?',
+        a: 'Não. O Briefy processa o áudio e a transcrição diretamente no seu iPhone, garantindo que o conteúdo das reuniões permaneça privado no dispositivo.',
+      },
+      {
+        q: 'Funciona sem internet?',
+        a: 'Sim. A transcrição em tempo real acontece localmente, então você pode usar o Briefy mesmo sem conexão.',
+      },
+      {
+        q: 'Em quais formatos posso exportar os relatórios?',
+        a: 'Você pode exportar em PDF ou Markdown, ou enviar o relatório por e-mail diretamente do app.',
+      },
+      {
+        q: 'Onde baixo o Briefy?',
+        a: 'O Briefy está disponível na App Store. Use o botão acima para baixar no seu iPhone.',
+      },
     ],
     icon: BriefyIcon,
     image: '/briefy.png',
@@ -126,6 +200,35 @@ export const PRODUCTS: Product[] = [
       'Compartilhar o acesso com até 5 membros da família com uma única compra.',
       'Estudar offline, sem depender de conexão com internet.',
     ],
+    platform: '🌐 Web',
+    overview:
+      'WordClimb ataca o ponto onde a maioria das pessoas trava ao aprender inglês: o vocabulário. Em vez de um app cheio de distrações e assinaturas caras, ele entrega um caminho focado — 800 palavras essenciais organizadas em 10 fases progressivas, do nível A1 ao C1. A repetição espaçada inteligente decide a hora certa de revisar cada palavra para fixar de verdade na memória de longo prazo, enquanto a verificação de pronúncia, as streaks diárias e as ligas semanais mantêm a motivação alta. E o melhor: você paga uma vez e tem acesso para sempre, sem mensalidade — podendo ainda compartilhar com a família.',
+    features: [
+      '800 palavras essenciais distribuídas em 10 fases (A1 a C1).',
+      'Repetição espaçada inteligente para fixar o vocabulário na memória.',
+      'Verificação de pronúncia com diferentes sotaques nativos.',
+      'Streaks diárias e ligas semanais para manter a constância.',
+      'Acesso vitalício com pagamento único — sem assinatura mensal.',
+      'Compartilhamento com até 5 membros da família e estudo offline.',
+    ],
+    faq: [
+      {
+        q: 'Preciso pagar mensalidade?',
+        a: 'Não. O WordClimb funciona com pagamento único: você compra uma vez e mantém o acesso para sempre, sem cobranças recorrentes.',
+      },
+      {
+        q: 'Para qual nível de inglês ele serve?',
+        a: 'Para todos os níveis. O conteúdo vai do A1 (iniciante) ao C1 (avançado), em 10 fases progressivas que acompanham sua evolução.',
+      },
+      {
+        q: 'Como a repetição espaçada ajuda no aprendizado?',
+        a: 'Ela apresenta cada palavra nos intervalos ideais para a memorização, revisando no momento em que você está prestes a esquecer — o que fixa o vocabulário com muito menos esforço.',
+      },
+      {
+        q: 'Dá para estudar sem internet?',
+        a: 'Sim. O WordClimb permite estudar offline, sem depender de conexão.',
+      },
+    ],
     icon: WordClimbIcon,
     image: '/WordClimb.png',
   },
@@ -142,6 +245,35 @@ export const PRODUCTS: Product[] = [
       'Tocar 14 músicas completas em modo partitura ou notas caindo.',
       'Evoluir com mais de 40 exercícios interativos e sistema de XP e ranking.',
       'Estudar offline com processamento de áudio local — privacidade total.',
+    ],
+    platform: '📱 iOS',
+    overview:
+      'AnaFlow Keys torna o sonho de tocar piano acessível a quem nunca encostou em um teclado. Em vez de aulas presenciais caras e horários rígidos, você aprende no seu próprio ritmo, direto do iPhone ou iPad, com a professora virtual Ana guiando 21 aulas em vídeo do zero ao intermediário. O app ouve você tocar pelo microfone e detecta as notas em tempo real, dando feedback imediato sobre acertos e erros — como um professor ao seu lado. Com mais de 40 exercícios, 14 músicas completas, dois modos de prática e um sistema de XP e rankings, aprender vira um hábito divertido. Todo o áudio é processado localmente, sem armazenar gravações: sua privacidade é preservada.',
+    features: [
+      '21 aulas em vídeo com a professora virtual Ana, do zero ao intermediário.',
+      'Detecção de notas em tempo real pelo microfone, com feedback imediato.',
+      '14 músicas completas em modo partitura ou notas caindo.',
+      'Mais de 40 exercícios interativos com sistema de XP e ranking.',
+      'Dois modos de prática para diferentes objetivos de estudo.',
+      'Processamento de áudio local — nenhum áudio é armazenado.',
+    ],
+    faq: [
+      {
+        q: 'Preciso ter um piano de verdade?',
+        a: 'Ter um teclado ou piano ajuda a praticar com a detecção de notas pelo microfone. O app guia o aprendizado, mas tocar em um instrumento real é o que aproveita melhor o recurso de feedback.',
+      },
+      {
+        q: 'Sirvo se nunca toquei nada na vida?',
+        a: 'Sim. As aulas começam do absoluto zero com a professora Ana e avançam de forma gradual até o nível intermediário.',
+      },
+      {
+        q: 'O app grava o som do meu microfone?',
+        a: 'Não. A detecção de notas acontece localmente e nenhum áudio é armazenado — sua privacidade é totalmente preservada.',
+      },
+      {
+        q: 'A partir de que idade dá para usar?',
+        a: 'É indicado para crianças a partir de 6 anos, adolescentes e adultos iniciantes ou intermediários.',
+      },
     ],
     icon: AnaFlowKeysIcon,
     image: '/anaflow _2.png',
