@@ -80,6 +80,37 @@ Para despublicar (voltar a rascunho):
 npm run blog:unpublish -- <slug>
 ```
 
+## Automação semanal (GitHub Actions)
+
+Existe um robô que **gera 1 rascunho por semana sozinho** — toda segunda-feira, 06:00
+(horário de Brasília) — definido em [.github/workflows/blog-weekly.yml](.github/workflows/blog-weekly.yml).
+
+O que ele faz a cada semana:
+1. Gera um post novo (texto + capa por IA), escolhendo um tema que ainda não foi usado.
+2. Adiciona como **rascunho** (`status: "draft"`) — continua invisível no site.
+3. Abre uma **issue** no GitHub te avisando, com o passo a passo para publicar.
+
+Você revisa quando puder e publica. **Nada vai ao ar sozinho.**
+
+### Configuração única (você precisa fazer)
+
+1. No GitHub, vá em **Settings → Secrets and variables → Actions → New repository secret**.
+2. Crie o secret **`GEMINI_API_KEY`** com a sua chave do Gemini (a mesma do `.env`).
+   - (Opcional) Crie também **`ANTHROPIC_API_KEY`** para gerar o texto com o Claude.
+3. Pronto. O robô roda sozinho toda semana.
+
+Para **testar agora** sem esperar a segunda-feira: vá na aba **Actions → "Blog — rascunho
+semanal automático" → Run workflow**.
+
+> Se o robô não conseguir dar `push` na branch `main` (caso ela tenha proteção que exige
+> Pull Request), me avise que troco a automação para abrir um PR em vez de commitar direto.
+
+### Como publicar o rascunho que o robô gerou
+
+A issue criada pelo robô traz o passo a passo. O jeito mais simples, **sem usar o
+computador**: abra `content/generated-posts.json` no GitHub, troque `"status": "draft"`
+por `"status": "published"` naquele post e confirme (commit) — a Vercel publica sozinha.
+
 ## Como funciona por baixo
 
 - `content/generated-posts.json` — fonte dos posts gerados.

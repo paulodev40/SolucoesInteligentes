@@ -1,0 +1,82 @@
+name: Blog — rascunho semanal automático
+
+# Gera UM rascunho de post (texto + capa por IA) toda semana e o adiciona ao
+# repositório com status "draft" (invisível no site). Você revisa e publica
+# depois — nada vai ao ar sem a sua aprovação (exigência do Google AdSense).
+
+on:
+  schedule:
+    # Toda segunda-feira às 09:00 UTC (06:00 no horário de Brasília).
+    - cron: '0 9 * * 1'
+  workflow_dispatch: {} # permite rodar manualmente pelo botão "Run workflow"
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  gerar-rascunho:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar rascunho com IA (texto + capa)
+        env:
+          # Configure em Settings -> Secrets and variables -> Actions.
+          # GEMINI_API_KEY e obrigatoria; ANTHROPIC_API_KEY e opcional (texto via Claude).
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npm run blog:draft
+
+      - name: Commitar o rascunho
+        id: commit
+        run: |
+          git config user.name "blog-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/generated-posts.json public/blog-covers
+          if git diff --cached --quiet; then
+            echo "Nada novo para commitar."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "chore(blog): novo rascunho automatico ($(date +%F))"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Avisar para revisar (abrir issue)
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TITLE=$(node -e "const p=require('./content/generated-posts.json'); const d=p.find(x=>x.status==='draft'); if(d) process.stdout.write(d.title)")
+          SLUG=$(node -e "const p=require('./content/generated-posts.json'); const d=p.find(x=>x.status==='draft'); if(d) process.stdout.write(d.slug)")
+          if [ -z "$SLUG" ]; then echo "Sem rascunho novo."; exit 0; fi
+          BODY=$(printf '%s\n' \
+            "Um novo rascunho foi gerado automaticamente e aguarda a sua aprovacao." \
+            "" \
+            "Titulo: $TITLE" \
+            "Slug: $SLUG" \
+            "Status: rascunho (invisivel no site)" \
+            "" \
+            "## Publicar pelo GitHub (mais simples)" \
+            "1. Abra content/generated-posts.json no GitHub." \
+            "2. Ache o post com o slug $SLUG e leia/ajuste o texto." \
+            "3. Troque a status de draft para published nesse post e confirme (commit)." \
+            "4. A Vercel publica sozinha." \
+            "" \
+            "## Alternativa (no seu PC, para pre-visualizar)" \
+            "Rode: npm run dev  e abra /blog/$SLUG" \
+            "Publicar: npm run blog:publish -- $SLUG  e depois git push" \
+            "" \
+            "Nao gostou? Deixe como rascunho: nao aparece no site." \
+            "Trocar a capa: npm run blog:image -- $SLUG")
+          gh issue create --title "Novo rascunho para revisar: $TITLE" --body "$BODY"

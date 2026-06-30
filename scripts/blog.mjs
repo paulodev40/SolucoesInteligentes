@@ -96,6 +96,14 @@ function existingSlugs() {
   return slugs;
 }
 
+// Títulos dos posts originais (constants.tsx), para a IA não repetir o assunto
+// quando gera um tema automaticamente.
+function coreTitles() {
+  if (!existsSync(CONSTANTS_FILE)) return [];
+  const src = readFileSync(CONSTANTS_FILE, 'utf8');
+  return [...src.matchAll(/title:\s*'([^']+)'/g)].map((m) => m[1]);
+}
+
 function uniqueSlug(base) {
   const taken = existingSlugs();
   let slug = base || 'post';
@@ -274,7 +282,7 @@ async function generateCoverImage(slug, title, category) {
 
 async function generateDraft(topic) {
   const posts = readPosts();
-  const existingTitles = posts.map((p) => p.title);
+  const existingTitles = [...posts.map((p) => p.title), ...coreTitles()];
   const prompt = buildPrompt(topic, existingTitles);
 
   let raw = await generateWithAnthropic(prompt);
