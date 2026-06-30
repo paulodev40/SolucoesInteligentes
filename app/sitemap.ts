@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { PUBLISHED_BLOG_POSTS, PRODUCTS } from '../constants';
+import { PRODUCTS } from '../constants';
+import { getPublishedPosts } from '../lib/blogData';
 
 const BASE = 'https://solucoesinteligentes83.com';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 300;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const publishedPosts = await getPublishedPosts();
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE, lastModified: new Date(), changeFrequency: 'weekly', priority: 1.0 },
     { url: `${BASE}/ferramentas`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9 },
@@ -27,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/sobre`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = PUBLISHED_BLOG_POSTS.map((post) => ({
+  const blogRoutes: MetadataRoute.Sitemap = publishedPosts.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',

@@ -1,17 +1,20 @@
 import React from 'react';
 import Link from 'next/link';
-import { PUBLISHED_BLOG_POSTS } from '../constants';
+import type { BlogPost } from '../types';
 
-const posts = PUBLISHED_BLOG_POSTS.map((post) => ({
-  tag: post.category,
-  title: post.title,
-  excerpt: post.excerpt,
-  date: post.date,
-  img: post.imageUrl,
-  href: `/blog/${post.slug}`,
-}));
+interface BlogPageProps {
+  posts: BlogPost[];
+}
 
-const BlogPage: React.FC = () => {
+const BlogPage: React.FC<BlogPageProps> = ({ posts: source }) => {
+  const posts = source.map((post) => ({
+    tag: post.category,
+    title: post.title,
+    excerpt: post.excerpt,
+    date: post.date,
+    img: post.imageUrl,
+    href: `/blog/${post.slug}`,
+  }));
   return (
     <main className="relative max-w-[1180px] mx-auto px-6 pt-[160px]">
       {/* HERO HEADER */}

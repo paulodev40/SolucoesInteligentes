@@ -39,6 +39,8 @@
     "node_modules",
     "package",
     "dist",
-    "supabase"
+    "supabase",
+    "App.tsx",
+    "index.tsx"
   ]
 }

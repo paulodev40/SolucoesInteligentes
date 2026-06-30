@@ -80,43 +80,55 @@ Para despublicar (voltar a rascunho):
 npm run blog:unpublish -- <slug>
 ```
 
-## Automação semanal (GitHub Actions)
+> Observação: o fluxo acima (CLI no seu PC, commitando o arquivo) continua válido para
+> quem quer gerar manualmente. Mas a **automação roda direto na Vercel** — veja abaixo.
 
-Existe um robô que **gera 1 rascunho por semana sozinho** — toda segunda-feira, 06:00
-(horário de Brasília) — definido em [.github/workflows/blog-weekly.yml](.github/workflows/blog-weekly.yml).
+## Automação na Vercel (sem GitHub)
 
-O que ele faz a cada semana:
-1. Gera um post novo (texto + capa por IA), escolhendo um tema que ainda não foi usado.
-2. Adiciona como **rascunho** (`status: "draft"`) — continua invisível no site.
-3. Abre uma **issue** no GitHub te avisando, com o passo a passo para publicar.
+Tudo roda na Vercel: um **cron semanal** gera o rascunho, ele é guardado no **Vercel Blob**,
+e você aprova num **painel** com botões. Nenhuma chave precisa ir para o GitHub.
 
-Você revisa quando puder e publica. **Nada vai ao ar sozinho.**
+Fluxo:
+1. **Toda segunda, 06:00 (Brasília)** o cron gera 1 post (texto + capa) e o salva no Blob
+   como **rascunho** (invisível no site).
+2. Você abre o painel **`/admin`**, revisa o conteúdo e clica **Publicar**.
+3. O post entra na listagem `/blog` e no `sitemap.xml` em poucos minutos (revalidação ISR).
 
-### Configuração única (você precisa fazer)
+Nada vai ao ar sem você clicar em Publicar.
 
-1. No GitHub, vá em **Settings → Secrets and variables → Actions → New repository secret**.
-2. Crie o secret **`GEMINI_API_KEY`** com a sua chave do Gemini (a mesma do `.env`).
-   - (Opcional) Crie também **`ANTHROPIC_API_KEY`** para gerar o texto com o Claude.
-3. Pronto. O robô roda sozinho toda semana.
+### Configuração única na Vercel (você faz uma vez)
 
-Para **testar agora** sem esperar a segunda-feira: vá na aba **Actions → "Blog — rascunho
-semanal automático" → Run workflow**.
+1. **Criar o armazém (Vercel Blob):** no projeto na Vercel → aba **Storage** →
+   **Create Database → Blob** → conecte ao projeto. Isso cria automaticamente a variável
+   `BLOB_READ_WRITE_TOKEN`.
+2. **Definir a senha do painel:** em **Settings → Environment Variables**, crie
+   **`ADMIN_PASSWORD`** com uma senha à sua escolha (usada para entrar em `/admin`).
+3. **Conferir a chave de IA:** garanta que **`GEMINI_API_KEY`** já existe nas variáveis
+   (é a mesma usada pelo Resumidor). Opcional: `ANTHROPIC_API_KEY` para o texto via Claude.
+4. **(Opcional, recomendado)** crie **`CRON_SECRET`** com um valor aleatório — a Vercel o
+   envia automaticamente ao cron, evitando que terceiros disparem a geração.
+5. Faça um **redeploy** para aplicar as variáveis.
 
-> Se o robô não conseguir dar `push` na branch `main` (caso ela tenha proteção que exige
-> Pull Request), me avise que troco a automação para abrir um PR em vez de commitar direto.
+### Usar o painel
 
-### Como publicar o rascunho que o robô gerou
+- Acesse **`https://SEU-SITE/admin`** e entre com a `ADMIN_PASSWORD`.
+- Você vê os posts gerados, pode **ler o conteúdo** (botão "Ver conteúdo"),
+  **Publicar / Despublicar** e **Excluir**.
+- Botão **"Gerar rascunho"** cria um post na hora (sem esperar a segunda-feira),
+  opcionalmente com um tema que você digitar.
 
-A issue criada pelo robô traz o passo a passo. O jeito mais simples, **sem usar o
-computador**: abra `content/generated-posts.json` no GitHub, troque `"status": "draft"`
-por `"status": "published"` naquele post e confirme (commit) — a Vercel publica sozinha.
+> O cron está definido em [vercel.json](vercel.json) (`/api/cron/generate-draft`,
+> toda segunda). O painel é a página `/admin` (bloqueada no `robots.txt`).
 
 ## Como funciona por baixo
 
-- `content/generated-posts.json` — fonte dos posts gerados.
-- `constants.tsx` — junta os posts originais com os gerados:
-  - `BLOG_POSTS` = todos (inclui rascunhos), usado para localizar um post pelo slug.
-  - `PUBLISHED_BLOG_POSTS` = só os publicados, usado na listagem, sitemap e geração estática.
+- **Vercel Blob** guarda os posts gerados pela automação (`blog/index.json`) e as capas
+  (`blog/covers/<slug>.png`). Editado pelo cron e pelo painel.
+- `content/generated-posts.json` + `constants.tsx` — posts originais e os gerados
+  localmente pela CLI (commitados no repositório).
+- `lib/blogData.ts` junta as duas fontes (Blob + estáticos) e filtra por `status`.
+- Listagem, post e sitemap usam essa camada com **revalidação a cada 5 min** (ISR),
+  então posts publicados no painel aparecem sozinhos, sem novo deploy.
 - `app/blog/[slug]/page.tsx` — `dynamicParams = false`: em produção, slugs de rascunho
   retornam 404; em `npm run dev` os rascunhos ficam acessíveis para revisão.
 - `scripts/blog.mjs` — CLI de geração e gestão de status.
