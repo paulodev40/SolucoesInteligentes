@@ -1,7 +1,7 @@
 
 import React from 'react';
 import type { Product, BlogPost, Testimonial } from './types';
-import { MacaquitoRunnerIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon } from './components/IconComponents';
+import { MacaquitoRunnerIcon, BriefyIcon, WordClimbIcon, AnaFlowKeysIcon, LousaGizIcon } from './components/IconComponents';
 import generatedPosts from './content/generated-posts.json';
 
 export const NAV_LINKS = [
@@ -15,6 +15,52 @@ export const NAV_LINKS = [
 ];
 
 export const PRODUCTS: Product[] = [
+  {
+    slug: 'lousa-e-giz',
+    name: 'Lousa&Giz',
+    tagline: 'Planeje, crie e avalie aulas em minutos. Feito para professores.',
+    description: 'Plataforma web com mais de 20 ferramentas de IA especializadas para professores. A Capi, sua assistente pedagógica, monta planos de aula, cria exercícios e corrige provas — tudo alinhado à BNCC, no formato da sua rede de ensino e sem usar dados de alunos.',
+    problem: 'Professores gastam horas fora de sala planejando aulas, elaborando atividades e corrigindo provas manualmente — tempo que poderia ser dedicado aos alunos.',
+    targetAudience: 'Professores da educação básica (redes pública e privada), coordenadores pedagógicos e escolas que querem ganhar tempo no planejamento e na avaliação.',
+    useCases: [
+      'Elaborar planos de aula completos e alinhados à BNCC em minutos.',
+      'Criar listas de exercícios e atividades personalizadas com IA.',
+      'Corrigir provas automaticamente e ganhar horas de trabalho por semana.',
+      'Gerar avaliações no formato exigido pela sua rede de ensino.',
+      'Explorar mais de 20 ferramentas pedagógicas especializadas em um só lugar.',
+    ],
+    platform: '🌐 Web',
+    overview:
+      'Lousa&Giz é uma plataforma completa de materiais pedagógicos com IA, criada para devolver ao professor o seu recurso mais escasso: tempo. No centro dela está a Capi, uma assistente pedagógica que entende a rotina de sala de aula brasileira. São mais de 20 ferramentas especializadas — do plano de aula alinhado à BNCC à correção automática de provas, passando pela criação de exercícios, atividades e avaliações personalizadas. Tudo é gerado no formato da sua rede de ensino, pronto para usar, e sem coletar dados de alunos. Em vez de passar noites e fins de semana planejando e corrigindo, o professor descreve o que precisa e recebe o material pronto em minutos — sobrando mais tempo e energia para o que realmente importa: ensinar.',
+    features: [
+      'Mais de 20 ferramentas de IA especializadas para o dia a dia do professor.',
+      'Planos de aula completos e alinhados à BNCC em minutos.',
+      'Corretor de provas automático que economiza horas de trabalho.',
+      'Criação de exercícios, atividades e avaliações personalizadas.',
+      'Materiais gerados no formato da sua rede de ensino.',
+      'Privacidade em primeiro lugar: funciona sem dados de alunos.',
+    ],
+    faq: [
+      {
+        q: 'O que é a Capi?',
+        a: 'A Capi é a assistente pedagógica com IA da plataforma. É ela quem monta os planos de aula, cria os exercícios e corrige as provas a partir do que você pede — sempre alinhada à BNCC.',
+      },
+      {
+        q: 'Os materiais seguem a BNCC?',
+        a: 'Sim. Os planos de aula, atividades e avaliações são gerados alinhados à BNCC e podem ser adaptados ao formato exigido pela sua rede de ensino.',
+      },
+      {
+        q: 'A plataforma usa dados dos meus alunos?',
+        a: 'Não. A Lousa&Giz foi pensada para funcionar sem dados de alunos — você gera os materiais pedagógicos sem precisar cadastrar informações de estudantes.',
+      },
+      {
+        q: 'Preciso instalar alguma coisa?',
+        a: 'Não. A Lousa&Giz é 100% web: basta acessar lousaegiz.com, criar sua conta e começar a usar em qualquer computador ou celular com internet.',
+      },
+    ],
+    icon: LousaGizIcon,
+    image: '/capi_home_poster.webp',
+  },
   {
     slug: 'macaquito-runner',
     name: 'Macaquito Runner',

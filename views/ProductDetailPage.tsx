@@ -29,10 +29,18 @@ const ProductDetailPage: React.FC = () => {
           ? 'https://word-climb-beta.vercel.app/'
           : product.slug === 'anaflow-keys'
             ? 'https://www.anaflowkeys.com/'
-            : '#';
+            : product.slug === 'lousa-e-giz'
+              ? 'https://lousaegiz.com/'
+              : '#';
 
   const hasExternalLink = trialHref !== '#';
   const isAppStore = product.slug === 'macaquito-runner' || product.slug === 'briefy' || product.slug === 'anaflow-keys';
+  const ctaLabel = isAppStore
+    ? 'Baixar na App Store →'
+    : product.slug === 'lousa-e-giz'
+      ? 'Acessar a plataforma →'
+      : 'Faça teste gratuito →';
+  const showHeroMedia = product.slug === 'lousa-e-giz';
 
   return (
     <section className="relative py-20 sm:py-24 px-5">
@@ -55,8 +63,33 @@ const ProductDetailPage: React.FC = () => {
             {hasExternalLink && (
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href={trialHref} target="_blank" rel="noopener noreferrer" className="btn-primary">
-                  {isAppStore ? 'Baixar na App Store →' : 'Faça teste gratuito →'}
+                  {ctaLabel}
                 </a>
+              </div>
+            )}
+
+            {showHeroMedia && (
+              <div
+                className="mt-10 overflow-hidden"
+                style={{
+                  borderRadius: 22,
+                  border: '1px solid rgba(140,170,255,.18)',
+                  boxShadow: '0 24px 60px -24px rgba(0,0,0,.6)',
+                  maxWidth: 560,
+                }}
+              >
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/capi_home_poster.webp"
+                  aria-label={`Demonstração da plataforma ${product.name}`}
+                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                >
+                  <source src="/capi_home.webm" type="video/webm" />
+                  <source src="/capi_home.mp4" type="video/mp4" />
+                </video>
               </div>
             )}
           </div>

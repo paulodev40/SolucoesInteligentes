@@ -64,6 +64,13 @@ export const WordClimbIcon: React.FC<{ className?: string }> = ({ className }) =
   </svg>
 );
 
+export const LousaGizIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M3 4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h7v2H8a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2h-2v-2h7a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H3zm1 2h16v9H4V6z" />
+    <path d="M6 8h7v1.5H6V8zm0 3h9v1.5H6V11zm11.5-3H18v4.5h-.5V8z" />
+  </svg>
+);
+
 export const AnaFlowKeysIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
     <path d="M3 5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H3zm1 2h2.5v9H4V7zm3.5 0H10v9H7.5V7zm3.5 0h2.5v9H11V7zm3.5 0H17v9h-2.5V7zm3.5 0h1v9h-1V7z" />
