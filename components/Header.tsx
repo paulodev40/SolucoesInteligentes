@@ -9,7 +9,6 @@ const LINKS = [
   { name: 'Produtos', path: '/produtos' },
   { name: 'Cursos', path: '/cursos-online' },
   { name: 'Ferramentas', path: '/ferramentas' },
-  { name: 'Consultoria', path: '/consultoria' },
   { name: 'Blog', path: '/blog' },
   { name: 'Sobre', path: '/sobre' },
 ];

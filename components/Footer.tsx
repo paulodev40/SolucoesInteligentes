@@ -5,7 +5,6 @@ const navLinks = [
   { name: 'Produtos', href: '/produtos' },
   { name: 'Cursos Online', href: '/cursos-online' },
   { name: 'Ferramentas', href: '/ferramentas' },
-  { name: 'Consultoria', href: '/consultoria' },
   { name: 'Conteúdo Digital', href: '/conteudo-digital' },
   { name: 'Blog', href: '/blog' },
 ];
