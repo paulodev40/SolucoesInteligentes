@@ -241,12 +241,25 @@ async function generateCoverImage(slug, title, category) {
   // Importante: NÃO passar título nem categoria como frase no prompt — o Imagen
   // tende a "escrever" qualquer conceito textual como título na imagem (muitas vezes
   // truncado). Por isso o prompt é puramente VISUAL, proibindo texto explicitamente.
-  // (A variável `category` é mantida na assinatura para uso futuro, mas não entra no prompt.)
+  // Para não repetir sempre a mesma imagem, variamos o MOTIVO visual de forma
+  // determinística a partir do título (mesmo estilo/paleta da marca, sem texto).
+  const COVER_MOTIFS = [
+    'floating glowing isometric geometric blocks and circular nodes connected by thin luminous circuit lines, neural network motif, flowing data streams',
+    'a luminous constellation of interconnected nodes and particles forming an abstract neural network in deep space',
+    'flowing ribbons of light and data streams weaving between translucent geometric crystals',
+    'an abstract isometric city made of glowing data blocks, layered platforms and light bridges',
+    'concentric glowing rings and orbiting geometric particles around a central radiant core, energy field',
+    'a topographic grid of glowing contour lines rising into floating polygonal shapes and light nodes',
+    'cascading layers of translucent hexagons and circuit pathways with soft light bloom',
+    'an abstract flowing wave of luminous dots and lines forming a sense of motion and intelligence',
+  ];
   void category;
+  const seed = title || category || '';
+  let h = 5381;
+  for (let i = 0; i < seed.length; i++) h = ((h << 5) + h + seed.charCodeAt(i)) >>> 0;
+  const motif = COVER_MOTIFS[h % COVER_MOTIFS.length];
   const imagePrompt =
-    `Abstract isometric technology and artificial intelligence illustration. ` +
-    `Floating glowing geometric blocks and circular nodes connected by thin luminous circuit lines, ` +
-    `neural network motif, flowing data streams. ` +
+    `Abstract technology and artificial intelligence illustration: ${motif}. ` +
     `Cyan (#22e0ff) and violet (#8b5cff) gradients on a dark navy background. ` +
     `Minimalist, clean, professional, futuristic, high quality, depth of field. ` +
     `No people, no faces, no hands, no screens, no monitors, no user interface, ` +

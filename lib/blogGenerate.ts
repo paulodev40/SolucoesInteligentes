@@ -144,16 +144,46 @@ async function generateTextWithGemini(prompt: string): Promise<string | null> {
   return data.candidates?.[0]?.content?.parts?.map((p: { text: string }) => p.text).join('') ?? '';
 }
 
-/** Gera a imagem de capa (PNG) via Imagen. Retorna Buffer ou null se falhar. */
-export async function generateCover(): Promise<Buffer | null> {
+// Motivos visuais diferentes (todos no mesmo estilo/paleta da marca). Cada post
+// escolhe um de forma determinística, para que as capas variem sem repetir sempre
+// a mesma imagem. NÃO inclui o título como texto — o Imagen tende a "escrever" o
+// texto na imagem, então o prompt é mantido puramente visual (ver scripts/blog.mjs).
+const COVER_MOTIFS = [
+  'floating glowing isometric geometric blocks and circular nodes connected by thin luminous circuit lines, neural network motif, flowing data streams',
+  'a luminous constellation of interconnected nodes and particles forming an abstract neural network in deep space',
+  'flowing ribbons of light and data streams weaving between translucent geometric crystals',
+  'an abstract isometric city made of glowing data blocks, layered platforms and light bridges',
+  'concentric glowing rings and orbiting geometric particles around a central radiant core, energy field',
+  'a topographic grid of glowing contour lines rising into floating polygonal shapes and light nodes',
+  'cascading layers of translucent hexagons and circuit pathways with soft light bloom',
+  'an abstract flowing wave of luminous dots and lines forming a sense of motion and intelligence',
+];
+
+// Hash determinístico simples (djb2) → mesmo título gera sempre o mesmo motivo.
+function hashString(str: string): number {
+  let h = 5381;
+  for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
+  return h;
+}
+
+/**
+ * Gera a imagem de capa (PNG) via Imagen. Retorna Buffer ou null se falhar.
+ * O motivo visual varia conforme o título do post (determinístico), para que
+ * cada artigo receba uma capa distinta — mas sempre no estilo da marca e sem
+ * texto na imagem.
+ */
+export async function generateCover(opts?: {
+  title?: string;
+  category?: string;
+}): Promise<Buffer | null> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey || process.env.BLOG_IMAGE === 'off') return null;
   const model = process.env.BLOG_IMAGE_MODEL || 'imagen-4.0-fast-generate-001';
+  const seed = opts?.title || opts?.category || '';
+  const motif = COVER_MOTIFS[hashString(seed) % COVER_MOTIFS.length];
   // Prompt puramente visual — evita que o modelo "escreva" texto na imagem.
   const imagePrompt =
-    'Abstract isometric technology and artificial intelligence illustration. ' +
-    'Floating glowing geometric blocks and circular nodes connected by thin luminous circuit lines, ' +
-    'neural network motif, flowing data streams. ' +
+    `Abstract technology and artificial intelligence illustration: ${motif}. ` +
     'Cyan (#22e0ff) and violet (#8b5cff) gradients on a dark navy background. ' +
     'Minimalist, clean, professional, futuristic, high quality, depth of field. ' +
     'No people, no faces, no hands, no screens, no monitors, no user interface, ' +
@@ -211,7 +241,7 @@ export async function generatePost(opts: {
   }
 
   const slug = uniqueSlug(slugify(parsed.title), opts.takenSlugs);
-  const cover = await generateCover();
+  const cover = await generateCover({ title: parsed.title, category: parsed.category });
 
   const post: BlogPost = {
     slug,
