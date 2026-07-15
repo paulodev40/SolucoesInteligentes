@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from 'next';
-import HomePage from '../views/HomePage';
+import ImmersiveHome from '../views/ImmersiveHome';
 
 export const metadata: Metadata = {
   title: 'Soluções Inteligentes 83 — Ferramentas de IA para o seu dia a dia',
@@ -14,5 +14,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomePage />;
+  return <ImmersiveHome />;
 }

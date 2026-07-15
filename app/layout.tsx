@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { ScrollProgress } from '../components/effects';
 import NeuralBackground from '../components/NeuralBackground';
 import HashRedirect from '../components/HashRedirect';
+import ChromeVisible from '../components/ChromeVisible';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -84,7 +85,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-si-bg text-si-text font-body">
         <HashRedirect />
         <ScrollProgress />
-        <NeuralBackground />
+        <ChromeVisible>
+          <NeuralBackground />
+        </ChromeVisible>
         <div className="flex flex-col min-h-screen relative" style={{ zIndex: 2 }}>
           <Header />
           <main className="flex-grow relative">{children}</main>
